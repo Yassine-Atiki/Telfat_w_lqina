@@ -46,6 +46,20 @@ public class HibernateUtil {
             System.out.println("✅ Hibernate initialisé avec succès !");
         } catch (Throwable ex) {
             System.err.println("❌ Erreur lors de l'initialisation d'Hibernate: " + ex.getMessage());
+            System.err.println();
+            System.err.println("📋 Détails complets de l'erreur:");
+
+            // Afficher la cause racine
+            Throwable cause = ex;
+            int depth = 0;
+            while (cause != null && depth < 10) {
+                System.err.println("  [" + depth + "] " + cause.getClass().getSimpleName() + ": " + cause.getMessage());
+                cause = cause.getCause();
+                depth++;
+            }
+
+            System.err.println();
+            ex.printStackTrace();
             throw new ExceptionInInitializerError(ex);
         }
     }

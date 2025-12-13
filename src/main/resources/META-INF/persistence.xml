@@ -6,6 +6,11 @@
              version="3.0">
 
     <persistence-unit name="TelfatPU" transaction-type="RESOURCE_LOCAL">
+        <!-- Déclaration des entités -->
+        <class>com.firstproject.telfat_w_lqina.Models.User</class>
+        <class>com.firstproject.telfat_w_lqina.Models.Admin</class>
+        <class>com.firstproject.telfat_w_lqina.Models.Agent</class>
+
         <properties>
             <!-- Utilisation des variables depuis database.properties -->
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
@@ -13,11 +18,10 @@
             <property name="jakarta.persistence.jdbc.user" value="${db.username}"/>
             <property name="jakarta.persistence.jdbc.password" value="${db.password}"/>
 
-            <!-- <property name="hibernate.dialect" value="${hibernate.dialect}"/> -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="${hibernate.hbm2ddl.auto}"/>
             <property name="hibernate.show_sql" value="${hibernate.show_sql}"/>
             <property name="hibernate.format_sql" value="${hibernate.format_sql}"/>
-            <property name="hibernate.connection.provider_class" value="com.zaxxer.hikari.hibernate.HikariConnectionProvider"/>
         </properties>
     </persistence-unit>
 </persistence>
