@@ -37,3 +37,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Database Configuration (local) ###
+# Ne pas commiter les configurations de base de données locales
+src/main/resources/database.properties
