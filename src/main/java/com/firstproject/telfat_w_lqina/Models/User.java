@@ -22,16 +22,38 @@ public class User {
     @Column(name = "telephone")
     private String telephone;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_type", nullable = false)
+    private UserType userType; // ADMIN, AGENT
 
-    public User(String username, String telephone, String password, long id, String email) {
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+    public User(long id, String username, String telephone, String password, String email) {
         this.username = username;
         this.telephone = telephone;
         this.password = password;
         this.id = id;
         this.email = email;
     }
+    public User(String username, String telephone, String password, String email) {
+        this.username = username;
+        this.telephone = telephone;
+        this.password = password;
+        this.email = email;
+    }
 
     public User() {
+    }
+
+    //type fixed
+    public enum UserType {
+        ADMIN, AGENT
     }
 
     //Setters
@@ -71,4 +93,5 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
 }

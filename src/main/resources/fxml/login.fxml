@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.Controllers.testController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.Controllers.loginController">
     <children>
         <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -101,7 +101,7 @@
                                         <Font name="System Bold" size="12.0" />
                                     </font>
                                 </Label>
-                                <TextField promptText="Entrez votre identifiant" style="-fx-background-color: transparent; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #333;">
+                                <TextField fx:id="usernameTextField" promptText="Entrez votre identifiant" style="-fx-background-color: transparent; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #333;">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
@@ -115,7 +115,7 @@
                                         <Insets top="10.0" />
                                     </VBox.margin>
                                 </Label>
-                                <PasswordField promptText="Entrez votre mot de passe" style="-fx-background-color: transparent; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #333;">
+                                <PasswordField fx:id="passwordField" promptText="Entrez votre mot de passe" style="-fx-background-color: transparent; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #333;">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
@@ -132,7 +132,7 @@
                                     </VBox.margin>
                                 </HBox>
 
-                                <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #006233; -fx-cursor: hand;" text="SE CONNECTER" textFill="WHITE">
+                                <Button mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #006233; -fx-cursor: hand;" text="SE CONNECTER" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>

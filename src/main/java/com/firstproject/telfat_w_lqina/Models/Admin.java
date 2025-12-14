@@ -10,11 +10,22 @@ import jakarta.persistence.Table;
 public class Admin extends User{
 
     public Admin() {
+    super();
+    super.setUserType(UserType.ADMIN);
+
     }
 
-    public Admin(String username, String telephone, String password, long id, String email) {
-        super(username, telephone, password, id, email);
+    public Admin( long id,String username, String telephone, String password, String email) {
+        super( id,username, telephone, password, email);
+        super.setUserType(UserType.ADMIN);
+
     }
+    public Admin(String username, String telephone, String password,String email) {
+        super(username, telephone, password, email);
+        super.setUserType(UserType.ADMIN);
+
+    }
+
 
 
 }

@@ -5,6 +5,7 @@ module com.firstproject.telfat_w_lqina {
     requires org.hibernate.orm.core;
     requires java.sql;
 
+
     // Ouvrir les packages pour JavaFX
     opens com.firstproject.telfat_w_lqina to javafx.fxml;
     opens com.firstproject.telfat_w_lqina.Controllers to javafx.fxml;

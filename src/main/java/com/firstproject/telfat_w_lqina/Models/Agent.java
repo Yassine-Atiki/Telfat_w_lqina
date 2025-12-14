@@ -9,9 +9,15 @@ import jakarta.persistence.Table;
 public class Agent extends User{
 
     public Agent() {
+        super.setUserType(UserType.AGENT);
     }
 
-    public Agent(String username, String telephone, String password, long id, String email) {
-        super(username, telephone, password, id, email);
+    public Agent(long id, String username, String telephone, String password, String email) {
+        super( id,username, telephone, password, email);
+        super.setUserType(UserType.AGENT);
+    }
+    public Agent( String username, String telephone, String password, String email) {
+        super(username, telephone, password, email);
+        super.setUserType(UserType.AGENT);
     }
 }
