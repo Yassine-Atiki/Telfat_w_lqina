@@ -4,6 +4,9 @@ module com.firstproject.telfat_w_lqina {
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
     requires java.sql;
+    requires java.desktop;
+    requires jbcrypt;
+    requires javafx.graphics;
 
 
     // Ouvrir les packages pour JavaFX

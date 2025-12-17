@@ -11,4 +11,11 @@ public class Alerts {
         errorAlert.setContentText(content);
         errorAlert.showAndWait();
     }
+    public void successAlert(String title,String header,String content){
+        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+        successAlert.setTitle(title);
+        successAlert.setHeaderText(header);
+        successAlert.setContentText(content);
+        successAlert.showAndWait();
+    }
 }

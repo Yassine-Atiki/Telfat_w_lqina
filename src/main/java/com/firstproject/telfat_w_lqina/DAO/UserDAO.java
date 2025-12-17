@@ -20,6 +20,8 @@ public class UserDAO {
             transaction = true;
         }
         catch (Exception exception){
+            System.out.println("❌ Erreur lors de la sauvegarde : " + exception.getMessage());
+            exception.printStackTrace(); // Affiche la trace complète de l'erreur
             if (entityTransaction.isActive())
                 entityTransaction.rollback();
         }
@@ -89,6 +91,26 @@ public class UserDAO {
             entityManager.close();
         }
         return transaction;
+    }
+
+    //COUNT NB USERS
+    public int nbUsers(){
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        Long count = 0L;
+        try {
+            entityTransaction.begin();
+            count = entityManager.createQuery("SELECT COUNT(u) FROM User u", Long.class)
+                    .getSingleResult();
+        entityTransaction.commit();
+        }catch (Exception exception){
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }        }
+        finally {
+            entityManager.close();
+        }
+        return count.intValue();
     }
 
 

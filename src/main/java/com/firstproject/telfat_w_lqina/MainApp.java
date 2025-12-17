@@ -1,5 +1,6 @@
 package com.firstproject.telfat_w_lqina;
 
+import com.firstproject.telfat_w_lqina.Service.UserService;
 import com.firstproject.telfat_w_lqina.util.HibernateUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainApp extends Application {
+
+    UserService userService = new UserService();
 
     @Override
     public void init() throws Exception {
@@ -35,6 +38,7 @@ public class MainApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("ATIKI & NIHMATOUALLAH Project");
+        userService.firstUserAdmin();
         stage.setScene(scene);
         stage.show();
     }

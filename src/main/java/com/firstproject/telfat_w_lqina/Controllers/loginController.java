@@ -3,7 +3,7 @@ package com.firstproject.telfat_w_lqina.Controllers;
 import com.firstproject.telfat_w_lqina.Models.Admin;
 import com.firstproject.telfat_w_lqina.Models.Agent;
 import com.firstproject.telfat_w_lqina.Models.User;
-import com.firstproject.telfat_w_lqina.Service.UserService;
+import com.firstproject.telfat_w_lqina.Service.AuthService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,28 +30,28 @@ public class loginController {
     @FXML
     PasswordField passwordField;
 
-    UserService userService = new UserService();
+    AuthService authService = new AuthService();
 
 
     public void login() throws IOException {
-        if (userService.login(usernameTextField.getText(),passwordField.getText())){
-            User user = userService.commonUser(usernameTextField.getText());
+        if (authService.login(usernameTextField.getText(),passwordField.getText())){
+            User user = authService.commonUser(usernameTextField.getText());
             ActionEvent event = new ActionEvent(usernameTextField, usernameTextField);
             if (user.getUserType() == AGENT) {
             goToAgentScene((Agent) user , event);
             }
             if (user.getUserType() == ADMIN){
-                goToAdminScene((Admin) user , event);
+                goToAdminScene(user , event);
             }
         }
 
     }
 
-    public void goToAdminScene(Admin admin ,ActionEvent event) throws IOException {
+    public void goToAdminScene(User user ,ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
         Parent root = loader.load();
         AdminController nextScene = loader.getController();
-        nextScene.see(admin);
+        nextScene.see(user);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
