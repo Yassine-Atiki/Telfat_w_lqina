@@ -51,10 +51,6 @@ public class User {
     public User() {
     }
 
-    //type fixed
-    public enum UserType {
-        ADMIN, AGENT
-    }
 
     //Setters
     public String getEmail() {

@@ -19,8 +19,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static com.firstproject.telfat_w_lqina.models.User.UserType.ADMIN;
-import static com.firstproject.telfat_w_lqina.models.User.UserType.AGENT;
+import static com.firstproject.telfat_w_lqina.models.UserType.ADMIN;
+import static com.firstproject.telfat_w_lqina.models.UserType.AGENT;
 
 public class loginController {
     Alerts alerts = new Alerts();
