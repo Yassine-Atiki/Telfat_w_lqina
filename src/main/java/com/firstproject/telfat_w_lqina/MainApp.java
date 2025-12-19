@@ -36,7 +36,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
         stage.setTitle("ATIKI & NIHMATOUALLAH Project");
         userService.firstUserAdmin();
         stage.setScene(scene);
