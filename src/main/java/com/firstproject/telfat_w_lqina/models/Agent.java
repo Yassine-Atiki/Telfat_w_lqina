@@ -1,4 +1,4 @@
-package com.firstproject.telfat_w_lqina.Models;
+package com.firstproject.telfat_w_lqina.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;

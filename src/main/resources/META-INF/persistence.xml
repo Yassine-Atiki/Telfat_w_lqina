@@ -7,9 +7,9 @@
 
     <persistence-unit name="TelfatPU" transaction-type="RESOURCE_LOCAL">
         <!-- Déclaration des entités -->
-        <class>com.firstproject.telfat_w_lqina.Models.User</class>
-        <class>com.firstproject.telfat_w_lqina.Models.Admin</class>
-        <class>com.firstproject.telfat_w_lqina.Models.Agent</class>
+        <class>com.firstproject.telfat_w_lqina.models.User</class>
+        <class>com.firstproject.telfat_w_lqina.models.Admin</class>
+        <class>com.firstproject.telfat_w_lqina.models.Agent</class>
 
         <properties>
             <!-- Utilisation des variables depuis database.properties -->

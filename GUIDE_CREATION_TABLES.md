@@ -8,10 +8,12 @@ Votre projet est maintenant configuré pour créer automatiquement les tables da
 
 ### 1. **Configuration de `persistence.xml`**
 Les entités ont été déclarées dans le fichier `META-INF/persistence.xml` :
+
 ```xml
-<class>com.firstproject.telfat_w_lqina.Models.User</class>
-<class>com.firstproject.telfat_w_lqina.Models.Admin</class>
-<class>com.firstproject.telfat_w_lqina.Models.Agent</class>
+
+<class>com.firstproject.telfat_w_lqina.models.User</class>
+<class>com.firstproject.telfat_w_lqina.models.Admin</class>
+<class>com.firstproject.telfat_w_lqina.models.Agent</class>
 ```
 
 ### 2. **Configuration de `database.properties`**
@@ -128,7 +130,7 @@ Pour ajouter une nouvelle entité (par exemple `Client`) :
 
 2. **Déclarer dans `persistence.xml`** :
    ```xml
-   <class>com.firstproject.telfat_w_lqina.Models.Client</class>
+   <class>com.firstproject.telfat_w_lqina.models.Client</class>
    ```
 
 3. **Relancer l'application** → La table `client` sera créée automatiquement !

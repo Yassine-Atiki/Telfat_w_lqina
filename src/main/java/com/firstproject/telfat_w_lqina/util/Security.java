@@ -1,6 +1,6 @@
 package com.firstproject.telfat_w_lqina.util;
 
-import com.firstproject.telfat_w_lqina.Models.User;
+import com.firstproject.telfat_w_lqina.models.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class Security {

@@ -11,13 +11,13 @@ module com.firstproject.telfat_w_lqina {
 
     // Ouvrir les packages pour JavaFX
     opens com.firstproject.telfat_w_lqina to javafx.fxml;
-    opens com.firstproject.telfat_w_lqina.Controllers to javafx.fxml;
+    opens com.firstproject.telfat_w_lqina.controllers to javafx.fxml;
 
     // Ouvrir le package Models à Hibernate pour l'accès par réflexion
-    opens com.firstproject.telfat_w_lqina.Models to org.hibernate.orm.core;
+    opens com.firstproject.telfat_w_lqina.models to org.hibernate.orm.core;
 
     // Exports
     exports com.firstproject.telfat_w_lqina;
-    exports com.firstproject.telfat_w_lqina.Controllers;
-    exports com.firstproject.telfat_w_lqina.Models;
+    exports com.firstproject.telfat_w_lqina.controllers;
+    exports com.firstproject.telfat_w_lqina.models;
 }

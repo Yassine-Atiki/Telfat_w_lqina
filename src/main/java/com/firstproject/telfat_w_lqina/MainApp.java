@@ -1,6 +1,6 @@
 package com.firstproject.telfat_w_lqina;
 
-import com.firstproject.telfat_w_lqina.Service.UserService;
+import com.firstproject.telfat_w_lqina.service.UserService;
 import com.firstproject.telfat_w_lqina.util.HibernateUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

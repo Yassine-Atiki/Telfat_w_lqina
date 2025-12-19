@@ -5,8 +5,8 @@
 L'erreur était :
 ```
 java.lang.reflect.InaccessibleObjectException: Unable to make field private long 
-com.firstproject.telfat_w_lqina.Models.User.id accessible: 
-module com.firstproject.telfat_w_lqina does not "opens com.firstproject.telfat_w_lqina.Models" 
+com.firstproject.telfat_w_lqina.models.User.id accessible: 
+module com.firstproject.telfat_w_lqina does not "opens com.firstproject.telfat_w_lqina.models" 
 to module org.hibernate.orm.core
 ```
 
@@ -24,6 +24,7 @@ Sans `opens`, Java bloque cet accès → Hibernate ne peut pas créer la Session
 ## ✅ Solution Appliquée
 
 ### Fichier `module-info.java` AVANT :
+
 ```java
 module com.firstproject.telfat_w_lqina {
     requires javafx.controls;
@@ -33,12 +34,13 @@ module com.firstproject.telfat_w_lqina {
 
     opens com.firstproject.telfat_w_lqina to javafx.fxml;
     exports com.firstproject.telfat_w_lqina;
-    exports com.firstproject.telfat_w_lqina.Controllers;
-    opens com.firstproject.telfat_w_lqina.Controllers to javafx.fxml;
+    exports com.firstproject.telfat_w_lqina.controllers;
+    opens com.firstproject.telfat_w_lqina.controllers to javafx.fxml;
 }
 ```
 
 ### Fichier `module-info.java` APRÈS :
+
 ```java
 module com.firstproject.telfat_w_lqina {
     requires javafx.controls;
@@ -49,24 +51,24 @@ module com.firstproject.telfat_w_lqina {
 
     // Ouvrir les packages pour JavaFX
     opens com.firstproject.telfat_w_lqina to javafx.fxml;
-    opens com.firstproject.telfat_w_lqina.Controllers to javafx.fxml;
-    
+    opens com.firstproject.telfat_w_lqina.controllers to javafx.fxml;
+
     // ✅ CORRECTION : Ouvrir Models à Hibernate
-    opens com.firstproject.telfat_w_lqina.Models to org.hibernate.orm.core;
-    
+    opens com.firstproject.telfat_w_lqina.models to org.hibernate.orm.core;
+
     // Exports
     exports com.firstproject.telfat_w_lqina;
-    exports com.firstproject.telfat_w_lqina.Controllers;
-    exports com.firstproject.telfat_w_lqina.Models;
+    exports com.firstproject.telfat_w_lqina.controllers;
+    exports com.firstproject.telfat_w_lqina.models;
 }
 ```
 
 ## 📝 Changements Effectués
 
 1. ✅ **Ajout de `requires java.sql`** : Nécessaire pour JDBC
-2. ✅ **Ajout de `opens com.firstproject.telfat_w_lqina.Models to org.hibernate.orm.core`** : 
+2. ✅ **Ajout de `opens com.firstproject.telfat_w_lqina.models to org.hibernate.orm.core`** : 
    - Permet à Hibernate d'accéder aux champs privés des entités
-3. ✅ **Ajout de `exports com.firstproject.telfat_w_lqina.Models`** : 
+3. ✅ **Ajout de `exports com.firstproject.telfat_w_lqina.models`** : 
    - Rend le package Models accessible aux autres modules
 
 ## 🎯 Comprendre `opens` vs `exports`

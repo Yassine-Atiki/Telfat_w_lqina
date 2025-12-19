@@ -1,7 +1,10 @@
-package com.firstproject.telfat_w_lqina.Service;
+package com.firstproject.telfat_w_lqina.service;
 
-import com.firstproject.telfat_w_lqina.DAO.UserDAO;
-import com.firstproject.telfat_w_lqina.Models.User;
+import com.firstproject.telfat_w_lqina.dao.UserDAO;
+import com.firstproject.telfat_w_lqina.exception.validationexception.IncorrectPasswordException;
+import com.firstproject.telfat_w_lqina.exception.validationexception.InvalidInputLoginException;
+import com.firstproject.telfat_w_lqina.exception.validationexception.InvalidUsernameException;
+import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.util.Alerts;
 import com.firstproject.telfat_w_lqina.util.Security;
 
@@ -14,17 +17,17 @@ public class AuthService {
         userName = userName.trim();
         boolean isVlideLogin = false;
         if (userName.isEmpty() || passewd.isEmpty()){
-            alerts.errorAlert("Login Failed" ,"Missing Credentials","Please enter both username and password !" );
+            throw new InvalidInputLoginException("Please enter both username and password !");
         }
-        User user = userDAO.findByUsername(userName);//user.getPassword().equals(passewd)
+        User user = userDAO.findByUsername(userName);
         if (user != null && security.checkPassword(passewd , user)){
             isVlideLogin = true;
         }
         if (user == null){
-            alerts.errorAlert("Login Failed" ,"Invalid Username" ,"The username you entered does not exist !" );
+            throw new InvalidUsernameException("The username you entered does not exist !");
         }
         if (user != null && !(security.checkPassword(passewd , user))) {
-            alerts.errorAlert("Login Failed", "Incorrect Password", "The password you entered is incorrect !");
+            throw new IncorrectPasswordException("Incorrect Password");
         }
         return isVlideLogin;
     }

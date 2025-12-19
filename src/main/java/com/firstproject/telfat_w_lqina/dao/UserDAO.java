@@ -1,10 +1,9 @@
-package com.firstproject.telfat_w_lqina.DAO;
+package com.firstproject.telfat_w_lqina.dao;
 
-import com.firstproject.telfat_w_lqina.Models.User;
+import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.util.HibernateUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import org.w3c.dom.Entity;
 
 public class UserDAO {
 
@@ -91,6 +90,25 @@ public class UserDAO {
             entityManager.close();
         }
         return transaction;
+    }
+
+    //Email already exists
+    public long emailExists(String email){
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        long isExists = 0L;
+        try {
+            entityTransaction.begin();
+            isExists = entityManager.createQuery("SELECT count(u.id)from user u WHERE u.email = u",Long.class).setParameter("u" , email).getSingleResult();
+            entityTransaction.commit();
+        }catch (Exception exception){
+            if (entityTransaction.isActive()){
+                entityTransaction.rollback();
+            }
+        }finally {
+            entityManager.close();
+        }
+        return isExists;
     }
 
     //COUNT NB USERS

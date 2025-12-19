@@ -1,7 +1,6 @@
-package com.firstproject.telfat_w_lqina.Controllers;
+package com.firstproject.telfat_w_lqina.controllers;
 
-import com.firstproject.telfat_w_lqina.Models.Admin;
-import com.firstproject.telfat_w_lqina.Models.User;
+import com.firstproject.telfat_w_lqina.models.User;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;

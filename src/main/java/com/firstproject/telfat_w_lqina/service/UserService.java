@@ -1,8 +1,13 @@
-package com.firstproject.telfat_w_lqina.Service;
+package com.firstproject.telfat_w_lqina.service;
 
-import com.firstproject.telfat_w_lqina.DAO.UserDAO;
-import com.firstproject.telfat_w_lqina.Models.Admin;
-import com.firstproject.telfat_w_lqina.Models.User;
+import com.firstproject.telfat_w_lqina.dao.UserDAO;
+import com.firstproject.telfat_w_lqina.exception.creationexception.DuplicateEmailException;
+import com.firstproject.telfat_w_lqina.exception.creationexception.DuplicateUsernameException;
+import com.firstproject.telfat_w_lqina.exception.validationexception.InvalidEmailException;
+import com.firstproject.telfat_w_lqina.exception.validationexception.InvalidPasswordException;
+import com.firstproject.telfat_w_lqina.exception.validationexception.InvalidPhoneException;
+import com.firstproject.telfat_w_lqina.models.Admin;
+import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.util.Alerts;
 import com.firstproject.telfat_w_lqina.util.CheckSyntaxe;
 import com.firstproject.telfat_w_lqina.util.Security;
@@ -15,20 +20,19 @@ public class UserService {
 
     public void createUser(User user){
         if (!checkSyntaxe.checkSyntaxeEmail(user.getEmail())){
-            alerts.errorAlert("Validation Error","Error syntaxe email","Exemple Email : user@gmail.com");
-            return;
+            throw new InvalidEmailException("Error syntaxe email");
         }
         if (!checkSyntaxe.checkSyntaxeTelephone(user.getTelephone())){
-            alerts.errorAlert("Validation Error","Error syntaxe Telephone","Exemple Telephone : 0xxxxxxxxx or +212 xxxxxxxxx ");
-            return;
+            throw new InvalidPhoneException("Error syntaxe Telephone");
         }
         if (!checkSyntaxe.checkSyntaxePassword(user.getPassword())){
-            alerts.errorAlert("Validation Error","Error syntaxe Password","Pleasse choose another Password");
-            return;
+           throw new InvalidPasswordException("Error syntaxe Password");
         }
         if(userDAO.findByUsername(user.getUsername())!=null){
-            alerts.errorAlert("Creation Error","Username already exists","Please choose another username.");
-            return;
+            throw new DuplicateUsernameException("Username already exists");
+        }
+        if (userDAO.emailExists(user.getEmail()) != 0){
+            throw new DuplicateEmailException("Email already exists");
         }
         String passwd = user.getPassword();
         user.setPassword(security.hashPassword(passwd));

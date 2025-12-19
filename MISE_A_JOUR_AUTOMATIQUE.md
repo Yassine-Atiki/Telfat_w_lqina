@@ -55,7 +55,7 @@ hibernate.hbm2ddl.auto=update
    ```
    - Ajoutez-la dans `persistence.xml` :
      ```xml
-     <class>com.firstproject.telfat_w_lqina.Models.Client</class>
+     <class>com.firstproject.telfat_w_lqina.models.Client</class>
      ```
    - Au prochain démarrage → Table `client` créée automatiquement !
 
@@ -130,8 +130,10 @@ public class Client {
 ```
 
 ### 2. **Déclarer dans `persistence.xml`**
+
 ```xml
-<class>com.firstproject.telfat_w_lqina.Models.Client</class>
+
+<class>com.firstproject.telfat_w_lqina.models.Client</class>
 ```
 
 ### 3. **Lancer l'Application**

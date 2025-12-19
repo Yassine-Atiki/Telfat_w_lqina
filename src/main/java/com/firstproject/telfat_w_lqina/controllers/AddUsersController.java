@@ -1,9 +1,14 @@
-package com.firstproject.telfat_w_lqina.Controllers;
+package com.firstproject.telfat_w_lqina.controllers;
 
-import com.firstproject.telfat_w_lqina.Models.Admin;
-import com.firstproject.telfat_w_lqina.Models.Agent;
-import com.firstproject.telfat_w_lqina.Models.User;
-import com.firstproject.telfat_w_lqina.Service.UserService;
+import com.firstproject.telfat_w_lqina.exception.creationexception.DuplicateEmailException;
+import com.firstproject.telfat_w_lqina.exception.creationexception.DuplicateUsernameException;
+import com.firstproject.telfat_w_lqina.exception.validationexception.InvalidEmailException;
+import com.firstproject.telfat_w_lqina.exception.validationexception.InvalidPasswordException;
+import com.firstproject.telfat_w_lqina.exception.validationexception.InvalidPhoneException;
+import com.firstproject.telfat_w_lqina.models.Admin;
+import com.firstproject.telfat_w_lqina.models.Agent;
+import com.firstproject.telfat_w_lqina.models.User;
+import com.firstproject.telfat_w_lqina.service.UserService;
 import com.firstproject.telfat_w_lqina.util.Alerts;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +20,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
@@ -55,7 +60,23 @@ public class AddUsersController {
         }
         if (userTypeComboBox.getValue().equals("ADMIN")){
             Admin admin = new Admin(usernameTextField.getText(),telephoneTextField.getText(),passwordField.getText(),emailTextField.getText());
-            userService.createUser((User) admin);
+            try {
+                userService.createUser((User) admin);
+            }catch (InvalidEmailException invalidEmailException){
+                alerts.errorAlert("Validation Error","Error syntaxe email","Exemple Email : user@gmail.com");
+            }
+            catch (InvalidPhoneException invalidPhoneException){
+                alerts.errorAlert("Validation Error","Error syntaxe Telephone","Exemple Telephone : 0xxxxxxxxx or +212 xxxxxxxxx ");
+            }
+            catch (InvalidPasswordException invalidPasswordException){
+                alerts.errorAlert("Validation Error","Error syntaxe Password","Pleasse choose another Password");
+            }
+            catch (DuplicateUsernameException duplicateUsernameException){
+                alerts.errorAlert("Creation Error","Username already exists","Please choose another username.");
+            }
+            catch (DuplicateEmailException duplicateEmailException){
+                alerts.errorAlert("Creation Error","Email already exists","Please choose another email.");
+            };
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AddUsers.fxml"));
             Parent root = loader.load();
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
