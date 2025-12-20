@@ -2,12 +2,12 @@ package com.firstproject.telfat_w_lqina.util;
 
 public class CheckSyntaxe {
 
-    public boolean checkSyntaxeEmail(String email) {
+    public static boolean checkSyntaxeEmail(String email) {
         String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z.-]+\\.(com|ma|org|net|edu)$";
         return email != null && email.matches(regex);
     }
 
-    public boolean checkSyntaxeTelephone(String telephone) {
+    public static boolean checkSyntaxeTelephone(String telephone) {
         if (telephone == null) return false;
 
         telephone = telephone.trim();
@@ -33,4 +33,4 @@ public class CheckSyntaxe {
 
 
 
-    }
+}

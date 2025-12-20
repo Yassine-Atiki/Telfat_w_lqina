@@ -19,7 +19,7 @@ public class UserDAO {
             transaction = true;
         }
         catch (Exception exception){
-            System.out.println("❌ Erreur lors de la sauvegarde : " + exception.getMessage());
+            System.out.println("Erreur lors de la sauvegarde : " + exception.getMessage());
             exception.printStackTrace(); // Affiche la trace complète de l'erreur
             if (entityTransaction.isActive())
                 entityTransaction.rollback();

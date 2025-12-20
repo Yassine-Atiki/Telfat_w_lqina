@@ -3,7 +3,6 @@ package com.firstproject.telfat_w_lqina.util;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -73,5 +72,4 @@ public class HibernateUtil {
             emFactory.close();
         }
     }
-
 }

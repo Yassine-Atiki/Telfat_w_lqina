@@ -10,6 +10,9 @@ import com.firstproject.telfat_w_lqina.models.Agent;
 import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.service.UserService;
 import com.firstproject.telfat_w_lqina.util.Alerts;
+import com.firstproject.telfat_w_lqina.util.LogoutUtil;
+import com.firstproject.telfat_w_lqina.util.NavigationUtil;
+import com.firstproject.telfat_w_lqina.util.SessionManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -45,7 +48,6 @@ public class AddUsersController {
 
     private Stage stage;
     private Scene scene;
-    private Alerts alerts = new Alerts();
 
 
     public void initialize() {
@@ -55,7 +57,7 @@ public class AddUsersController {
     @FXML
     public void createUser(ActionEvent event) throws IOException {
         if (userTypeComboBox.getValue() == null) {
-            alerts.errorAlert("Validation Error", "Role not selected","Please select a user role.");
+            Alerts.errorAlert("Validation Error", "Role not selected","Please select a user role.");
             return;
         }
         if (userTypeComboBox.getValue().equals("ADMIN")){
@@ -63,38 +65,38 @@ public class AddUsersController {
             try {
                 userService.createUser((User) admin);
             }catch (InvalidEmailException invalidEmailException){
-                alerts.errorAlert("Validation Error","Error syntaxe email","Exemple Email : user@gmail.com");
+                Alerts.errorAlert("Validation Error","Error syntaxe email","Exemple Email : user@gmail.com");
             }
             catch (InvalidPhoneException invalidPhoneException){
-                alerts.errorAlert("Validation Error","Error syntaxe Telephone","Exemple Telephone : 0xxxxxxxxx or +212 xxxxxxxxx ");
+                Alerts.errorAlert("Validation Error","Error syntaxe Telephone","Exemple Telephone : 0xxxxxxxxx or +212 xxxxxxxxx ");
             }
             catch (InvalidPasswordException invalidPasswordException){
-                alerts.errorAlert("Validation Error","Error syntaxe Password","Pleasse choose another Password");
+                Alerts.errorAlert("Validation Error","Error syntaxe Password","Pleasse choose another Password");
             }
             catch (DuplicateUsernameException duplicateUsernameException){
-                alerts.errorAlert("Creation Error","Username already exists","Please choose another username.");
+                Alerts.errorAlert("Creation Error","Username already exists","Please choose another username.");
             }
             catch (DuplicateEmailException duplicateEmailException){
-                alerts.errorAlert("Creation Error","Email already exists","Please choose another email.");
+                Alerts.errorAlert("Creation Error","Email already exists","Please choose another email.");
             };
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AddUsers.fxml"));
-            Parent root = loader.load();
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            NavigationUtil.navigate(event,"/fxml/AddUsers.fxml");
             return;
         }
         if (userTypeComboBox.getValue().equals("AGENT")){
             Agent agent = new Agent(usernameTextField.getText(),telephoneTextField.getText(),passwordField.getText(),emailTextField.getText());
             userService.createUser((User) agent);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AddUsers.fxml"));
-            Parent root = loader.load();
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            NavigationUtil.navigate(event,"/fxml/AddUsers.fxml");
             return;
         }
+    }
+
+    @FXML
+    public void goBack(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/Admin.fxml");
+    }
+
+    @FXML
+    public void logout(ActionEvent event) throws IOException {
+        LogoutUtil.logout(event);
     }
 }

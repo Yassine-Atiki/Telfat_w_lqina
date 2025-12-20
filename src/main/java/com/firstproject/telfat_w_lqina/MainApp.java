@@ -19,15 +19,15 @@ public class MainApp extends Application {
 
         // Initialiser Hibernate au démarrage de l'application
         // Cela va déclencher la création des tables si elles n'existent pas
-        System.out.println("🚀 Initialisation de l'application...");
-        System.out.println("📊 Vérification de la base de données...");
+        System.out.println("Initialisation de l'application...");
+        System.out.println("Vérification de la base de données...");
 
         try {
             // Force l'initialisation d'Hibernate (création des tables)
             HibernateUtil.getEntityManager().close();
-            System.out.println("✅ Base de données initialisée avec succès !");
+            System.out.println("Base de données initialisée avec succès !");
         } catch (Exception e) {
-            System.err.println("❌ Erreur lors de l'initialisation de la base de données");
+            System.err.println("Erreur lors de l'initialisation de la base de données");
             e.printStackTrace();
             throw e;
         }
@@ -36,7 +36,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("ATIKI & NIHMATOUALLAH Project");
         userService.firstUserAdmin();
         stage.setScene(scene);
@@ -47,7 +47,7 @@ public class MainApp extends Application {
     public void stop() throws Exception {
         super.stop();
         // Fermer proprement Hibernate à la fermeture de l'application
-        System.out.println("🔒 Fermeture de la connexion à la base de données...");
+        System.out.println("Fermeture de la connexion à la base de données...");
         HibernateUtil.shutdown();
     }
 }

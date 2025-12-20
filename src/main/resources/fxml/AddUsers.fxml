@@ -1,54 +1,273 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.AddUsersController">
-   <children>
-      <BorderPane prefHeight="400.0" prefWidth="600.0">
-         <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <GridPane layoutX="63.0" layoutY="108.0" prefHeight="209.0" prefWidth="283.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.33331298828125" minWidth="10.0" prefWidth="95.33331298828125" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.66668701171875" minWidth="10.0" prefWidth="188.66668701171875" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label text="username" />
-                        <Label text="password" GridPane.rowIndex="1" />
-                        <Label text="email" GridPane.rowIndex="2" />
-                        <Label text="telephone" GridPane.rowIndex="3" />
-                        <Label text="user Type" GridPane.rowIndex="4" />
-                        <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="usernameTextField" GridPane.columnIndex="1" />
-                        <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="telephoneTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <ComboBox fx:id="userTypeComboBox" prefHeight="25.0" prefWidth="187.0" promptText="Select User Type" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                     </children>
-                  </GridPane>
-                  <Button layoutX="63.0" layoutY="337.0" mnemonicParsing="false" onAction="#createUser" prefHeight="33.0" prefWidth="283.0" text="+ Add " />
-               </children>
-            </AnchorPane>
-         </center>
-         <left>
-            <AnchorPane prefHeight="400.0" prefWidth="205.0" BorderPane.alignment="CENTER" />
-         </left>
-      </BorderPane>
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #f5f5f5;"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.firstproject.telfat_w_lqina.controllers.AddUsersController">
+
+    <!-- Header avec navigation -->
+    <top>
+        <VBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="15" style="-fx-background-color: white; -fx-padding: 15 25;">
+                <!-- Bouton Retour -->
+                <Button text="← Retour" onAction="#goBack"
+                        style="-fx-background-color: transparent; -fx-text-fill: #666666; -fx-cursor: hand; -fx-font-size: 13px; -fx-padding: 8 15;">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Button>
+
+                <Separator orientation="VERTICAL" prefHeight="30"/>
+
+                <!-- Logo et titre -->
+                <VBox spacing="2">
+                    <Label text="Telfat w lqina" textFill="#C1272D">
+                        <font>
+                            <Font name="System Bold" size="20.0" />
+                        </font>
+                    </Label>
+                    <Label text="Créer un nouvel utilisateur" textFill="#666666">
+                        <font>
+                            <Font size="11.0" />
+                        </font>
+                    </Label>
+                </VBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Bouton Déconnexion -->
+                <Button text="Déconnexion" onAction="#logout"
+                        style="-fx-background-color: transparent; -fx-border-color: #C1272D; -fx-border-width: 1.5; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: #C1272D; -fx-cursor: hand; -fx-padding: 8 20;">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+
+                <effect>
+                    <DropShadow color="#00000010" offsetY="2.0" radius="4.0"/>
+                </effect>
+            </HBox>
+
+            <!-- Breadcrumb -->
+            <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 12 25; -fx-background-color: #fafafa;">
+                <Label text="Administration" textFill="#999999">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Label>
+                <Label text="/" textFill="#cccccc"/>
+                <Label text="Utilisateurs" textFill="#333333">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Centre - Formulaire en 2 colonnes -->
+    <center>
+        <HBox alignment="TOP_CENTER" style="-fx-padding: 30;">
+            <VBox spacing="25" maxWidth="850" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 35;">
+
+                <!-- En-tête du formulaire -->
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <VBox spacing="5">
+                        <Label text="Informations de l'utilisateur" textFill="#333333">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label text="Remplissez tous les champs requis (*)" textFill="#999999">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+                </HBox>
+
+                <Separator/>
+
+                <!-- Formulaire en grille 2 colonnes -->
+                <GridPane hgap="25" vgap="20">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50" hgrow="SOMETIMES"/>
+                        <ColumnConstraints percentWidth="50" hgrow="SOMETIMES"/>
+                    </columnConstraints>
+
+                    <!-- Nom d'utilisateur -->
+                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <HBox spacing="5">
+                            <Label text="Nom d'utilisateur" textFill="#333333">
+                                <font>
+                                    <Font name="System Bold" size="13.0" />
+                                </font>
+                            </Label>
+                            <Label text="*" textFill="#C1272D">
+                                <font>
+                                    <Font name="System Bold" size="13.0" />
+                                </font>
+                            </Label>
+                        </HBox>
+                        <TextField fx:id="usernameTextField" promptText="Saisir le nom d'utilisateur"
+                                   prefHeight="40"
+                                   style="-fx-background-color: #fafafa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-text-fill: #333;">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </TextField>
+                    </VBox>
+
+                    <!-- Mot de passe -->
+                    <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <HBox spacing="5">
+                            <Label text="Mot de passe" textFill="#333333">
+                                <font>
+                                    <Font name="System Bold" size="13.0" />
+                                </font>
+                            </Label>
+                            <Label text="*" textFill="#C1272D">
+                                <font>
+                                    <Font name="System Bold" size="13.0" />
+                                </font>
+                            </Label>
+                        </HBox>
+                        <PasswordField fx:id="passwordField" promptText="Minimum 8 caractères"
+                                       prefHeight="40"
+                                       style="-fx-background-color: #fafafa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-text-fill: #333;">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </PasswordField>
+                    </VBox>
+
+                    <!-- Email -->
+                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <HBox spacing="5">
+                            <Label text="Adresse email" textFill="#333333">
+                                <font>
+                                    <Font name="System Bold" size="13.0" />
+                                </font>
+                            </Label>
+                            <Label text="*" textFill="#C1272D">
+                                <font>
+                                    <Font name="System Bold" size="13.0" />
+                                </font>
+                            </Label>
+                        </HBox>
+                        <TextField fx:id="emailTextField" promptText="exemple@can2025.ma"
+                                   prefHeight="40"
+                                   style="-fx-background-color: #fafafa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-text-fill: #333;">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </TextField>
+                    </VBox>
+
+                    <!-- Téléphone -->
+                    <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <HBox spacing="5">
+                            <Label text="Numéro de téléphone" textFill="#333333">
+                                <font>
+                                    <Font name="System Bold" size="13.0" />
+                                </font>
+                            </Label>
+                            <Label text="*" textFill="#C1272D">
+                                <font>
+                                    <Font name="System Bold" size="13.0" />
+                                </font>
+                            </Label>
+                        </HBox>
+                        <TextField fx:id="telephoneTextField" promptText="+212 6XX XXX XXX"
+                                   prefHeight="40"
+                                   style="-fx-background-color: #fafafa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-text-fill: #333;">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </TextField>
+                    </VBox>
+
+                    <!-- Type d'utilisateur -->
+                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2">
+                        <HBox spacing="5">
+                            <Label text="Type d'utilisateur" textFill="#333333">
+                                <font>
+                                    <Font name="System Bold" size="13.0" />
+                                </font>
+                            </Label>
+                            <Label text="*" textFill="#C1272D">
+                                <font>
+                                    <Font name="System Bold" size="13.0" />
+                                </font>
+                            </Label>
+                        </HBox>
+                        <ComboBox fx:id="userTypeComboBox" promptText="Sélectionner le rôle"
+                                  prefWidth="400" prefHeight="40"
+                                  style="-fx-background-color: #fafafa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+                    </VBox>
+
+                    <rowConstraints>
+                        <RowConstraints/>
+                        <RowConstraints/>
+                        <RowConstraints/>
+                    </rowConstraints>
+                </GridPane>
+
+                <Separator/>
+
+                <!-- Boutons d'action -->
+                <HBox spacing="12" alignment="CENTER_RIGHT">
+                    <Button text="Annuler" onAction="#goBack" prefWidth="130" prefHeight="42"
+                            style="-fx-background-color: white; -fx-border-color: #d0d0d0; -fx-border-width: 1.5; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: #666666;">
+                        <font>
+                            <Font name="System Bold" size="13.0" />
+                        </font>
+                    </Button>
+                    <Button text="Créer l'utilisateur" onAction="#createUser" prefWidth="180" prefHeight="42"
+                            style="-fx-background-color: #006233; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;"
+                            textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="13.0" />
+                        </font>
+                        <effect>
+                            <DropShadow color="#00623355" offsetY="3.0" radius="6.0"/>
+                        </effect>
+                    </Button>
+                </HBox>
+
+                <effect>
+                    <DropShadow color="#00000008" radius="12.0" />
+                </effect>
+            </VBox>
+        </HBox>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox alignment="CENTER" prefHeight="50.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0;">
+            <Label text="© 2025 Telfat w lqina - CAN 2025 Maroc" textFill="#999999">
+                <font>
+                    <Font size="11.0" />
+                </font>
+            </Label>
+        </HBox>
+    </bottom>
+</BorderPane>

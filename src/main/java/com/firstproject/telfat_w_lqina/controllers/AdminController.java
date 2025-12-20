@@ -1,8 +1,10 @@
 package com.firstproject.telfat_w_lqina.controllers;
 
 import com.firstproject.telfat_w_lqina.models.User;
+import com.firstproject.telfat_w_lqina.util.LogoutUtil;
+import com.firstproject.telfat_w_lqina.util.NavigationUtil;
+import com.firstproject.telfat_w_lqina.util.SessionManager;
 import javafx.fxml.FXML;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -20,18 +22,24 @@ public class AdminController {
     private Stage stage;
     private Scene scene;
 
-    public void see(User admin){
-        labelAdmin.setText(admin.getUsername()+" is "+admin.getUserType());
+    @FXML
+    public void initialize() {
+        // Récupérer l'utilisateur connecté depuis SessionManager
+        User currentUser = SessionManager.getInstance().getCurrentUser();
     }
 
     @FXML
     public void createUser(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AddUsers.fxml"));
-        Parent root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        NavigationUtil.navigate(event,"/fxml/AddUsers.fxml");
     }
 
+    @FXML
+    public void logout(ActionEvent event) throws IOException {
+        LogoutUtil.logout(event);
+    }
+
+    @FXML
+    public void viewLostObjects(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewLostObjects.fxml");
+    }
 }

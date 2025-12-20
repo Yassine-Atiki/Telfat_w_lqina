@@ -94,7 +94,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.firstproject.telfat_w_lqina/com.firstproject.telfat_w_lqina.HelloApplication
+                                com.firstproject.telfat_w_lqina/com.firstproject.telfat_w_lqina.Launcher
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

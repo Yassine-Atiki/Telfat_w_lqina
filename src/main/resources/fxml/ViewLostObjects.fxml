@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #f5f5f5;"
+            stylesheets="@../css/tableview-style.css"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewLostObjectsController">
+
+    <!-- Header -->
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="20" style="-fx-background-color: white; -fx-padding: 15 25;">
+            <VBox spacing="3">
+                <Label text="Telfat w lqina" textFill="#C1272D">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Label>
+                <Label text="Liste des Objets Perdus" textFill="#666666">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Label>
+            </VBox>
+            <HBox HBox.hgrow="ALWAYS"/>
+            <VBox alignment="CENTER_RIGHT" spacing="2">
+                <Label fx:id="labelAgent" textFill="#333333">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Agent de Terrain" textFill="#999999">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
+            </VBox>
+            <!-- Boutons Header -->
+            <Button text="Retour" onAction="#goBack"
+                    style="-fx-background-color: transparent; -fx-border-color: #006233; -fx-border-width: 1.5; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: #006233; -fx-cursor: hand; -fx-padding: 8 20;">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
+            <Button text="Déconnexion" onAction="#seDeconnecter"
+                    style="-fx-background-color: transparent; -fx-border-color: #C1272D; -fx-border-width: 1.5; -fx-border-radius: 4; -fx-background-radius: 4; -fx-text-fill: #C1272D; -fx-cursor: hand; -fx-padding: 8 20;">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
+            <effect>
+                <DropShadow color="#00000010" offsetY="2.0" radius="4.0"/>
+            </effect>
+        </HBox>
+    </top>
+
+    <!-- Centre -->
+    <center>
+        <VBox spacing="20" style="-fx-padding: 30;">
+
+            <!-- Titre Section -->
+            <VBox alignment="CENTER" spacing="8">
+                <Label text="Objets Trouvés - CAN 2025" textFill="#333333">
+                    <font>
+                        <Font name="System Bold" size="26.0" />
+                    </font>
+                </Label>
+                <Line endX="150.0" startX="-150.0" stroke="#006233" strokeWidth="2.0"/>
+                <Label fx:id="totalLabel" text="Total: 0 objets" textFill="#666666">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+            </VBox>
+
+            <!-- TableView avec style moderne -->
+            <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20;" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tableViewLostObjects" prefHeight="500.0" style="-fx-background-color: transparent;">
+                    <placeholder>
+                        <Label text="Aucun objet perdu enregistré pour le moment" style="-fx-text-fill: #999999; -fx-font-size: 14px; -fx-padding: 30;" />
+                    </placeholder>
+                    <columns>
+                        <TableColumn fx:id="colType" prefWidth="120.0" text="Type" style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colDescription" prefWidth="200.0" text="Description"/>
+                        <TableColumn fx:id="colDate" prefWidth="110.0" text="Date Trouvé" style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colZone" prefWidth="150.0" text="Zone" style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colAgent" prefWidth="140.0" text="Agent"/>
+                        <TableColumn fx:id="colPhone" prefWidth="120.0" text="Téléphone" style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colEmail" prefWidth="180.0" text="Email"/>
+                    </columns>
+                </TableView>
+                <effect>
+                    <DropShadow color="#00000010" radius="10.0" />
+                </effect>
+            </VBox>
+
+            <!-- Boutons d'action -->
+            <HBox alignment="CENTER" spacing="15">
+                <Button text="Actualiser" onAction="#refreshTable"
+                        prefWidth="150" prefHeight="40"
+                        style="-fx-background-color: #006233; -fx-cursor: hand;"
+                        textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                    <effect>
+                        <DropShadow color="#00000033" offsetY="3.0" />
+                    </effect>
+                </Button>
+                <Button text="Ajouter Nouvel Objet" onAction="#addNewObject"
+                        prefWidth="180" prefHeight="40"
+                        style="-fx-background-color: #C1272D; -fx-cursor: hand;"
+                        textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                    <effect>
+                        <DropShadow color="#00000033" offsetY="3.0" />
+                    </effect>
+                </Button>
+            </HBox>
+        </VBox>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox alignment="CENTER" prefHeight="50.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0;">
+            <Label text="© 2025 Telfat w lqina - CAN 2025 Maroc" textFill="#999999">
+                <font>
+                    <Font size="11.0" />
+                </font>
+            </Label>
+        </HBox>
+    </bottom>
+</BorderPane>
+
