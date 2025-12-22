@@ -18,12 +18,13 @@ public class AgentController {
     private Scene scene;
 
     @FXML
-    private Label labelAdmin;
+    private Label labelAgent;
 
     @FXML
     public void initialize() {
         // Récupérer l'utilisateur connecté depuis SessionManager
         User currentUser = SessionManager.getInstance().getCurrentUser();
+        labelAgent.setText(currentUser.getUsername());
     }
 
     @FXML
@@ -33,7 +34,7 @@ public class AgentController {
 
     @FXML
     public void viewLostObjects(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event,"/fxml/ViewLostObjects.fxml");
+        NavigationUtil.navigate(event,"/fxml/ViewLostObjectsAgent.fxml");
     }
 
     @FXML

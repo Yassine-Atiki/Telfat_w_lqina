@@ -26,6 +26,7 @@ public class AdminController {
     public void initialize() {
         // Récupérer l'utilisateur connecté depuis SessionManager
         User currentUser = SessionManager.getInstance().getCurrentUser();
+        labelAdmin.setText(currentUser.getUsername());
     }
 
     @FXML

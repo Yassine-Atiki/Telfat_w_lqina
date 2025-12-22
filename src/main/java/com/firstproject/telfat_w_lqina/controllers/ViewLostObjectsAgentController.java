@@ -2,6 +2,7 @@ package com.firstproject.telfat_w_lqina.controllers;
 
 import com.firstproject.telfat_w_lqina.models.LostObject;
 import com.firstproject.telfat_w_lqina.models.User;
+import com.firstproject.telfat_w_lqina.models.UserType;
 import com.firstproject.telfat_w_lqina.service.LostObjectService;
 import com.firstproject.telfat_w_lqina.util.LogoutUtil;
 import com.firstproject.telfat_w_lqina.util.NavigationUtil;
@@ -19,7 +20,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class ViewLostObjectsController {
+public class ViewLostObjectsAgentController {
 
     @FXML
     private TableView<LostObject> tableViewLostObjects;
@@ -46,10 +47,12 @@ public class ViewLostObjectsController {
     private TableColumn<LostObject, String> colEmail;
 
     @FXML
-    private Label labelAgent;
+    private Label labelUser;
 
     @FXML
     private Label totalLabel;
+    @FXML
+    private Label userTypeLabel;
 
     private final LostObjectService lostObjectService = new LostObjectService();
     private ObservableList<LostObject> lostObjectsList;
@@ -59,7 +62,7 @@ public class ViewLostObjectsController {
         // Récupérer l'utilisateur connecté
         User currentUser = SessionManager.getInstance().getCurrentUser();
         if (currentUser != null) {
-            labelAgent.setText(currentUser.getUsername());
+            labelUser.setText(currentUser.getUsername());
         }
 
         // Configurer les colonnes du TableView
@@ -116,7 +119,10 @@ public class ViewLostObjectsController {
 
     @FXML
     public void goBack(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event, "/fxml/Agent.fxml");
+        User currentUser = SessionManager.getInstance().getCurrentUser();
+        if (currentUser.getUserType() == UserType.AGENT){
+            NavigationUtil.navigate(event, "/fxml/Agent.fxml");
+        }
     }
 
     @FXML
@@ -124,4 +130,3 @@ public class ViewLostObjectsController {
         LogoutUtil.logout(event);
     }
 }
-

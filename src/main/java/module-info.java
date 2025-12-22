@@ -8,6 +8,7 @@ module com.firstproject.telfat_w_lqina {
     requires jbcrypt;
     requires javafx.graphics;
     requires mysql.connector.j;
+    requires javafx.base;
 
 
     // Ouvrir les packages pour JavaFX

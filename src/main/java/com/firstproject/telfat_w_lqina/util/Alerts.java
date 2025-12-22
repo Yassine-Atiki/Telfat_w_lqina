@@ -19,4 +19,5 @@ public class Alerts {
         successAlert.setContentText(content);
         successAlert.showAndWait();
     }
+
 }

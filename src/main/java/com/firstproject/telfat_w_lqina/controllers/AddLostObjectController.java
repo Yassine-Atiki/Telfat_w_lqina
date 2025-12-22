@@ -1,10 +1,12 @@
 package com.firstproject.telfat_w_lqina.controllers;
 
 import com.firstproject.telfat_w_lqina.models.LostObject;
+import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.service.LostObjectService;
 import com.firstproject.telfat_w_lqina.util.Alerts;
 import com.firstproject.telfat_w_lqina.util.LogoutUtil;
 import com.firstproject.telfat_w_lqina.util.NavigationUtil;
+import com.firstproject.telfat_w_lqina.util.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -25,6 +27,14 @@ public class AddLostObjectController {
     private final LostObjectService lostObjectService = new LostObjectService();
     private Stage stage;
     private Scene scene;
+
+
+    public void initialize(){
+        User currentUser = SessionManager.getInstance().getCurrentUser();
+        ownerNameField.setText(currentUser.getUsername());
+        phoneField.setText(currentUser.getTelephone());
+        emailField.setText(currentUser.getEmail());
+            }
 
     @FXML
     public void handleSave() {

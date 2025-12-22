@@ -6,22 +6,32 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class LogoutUtil {
     private static Stage stage;
     private static Scene scene;
 
+
     @FXML
     public static void logout(ActionEvent event) throws IOException {
-        SessionManager.getInstance().clearSession();
-        FXMLLoader loader = new FXMLLoader(LogoutUtil.class.getResource("/fxml/login.fxml"));
-        Parent root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Logout");
+        confirmationAlert.setHeaderText("Logout Confirmation");
+        confirmationAlert.setContentText("Are you sure you want to logout?");
+
+        confirmationAlert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
+
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            SessionManager.getInstance().clearSession();
+            NavigationUtil.navigate(event, "/fxml/login.fxml");
+        }
     }
 }
