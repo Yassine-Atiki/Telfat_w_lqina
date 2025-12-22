@@ -123,9 +123,6 @@ public class ViewLostObjectsAdminController {
         if (currentUser.getUserType() == UserType.ADMIN){
             NavigationUtil.navigate(event, "/fxml/Admin.fxml");
         }
-        if (currentUser.getUserType() == UserType.AGENT){
-            NavigationUtil.navigate(event, "/fxml/Agent.fxml");
-        }
     }
 
     @FXML
