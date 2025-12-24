@@ -224,7 +224,7 @@
             <top>
                 <StackPane prefHeight="80.0">
                     <!-- Motif zellige subtil en arrière-plan -->
-                    <HBox alignment="CENTER_RIGHT" opacity="0.04" spacing="-8" style="-fx-padding: 0 50 0 0;">
+                    <HBox alignment="CENTER_RIGHT" opacity="0.4" spacing="-8" style="-fx-padding: 0 50 0 0;">
                         <Polygon fill="#006233" rotate="0">
                             <points>
                                 <Double fx:value="0.0" /> <Double fx:value="-15.0" />

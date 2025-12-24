@@ -43,4 +43,9 @@ public class AdminController {
     public void viewLostObjects(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event,"/fxml/ViewLostObjects.fxml");
     }
+
+    @FXML
+    public void AddStadium(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddStadium.fxml");
+    }
 }
