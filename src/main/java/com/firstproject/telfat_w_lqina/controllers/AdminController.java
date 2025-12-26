@@ -5,9 +5,6 @@ import com.firstproject.telfat_w_lqina.util.LogoutUtil;
 import com.firstproject.telfat_w_lqina.util.NavigationUtil;
 import com.firstproject.telfat_w_lqina.util.SessionManager;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -41,7 +38,7 @@ public class AdminController {
 
     @FXML
     public void viewLostObjects(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event,"/fxml/ViewLostObjects.fxml");
+        NavigationUtil.navigate(event, "/fxml/ViewLostObjectsAdmin.fxml");
     }
 
     @FXML

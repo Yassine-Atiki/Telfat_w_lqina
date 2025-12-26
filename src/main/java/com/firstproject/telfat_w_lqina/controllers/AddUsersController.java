@@ -9,8 +9,9 @@ import com.firstproject.telfat_w_lqina.models.Admin;
 import com.firstproject.telfat_w_lqina.models.Agent;
 import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.models.Stadium;
+import com.firstproject.telfat_w_lqina.service.StadiumService;
 import com.firstproject.telfat_w_lqina.service.UserService;
-import com.firstproject.telfat_w_lqina.dao.AddStadiumDAO;
+import com.firstproject.telfat_w_lqina.dao.StadiumDAO;
 import com.firstproject.telfat_w_lqina.util.Alerts;
 import com.firstproject.telfat_w_lqina.util.LogoutUtil;
 import com.firstproject.telfat_w_lqina.util.NavigationUtil;
@@ -54,7 +55,7 @@ public class AddUsersController {
 
 
     UserService userService = new UserService();
-    AddStadiumDAO stadiumDAO = new AddStadiumDAO();
+    StadiumDAO stadiumDAO = new StadiumDAO();
 
     private Stage stage;
     private Scene scene;
@@ -103,14 +104,9 @@ public class AddUsersController {
     }
     //Had function 9adita b IA hitach m3rftch liha !!!
     private void loadStadiums() {
-        try {
-            List<Stadium> stadiums = stadiumDAO.getAllStadiums();
+            List<Stadium> stadiums = StadiumService.getAllStadiums();
             stadiumComboBox.getItems().clear();
             stadiumComboBox.getItems().addAll(stadiums);
-        } catch (Exception e) {
-            Alerts.errorAlert("Erreur", "Erreur de chargement", "Impossible de charger les stades.");
-            e.printStackTrace();
-        }
     }
 
     @FXML
@@ -189,7 +185,7 @@ public class AddUsersController {
 
     @FXML
     public void goToLostObject(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event,"/fxml/AddLostObject.fxml");
+        NavigationUtil.navigate(event,"/fxml/ViewLostObjectsAdmin.fxml");
     }
 
     @FXML

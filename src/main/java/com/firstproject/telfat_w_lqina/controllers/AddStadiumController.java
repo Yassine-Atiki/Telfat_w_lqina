@@ -1,14 +1,12 @@
 package com.firstproject.telfat_w_lqina.controllers;
 
-import com.firstproject.telfat_w_lqina.models.Stadium;
 import com.firstproject.telfat_w_lqina.models.User;
-import com.firstproject.telfat_w_lqina.service.AddStadiumService;
+import com.firstproject.telfat_w_lqina.service.StadiumService;
 import com.firstproject.telfat_w_lqina.util.LogoutUtil;
 import com.firstproject.telfat_w_lqina.util.NavigationUtil;
 import com.firstproject.telfat_w_lqina.util.SessionManager;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -60,7 +58,7 @@ public class AddStadiumController {
         }
 
         try {
-            AddStadiumService.addStadium(stadiumName);
+            StadiumService.addStadium(stadiumName);
             showSuccess("✓ Stade ajouté avec succès!");
             stadiumNameField.clear();
         } catch (IllegalArgumentException e) {
@@ -83,7 +81,7 @@ public class AddStadiumController {
 
     @FXML
     public void viewLostObjects(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event, "/fxml/ViewLostObjects.fxml");
+        NavigationUtil.navigate(event, "/fxml/ViewLostObjectsAdmin.fxml");
     }
 
     @FXML

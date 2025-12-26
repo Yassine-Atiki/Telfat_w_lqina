@@ -3,20 +3,22 @@
 <?import java.lang.Double?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #faf8f5;" stylesheets="@../css/tableview-style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewLostObjectsAgentController">
+<BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewLostObjectsAgentController">
 
     <!-- Sidebar Navigation -->
     <left>
@@ -48,11 +50,6 @@
 
                 <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-padding: 20;">
                     <Polygon fill="#006233" stroke="WHITE" strokeType="INSIDE" strokeWidth="1.0">
-                        <points>
-                            <Double fx:value="-20.0" /> <Double fx:value="16.0" />
-                            <Double fx:value="20.0" /> <Double fx:value="16.0" />
-                            <Double fx:value="0.0" /> <Double fx:value="-24.0" />
-                        </points>
                         <points>
                             <Double fx:value="0.0" /> <Double fx:value="-18.0" />
                             <Double fx:value="4.5" /> <Double fx:value="-5.5" />
@@ -108,28 +105,19 @@
                     </VBox.margin>
                 </Label>
 
-                <!-- Dashboard -->
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goBack" prefHeight="45.0" prefWidth="230.0"
-                        style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;"
-                        text="  📊  Tableau de Bord">
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goBack" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📊  Tableau de Bord">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Button>
 
-                <!-- Ajouter Objet -->
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#addNewObject" prefHeight="45.0" prefWidth="230.0"
-                        style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;"
-                        text="  ➕  Ajouter Objet">
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#addNewObject" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  ➕  Ajouter Objet">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Button>
 
-                <!-- Liste Objets - Active -->
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0"
-                        style="-fx-background-color: linear-gradient(to right, #006233, #007d42); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;"
-                        text="  📋  Liste des Objets">
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #006233, #007d42); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text="  📋  Liste des Objets">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
@@ -138,19 +126,13 @@
                     </effect>
                 </Button>
 
-                <!-- Rechercher -->
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0"
-                        style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;"
-                        text="  🔍  Rechercher">
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  🔍  Rechercher">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Button>
 
-                <!-- Statistiques -->
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0"
-                        style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;"
-                        text="  📈  Statistiques">
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📈  Statistiques">
                     <font>
                         <Font size="13.0" />
                     </font>
@@ -159,9 +141,8 @@
 
             <VBox VBox.vgrow="ALWAYS" />
 
-            <!-- User Profile Section avec motif -->
+            <!-- User Profile Section -->
             <StackPane>
-                <!-- Motif décoratif en background -->
                 <HBox alignment="BOTTOM_RIGHT" opacity="0.06">
                     <Polygon fill="#C1272D" rotate="0">
                         <points>
@@ -198,9 +179,7 @@
                         </Label>
                     </VBox>
 
-                    <Button onAction="#seDeconnecter" prefHeight="38.0" prefWidth="200.0"
-                            style="-fx-background-color: transparent; -fx-border-color: #dc3545; -fx-border-width: 2; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #dc3545; -fx-cursor: hand;"
-                            text="🚪  Déconnexion">
+                    <Button onAction="#seDeconnecter" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #dc3545; -fx-border-width: 2; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #dc3545; -fx-cursor: hand;" text="🚪  Déconnexion">
                         <font>
                             <Font name="System Bold" size="12.0" />
                         </font>
@@ -214,10 +193,9 @@
     <center>
         <BorderPane style="-fx-background-color: transparent;">
 
-            <!-- Header Bar avec motif -->
+            <!-- Header Bar -->
             <top>
                 <StackPane prefHeight="80.0">
-                    <!-- Motif zellige subtil en arrière-plan -->
                     <HBox alignment="CENTER_RIGHT" opacity="0.04" spacing="-8" style="-fx-padding: 0 50 0 0;">
                         <Polygon fill="#006233" rotate="0">
                             <points>
@@ -241,16 +219,16 @@
                         </Polygon>
                     </HBox>
 
-                    <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20 35; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);">
+                    <HBox alignment="CENTER_LEFT" prefHeight="137.0" prefWidth="940.0" spacing="20" style="-fx-background-color: white; -fx-padding: 20 35; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);">
                         <VBox spacing="2">
                             <Label text="Liste des Objets Perdus" textFill="#212529">
                                 <font>
                                     <Font name="System Bold" size="24.0" />
                                 </font>
                             </Label>
-                            <HBox spacing="6" alignment="CENTER_LEFT">
-                                <Rectangle fill="#006233" height="3.0" width="30.0" arcHeight="3" arcWidth="3" />
-                                <Rectangle fill="#C1272D" height="3.0" width="8.0" arcHeight="3" arcWidth="3" />
+                            <HBox alignment="CENTER_LEFT" spacing="6">
+                                <Rectangle arcHeight="3" arcWidth="3" fill="#006233" height="3.0" width="30.0" />
+                                <Rectangle arcHeight="3" arcWidth="3" fill="#C1272D" height="3.0" width="8.0" />
                                 <Label fx:id="totalLabel" text="Total: 0 objets" textFill="#6c757d">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
@@ -261,11 +239,8 @@
 
                         <HBox HBox.hgrow="ALWAYS" />
 
-                        <!-- Quick Actions -->
                         <HBox spacing="12">
-                            <Button onAction="#refreshTable" prefHeight="40" prefWidth="130"
-                                    style="-fx-background-color: #006233; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: white;"
-                                    text="🔄  Actualiser">
+                            <Button onAction="#refreshCards" prefHeight="40" prefWidth="130" style="-fx-background-color: #006233; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: white;" text="🔄  Actualiser">
                                 <font>
                                     <Font name="System Bold" size="12.0" />
                                 </font>
@@ -273,9 +248,7 @@
                                     <DropShadow color="#00623340" offsetY="2.0" radius="4.0" />
                                 </effect>
                             </Button>
-                            <Button onAction="#addNewObject" prefHeight="40" prefWidth="160"
-                                    style="-fx-background-color: #C1272D; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: white;"
-                                    text="➕  Ajouter Objet">
+                            <Button onAction="#addNewObject" prefHeight="40" prefWidth="160" style="-fx-background-color: #C1272D; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: white;" text="➕  Ajouter Objet">
                                 <font>
                                     <Font name="System Bold" size="12.0" />
                                 </font>
@@ -288,69 +261,99 @@
                 </StackPane>
             </top>
 
-            <!-- Content - Table -->
+            <!-- Content - Cards Grid -->
             <center>
                 <StackPane>
-                    <!-- Image zellige en arrière-plan très subtil -->
-                    <StackPane opacity="0.05" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" />
+                    <StackPane opacity="0.05" prefHeight="495.0" prefWidth="940.0" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" />
 
-                    <VBox spacing="0" style="-fx-padding: 30 40;">
-                        <!-- TableView avec style moderne -->
-                        <VBox style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 12;" VBox.vgrow="ALWAYS">
-                            <VBox spacing="15">
-                                <!-- Titre de la section -->
-                                <HBox alignment="CENTER_LEFT" spacing="10">
-                                    <Label text="📋" textFill="#006233">
-                                        <font>
-                                            <Font size="20.0" />
-                                        </font>
-                                    </Label>
-                                    <Label text="Objets Trouvés - CAN 2025" textFill="#212529">
-                                        <font>
-                                            <Font name="System Bold" size="18.0" />
-                                        </font>
-                                    </Label>
-                                </HBox>
+                    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+                        <VBox style="-fx-padding: 30 40;">
+                     <HBox prefHeight="65.0" prefWidth="857.0">
+                        <children>
+                           <DatePicker fx:id="dateFilterDatePicker" prefHeight="31.0" prefWidth="175.0" />
+                           <ComboBox fx:id="finedByComboBox" prefHeight="31.0" prefWidth="150.0" promptText="Trouver par :" />
+                           <ComboBox fx:id="stadiumComboBox" prefHeight="31.0" prefWidth="150.0" promptText="Stadium :" />
+                           <TextField prefHeight="31.0" prefWidth="210.0" />
+                           <Button mnemonicParsing="false" onAction="#refreshCards" prefHeight="32.0" prefWidth="130.0" text="Rechercher" />
+                        </children>
+                     </HBox>
+                            <!-- Container pour les cartes -->
+                            <FlowPane fx:id="cardsContainer" hgap="20" style="-fx-padding: 0;" vgap="20">
+                                <!-- Les cartes seront ajoutées dynamiquement ici -->
 
-                                <Line endX="850.0" stroke="#e9ecef" strokeWidth="1.5" />
+                                <!-- Exemple de structure d'une carte (à créer dynamiquement dans le contrôleur) -->
+                                <!--
+                                <VBox style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 0; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);" prefWidth="280">
+                                    <StackPane style="-fx-background-color: #f8f9fa; -fx-background-radius: 12 12 0 0;" prefHeight="200">
+                                        <ImageView fitWidth="280" fitHeight="200" preserveRatio="true" />
+                                        <Label text="📦" style="-fx-font-size: 48; -fx-text-fill: #dee2e6;" />
+                                    </StackPane>
 
-                                <!-- TableView -->
-                                <TableView fx:id="tableViewLostObjects" prefHeight="450.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
-                                    <placeholder>
-                                        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 40;">
-                                            <Label text="📦" textFill="#dee2e6">
-                                                <font>
-                                                    <Font size="48.0" />
-                                                </font>
-                                            </Label>
-                                            <Label style="-fx-text-fill: #6c757d; -fx-font-size: 14px;" text="Aucun objet perdu enregistré pour le moment" />
+                                    <VBox spacing="12" style="-fx-padding: 20;">
+                                        <Label text="Type" style="-fx-font-weight: bold; -fx-font-size: 16; -fx-text-fill: #006233;" />
+                                        <Label text="Description" style="-fx-text-fill: #495057; -fx-font-size: 13;" wrapText="true" />
+
+                                        <VBox spacing="6">
+                                            <HBox spacing="8">
+                                                <Label text="📅" style="-fx-text-fill: #6c757d;" />
+                                                <Label text="Date" style="-fx-text-fill: #6c757d; -fx-font-size: 12;" />
+                                            </HBox>
+                                            <HBox spacing="8">
+                                                <Label text="📍" style="-fx-text-fill: #6c757d;" />
+                                                <Label text="Zone" style="-fx-text-fill: #6c757d; -fx-font-size: 12;" />
+                                            </HBox>
+                                            <HBox spacing="8">
+                                                <Label text="👤" style="-fx-text-fill: #6c757d;" />
+                                                <Label text="Agent" style="-fx-text-fill: #6c757d; -fx-font-size: 12;" />
+                                            </HBox>
                                         </VBox>
-                                    </placeholder>
-                                    <columns>
-                                        <TableColumn fx:id="colType" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Type" />
-                                        <TableColumn fx:id="colDescription" prefWidth="180.0" text="Description" />
-                                        <TableColumn fx:id="colDate" prefWidth="110.0" style="-fx-alignment: CENTER;" text="Date Trouvé" />
-                                        <TableColumn fx:id="colZone" prefWidth="140.0" style="-fx-alignment: CENTER;" text="Zone" />
-                                        <TableColumn fx:id="colAgent" prefWidth="130.0" text="Agent" />
-                                        <TableColumn fx:id="colPhone" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Téléphone" />
-                                        <TableColumn fx:id="colEmail" prefWidth="160.0" text="Email" />
-                                    </columns>
-                                </TableView>
+
+                                        <Line endX="240" stroke="#e9ecef" strokeWidth="1" />
+
+                                        <HBox spacing="10">
+                                            <Button text="✏️ Modifier" style="-fx-background-color: #006233; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-size: 11; -fx-padding: 8 16;" HBox.hgrow="ALWAYS" />
+                                            <Button text="🗑️ Supprimer" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-size: 11; -fx-padding: 8 16;" HBox.hgrow="ALWAYS" />
+                                        </HBox>
+                                    </VBox>
+                                </VBox>
+                                -->
+                            </FlowPane>
+
+                            <!-- Message si aucun objet -->
+                            <VBox fx:id="emptyStateContainer" alignment="CENTER" prefHeight="365.0" prefWidth="857.0" spacing="20" style="-fx-padding: 80;" visible="true">
+                                <Label text="📦" textFill="#676869">
+                                    <font>
+                                        <Font size="64.0" />
+                                    </font>
+                                </Label>
+                                <VBox alignment="CENTER" spacing="8">
+                                    <Label text="Aucun objet perdu" textFill="#212529">
+                                        <font>
+                                            <Font name="System Bold" size="20.0" />
+                                        </font>
+                                    </Label>
+                                    <Label text="Les objets perdus enregistrés apparaîtront ici" textFill="#6c757d">
+                                        <font>
+                                            <Font size="14.0" />
+                                        </font>
+                                    </Label>
+                                </VBox>
+                                <Button onAction="#addNewObject" style="-fx-background-color: #006233; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 12 24;" text="➕  Ajouter votre premier objet">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Button>
                             </VBox>
-                            <effect>
-                                <DropShadow color="#00000010" radius="12.0" />
-                            </effect>
                         </VBox>
-                    </VBox>
+                    </ScrollPane>
                 </StackPane>
             </center>
         </BorderPane>
     </center>
 
-    <!-- Footer avec motif -->
+    <!-- Footer -->
     <bottom>
         <StackPane prefHeight="50.0">
-            <!-- Motif zellige dans le footer -->
             <HBox alignment="CENTER" opacity="0.04" spacing="15">
                 <Polygon fill="#006233" rotate="0">
                     <points>
@@ -387,9 +390,9 @@
             <HBox alignment="CENTER" style="-fx-background-color: white; -fx-border-color: #e9ecef; -fx-border-width: 1.5 0 0 0;">
                 <VBox alignment="CENTER" spacing="4" style="-fx-padding: 8 0;">
                     <HBox alignment="CENTER" spacing="4">
-                        <Rectangle fill="#006233" height="2.5" width="25.0" arcHeight="2.5" arcWidth="2.5" />
-                        <Rectangle fill="#C1272D" height="2.5" width="6.0" arcHeight="2.5" arcWidth="2.5" />
-                        <Rectangle fill="#006233" height="2.5" width="25.0" arcHeight="2.5" arcWidth="2.5" />
+                        <Rectangle arcHeight="2.5" arcWidth="2.5" fill="#006233" height="2.5" width="25.0" />
+                        <Rectangle arcHeight="2.5" arcWidth="2.5" fill="#C1272D" height="2.5" width="6.0" />
+                        <Rectangle arcHeight="2.5" arcWidth="2.5" fill="#006233" height="2.5" width="25.0" />
                     </HBox>
                     <Label text="© 2025 Telfat w lqina - CAN 2025 Maroc - Tous droits réservés" textFill="#6c757d">
                         <font>

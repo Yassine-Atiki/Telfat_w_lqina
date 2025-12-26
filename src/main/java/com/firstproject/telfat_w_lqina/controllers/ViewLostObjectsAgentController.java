@@ -1,61 +1,65 @@
 package com.firstproject.telfat_w_lqina.controllers;
 
 import com.firstproject.telfat_w_lqina.models.LostObject;
+import com.firstproject.telfat_w_lqina.models.Stadium;
 import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.models.UserType;
 import com.firstproject.telfat_w_lqina.service.LostObjectService;
+import com.firstproject.telfat_w_lqina.service.StadiumService;
 import com.firstproject.telfat_w_lqina.util.LogoutUtil;
 import com.firstproject.telfat_w_lqina.util.NavigationUtil;
 import com.firstproject.telfat_w_lqina.util.SessionManager;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;  // ← JavaFX, pas AWT
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;     // ← JavaFX, pas AWT
+import javafx.scene.text.FontWeight;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
+import static com.firstproject.telfat_w_lqina.util.ImageConverterUtil.convertByteToImage;
 public class ViewLostObjectsAgentController {
-
-    @FXML
-    private TableView<LostObject> tableViewLostObjects;
-
-    @FXML
-    private TableColumn<LostObject, String> colType;
-
-    @FXML
-    private TableColumn<LostObject, String> colDescription;
-
-    @FXML
-    private TableColumn<LostObject, LocalDate> colDate;
-
-    @FXML
-    private TableColumn<LostObject, String> colZone;
-
-    @FXML
-    private TableColumn<LostObject, String> colAgent;
-
-    @FXML
-    private TableColumn<LostObject, String> colPhone;
-
-    @FXML
-    private TableColumn<LostObject, String> colEmail;
 
     @FXML
     private Label labelUser;
 
     @FXML
     private Label totalLabel;
+
     @FXML
     private Label userTypeLabel;
 
+    @FXML
+    private FlowPane cardsContainer;
+
+    @FXML
+    private VBox emptyStateContainer;
+
+    @FXML
+    private ComboBox<String> finedByComboBox;
+
+    @FXML
+    private DatePicker dateFilterDatePicker;
+    @FXML
+    private ComboBox<String> stadiumComboBox;
+
+
     private final LostObjectService lostObjectService = new LostObjectService();
-    private ObservableList<LostObject> lostObjectsList;
+    private List<LostObject> lostObjectsList;
+    private List<Stadium> stadiums ;
 
     @FXML
     public void initialize() {
@@ -64,52 +68,244 @@ public class ViewLostObjectsAgentController {
         if (currentUser != null) {
             labelUser.setText(currentUser.getUsername());
         }
+        finedByComboBox.setItems(FXCollections.observableArrayList("Tout le mande","moi-meme"));
+        // Set default selection
+        finedByComboBox.getSelectionModel().selectFirst();
 
-        // Configurer les colonnes du TableView
-        configureTableColumns();
-
+        stadiums = StadiumService.getAllStadiums();
+        stadiumComboBox.getItems().clear();
+        stadiumComboBox.getItems().add("Selectionner un Stade");
+        for (Stadium stadium : stadiums) {
+            stadiumComboBox.getItems().add(stadium.getStadiumName());
+        }
+        stadiumComboBox.getSelectionModel().selectFirst();
         // Charger les données
         loadLostObjects();
     }
 
-    private void configureTableColumns() {
-        // Lier chaque colonne à la propriété correspondante du modèle LostObject
-        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-        colDate.setCellValueFactory(new PropertyValueFactory<>("lostDate"));
-        colZone.setCellValueFactory(new PropertyValueFactory<>("zone"));
-        colAgent.setCellValueFactory(new PropertyValueFactory<>("agentName"));
-        colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-
-        // Configurer la politique de redimensionnement pour éliminer la colonne vide
-        tableViewLostObjects.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    private void loadLostObjects() {
+        lostObjectsList = lostObjectService.getAllLostObjects();
+        searsh();
+        displayCards();
     }
 
+    public void searsh() {
+        if (finedByComboBox.getValue().equals("moi-meme")) {
+            User currentUser = SessionManager.getInstance().getCurrentUser();
+            lostObjectsList = lostObjectService.getLostObjectsByOwnerName(currentUser.getUsername(), lostObjectsList);
+        }
 
-    private void loadLostObjects() {
-        try {
-            // Récupérer tous les objets perdus depuis le service
-            List<LostObject> objects = lostObjectService.getAllLostObjects();
-
-            // Convertir en ObservableList pour JavaFX
-            lostObjectsList = FXCollections.observableArrayList(objects);
-
-            // Assigner la liste au TableView
-            tableViewLostObjects.setItems(lostObjectsList);
-
-            // Mettre à jour le label du total
-            totalLabel.setText("Total: " + lostObjectsList.size() + " objet(s)");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            totalLabel.setText("Erreur lors du chargement des données");
+        if (dateFilterDatePicker.getValue() != null) {
+            lostObjectsList = lostObjectService.getLostObjectsByDate(dateFilterDatePicker.getValue(), lostObjectsList);
+        }
+        if (stadiumComboBox.getValue() !=null && !stadiumComboBox.getValue().equals("Selectionner un Stade")) {
+            lostObjectsList = lostObjectService.getLostObjectsByStadium(stadiumComboBox.getValue(), lostObjectsList);
         }
     }
 
+    private void displayCards() {
+        cardsContainer.getChildren().clear();
+
+        if (lostObjectsList == null || lostObjectsList.isEmpty()) {
+            emptyStateContainer.setVisible(true);
+            emptyStateContainer.setManaged(true);
+            cardsContainer.setVisible(false);
+            totalLabel.setText("Total: 0 objets");
+            return;
+        }
+
+        emptyStateContainer.setVisible(false);
+        emptyStateContainer.setManaged(false);
+        cardsContainer.setVisible(true);
+        totalLabel.setText("Total: " + lostObjectsList.size() + " objets");
+
+        for (LostObject obj : lostObjectsList) {
+            VBox card = createCard(obj);
+            cardsContainer.getChildren().add(card);
+        }
+    }
+
+    private VBox createCard(LostObject lostObject) {
+        VBox card = new VBox();
+        card.setPrefWidth(280);
+        card.setSpacing(0);
+        card.setStyle("""
+        -fx-background-color: #ffffff;
+        -fx-background-radius: 16;
+        -fx-border-color: #dee2e6;
+        -fx-border-width: 1.2;
+        -fx-border-radius: 16;
+    """);
+
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.web("#00000026"));
+        shadow.setRadius(12);
+        shadow.setOffsetY(4);
+        card.setEffect(shadow);
+
+        // Zone image
+        StackPane imageContainer = new StackPane();
+        imageContainer.setPrefHeight(180);
+        imageContainer.setStyle("-fx-background-color: #f8f9fa; -fx-background-radius: 16 16 0 0;");
+        imageContainer.setAlignment(Pos.CENTER);
+
+        if (lostObject.getImage() != null && lostObject.getImage().length > 0) {
+            try {
+                ImageView imageView = new ImageView(convertByteToImage(lostObject.getImage()));
+                imageView.setPreserveRatio(true);
+                imageView.setSmooth(true);
+
+                // largeur max sans déformation
+                imageView.setFitWidth(260);
+                imageView.setFitHeight(180);
+
+                // coins arrondis en haut
+                Rectangle clip = new Rectangle(260, 180);
+                clip.setArcWidth(16);
+                clip.setArcHeight(16);
+                imageView.setClip(clip);
+
+                imageContainer.getChildren().add(imageView);
+            } catch (Exception e) {
+                Label placeholder = new Label("📦");
+                placeholder.setStyle("-fx-font-size: 48; -fx-text-fill: #dee2e6;");
+                imageContainer.getChildren().add(placeholder);
+            }
+        } else {
+            Label placeholder = new Label("📦");
+            placeholder.setStyle("-fx-font-size: 48; -fx-text-fill: #dee2e6;");
+            imageContainer.getChildren().add(placeholder);
+        }
+
+        // Zone contenu
+        VBox content = new VBox(12);
+        content.setPadding(new Insets(20));
+        content.setAlignment(Pos.TOP_LEFT);
+
+        // Type
+        String typeText = (lostObject.getType() != null && !lostObject.getType().isEmpty()) ? lostObject.getType() : "Non spécifié";
+        Label typeLabel = new Label(typeText);
+        typeLabel.setStyle("""
+        -fx-font-family: 'Segoe UI Semibold';
+        -fx-font-size: 17px;
+        -fx-text-fill: #006233;
+    """);
+        typeLabel.setMaxWidth(240);
+
+        // Description
+        Label descLabel = new Label(lostObject.getDescription());
+        descLabel.setWrapText(true);
+        descLabel.setMaxWidth(240);
+        descLabel.setStyle("""
+        -fx-font-family: 'Segoe UI';
+        -fx-font-size: 13px;
+        -fx-text-fill: #495057;
+    """);
+
+        // Informations
+        VBox infoBox = new VBox(6);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = lostObject.getLostDate().format(formatter);
+
+        HBox dateBox = createInfoRow("📅", formattedDate);
+        HBox zoneBox = createInfoRow("📍", lostObject.getZone());
+        HBox agentBox = createInfoRow("👤", lostObject.getAgentName());
+        infoBox.getChildren().addAll(dateBox, zoneBox, agentBox);
+
+        // Séparateur
+        Line separator = new Line(0, 0, 240, 0);
+        separator.setStroke(Color.web("#ced4da"));
+        separator.setStrokeWidth(0.8);
+        separator.setOpacity(0.6);
+           if (lostObject.getAgentName().equals(SessionManager.getInstance().getCurrentUser().getUsername())) {
+
+               // Boutons
+               HBox buttonsBox = new HBox(10);
+               buttonsBox.setAlignment(Pos.CENTER);
+
+               Button updateBtn = new Button("✏️ Modifier");
+               updateBtn.setStyle("""
+                           -fx-background-color: #006233;
+                           -fx-text-fill: white;
+                           -fx-font-size: 12px;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 8;
+                           -fx-padding: 8 20;
+                           -fx-cursor: hand;
+                       """);
+               updateBtn.setMaxWidth(Double.MAX_VALUE);
+               HBox.setHgrow(updateBtn, Priority.ALWAYS);
+               updateBtn.setOnAction(e -> updateObject(lostObject));
+
+               Button deleteBtn = new Button("🗑️ Supprimer");
+               deleteBtn.setStyle("""
+                           -fx-background-color: #dc3545;
+                           -fx-text-fill: white;
+                           -fx-font-size: 12px;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 8;
+                           -fx-padding: 8 20;
+                           -fx-cursor: hand;
+                       """);
+               deleteBtn.setMaxWidth(Double.MAX_VALUE);
+               HBox.setHgrow(deleteBtn, Priority.ALWAYS);
+               deleteBtn.setOnAction(e -> removeObject(lostObject));
+
+               buttonsBox.getChildren().addAll(updateBtn, deleteBtn);
+
+        content.getChildren().addAll(typeLabel, descLabel, infoBox, separator, buttonsBox);}
+        else {
+           content.getChildren().addAll(typeLabel, descLabel, infoBox, separator);
+       }
+
+        card.getChildren().addAll(imageContainer, content);
+
+        return card;
+    }
+
+    private HBox createInfoRow(String icon, String text) {
+        HBox row = new HBox(8);
+        row.setAlignment(Pos.CENTER_LEFT);
+
+        Label iconLabel = new Label(icon);
+        iconLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #6c757d;");
+
+        Label textLabel = new Label(text != null ? text : "N/A");
+        textLabel.setStyle("-fx-font-size: 13px; -fx-text-fill: #343a40;");
+
+        row.getChildren().addAll(iconLabel, textLabel);
+        return row;
+    }
+
     @FXML
-    public void refreshTable() {
+    public void refreshCards() {
         loadLostObjects();
+    }
+
+    public void removeObject(LostObject selectedObject) {
+        if (selectedObject != null) {
+            Alert confirmationRemove = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationRemove.setTitle("Confirmation de suppression");
+            confirmationRemove.setHeaderText(null);
+            confirmationRemove.setContentText("Êtes-vous sûr de vouloir supprimer cet objet perdu ?");
+
+            Optional<ButtonType> result = confirmationRemove.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                lostObjectService.removeLostObject(selectedObject);
+                loadLostObjects();
+
+                // Afficher un message de succès
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Succès");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Objet supprimé avec succès!");
+                successAlert.showAndWait();
+            }
+        }
+    }
+
+    public void updateObject(LostObject lostObject) {
+
     }
 
     @FXML
@@ -120,7 +316,7 @@ public class ViewLostObjectsAgentController {
     @FXML
     public void goBack(ActionEvent event) throws IOException {
         User currentUser = SessionManager.getInstance().getCurrentUser();
-        if (currentUser.getUserType() == UserType.AGENT){
+        if (currentUser.getUserType() == UserType.AGENT) {
             NavigationUtil.navigate(event, "/fxml/Agent.fxml");
         }
     }

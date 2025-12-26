@@ -5,106 +5,48 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "lost_objects")
-public class LostObject {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@PrimaryKeyJoinColumn(name = "lostObject_id")
+public class LostObject extends Object {
 
-    @Column(name = "typeObjet", nullable = false)
-    private String type;
+    // @Lob = Large Object (pour les données volumineuses)
+    // @Column avec columnDefinition spécifie le type SQL exact
+    @Lob
+    @Column(name = "image", columnDefinition = "LONGBLOB")
+    private byte[] image;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "status", nullable = false)
+    private TypeState typeState = TypeState.IN_STORAGE ;
 
-    @Column(name = "lostDate", nullable = false)
-    private LocalDate lostDate;
-
-    @Column(name = "zone", nullable = false)
-    private String zone;
-
-    @Column(name = "agentName", nullable = false)
-    private String agentName;
-
-    @Column(name = "Telephone", nullable = false)
-    private String phone;
-
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    public LostObject(String agentName, String description, String email, Long id, LocalDate lostDate, String phone, String type, String zone) {
-        this.agentName = agentName;
-        this.description = description;
-        this.email = email;
-        this.lostDate = lostDate;
-        this.phone = phone;
-        this.type = type;
-        this.zone = zone;
+    public LostObject(String agentName, String description, String email, Long id, LocalDate lostDate, String phone, String type, String zone ,byte[] image) {
+        super(agentName, description, email, id, lostDate, phone, type, zone);
+        this.image = image;
     }
+    public LostObject(String agentName, String description, String email, LocalDate lostDate, String phone, String type, String zone ,byte[] image) {
+        super(agentName, description, email, lostDate, phone, type, zone);
+        this.image = image;
+    }
+
 
 
     public LostObject() {
 
     }
 
-    // Getters
-    public String getAgentName() {
-        return agentName;
+    //Getters
+    public byte[] getImage() {
+        return image;
     }
 
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public LocalDate getLostDate() {
-        return lostDate;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getZone() {
-        return zone;
+    public TypeState getTypeState() {
+        return typeState;
     }
 
     //Setters
-
-
-    public void setAgentName(String agentName) {
-        this.agentName = agentName;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-    public void setLostDate(LocalDate lostDate) {
-        this.lostDate = lostDate;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setZone(String zone) {
-        this.zone = zone;
+    public void setTypeState(TypeState typeState) {
+        this.typeState = typeState;
     }
 }

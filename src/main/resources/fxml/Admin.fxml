@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.AdminController">
+<BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.AdminController">
 
     <!-- Sidebar Navigation -->
     <left>
@@ -123,7 +123,7 @@
                 </Button>
 
                 <!-- Objets Perdus -->
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#viewLostObjects" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📋  Objets Perdus">
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#viewLostObjects" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📋  List Objets Perdus">
                     <font>
                         <Font size="13.0" />
                     </font>

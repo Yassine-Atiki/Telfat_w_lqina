@@ -7,10 +7,13 @@ import com.firstproject.telfat_w_lqina.exception.validationexception.InvalidEmai
 import com.firstproject.telfat_w_lqina.exception.validationexception.InvalidPasswordException;
 import com.firstproject.telfat_w_lqina.exception.validationexception.InvalidPhoneException;
 import com.firstproject.telfat_w_lqina.models.Admin;
+import com.firstproject.telfat_w_lqina.models.Agent;
 import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.util.Alerts;
 import com.firstproject.telfat_w_lqina.util.CheckSyntaxe;
 import com.firstproject.telfat_w_lqina.util.Security;
+
+import java.util.List;
 
 public class UserService {
     UserDAO userDAO = new UserDAO();
@@ -49,6 +52,10 @@ public class UserService {
             userDAO.save((User) admin);
             System.out.println("first User Admin add");
         }
+    }
+
+    public List<Agent> getAllUsers(){
+        return userDAO.getAllUsers();
     }
 
 }

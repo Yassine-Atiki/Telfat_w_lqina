@@ -3,6 +3,7 @@ package com.firstproject.telfat_w_lqina.dao;
 import com.firstproject.telfat_w_lqina.models.LostObject;
 import com.firstproject.telfat_w_lqina.util.HibernateUtil;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
 import java.util.ArrayList;
@@ -36,5 +37,44 @@ public class LostObjectDAO {
             em.close();
         }
         return lostObjects;
+    }
+
+
+    public LostObject getLostObjectById(Long id) {
+        EntityManager em = HibernateUtil.getEntityManager();
+        LostObject lostObject = null;
+        try {
+            lostObject = em.find(LostObject.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return lostObject;
+    }
+    public boolean remove(LostObject lostObject){
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        try {
+            entityTransaction.begin();
+            LostObject toBeRemoved = entityManager.find(LostObject.class, lostObject.getId());
+            if (toBeRemoved != null) {
+                entityManager.remove(toBeRemoved);
+                entityTransaction.commit();
+                return true;
+            } else {
+                entityTransaction.rollback();
+                return false;
+            }
+        } catch (Exception e) {
+            if (entityTransaction.isActive()) {
+                entityTransaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            entityManager.close();
+
+        }
     }
 }

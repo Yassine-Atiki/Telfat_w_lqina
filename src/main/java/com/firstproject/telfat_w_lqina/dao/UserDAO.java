@@ -1,9 +1,13 @@
 package com.firstproject.telfat_w_lqina.dao;
 
+import com.firstproject.telfat_w_lqina.models.Agent;
 import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.util.HibernateUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
@@ -129,6 +133,24 @@ public class UserDAO {
             entityManager.close();
         }
         return count.intValue();
+    }
+
+    public List<Agent> getAllUsers(){
+        EntityManager entityManager =HibernateUtil.getEntityManager();
+        List<Agent> agents = new ArrayList<>();
+        try {
+            entityManager.getTransaction().begin();
+            agents = entityManager.createQuery("SELECT a FROM Agent a", Agent.class).getResultList();
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        }finally {
+            entityManager.close();
+            return agents;
+        }
     }
 
 

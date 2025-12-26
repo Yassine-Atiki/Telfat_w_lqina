@@ -1,11 +1,13 @@
 package com.firstproject.telfat_w_lqina.service;
 
-import com.firstproject.telfat_w_lqina.dao.AddStadiumDAO;
+import com.firstproject.telfat_w_lqina.dao.StadiumDAO;
 import com.firstproject.telfat_w_lqina.models.Stadium;
 
-public class AddStadiumService {
+import java.util.List;
 
-    private static final AddStadiumDAO stadiumDAO = new AddStadiumDAO();
+public class StadiumService {
+
+    private static final StadiumDAO stadiumDAO = new StadiumDAO();
 
     public static void addStadium(String name) {
         if (name.length() < 3) {
@@ -21,6 +23,10 @@ public class AddStadiumService {
         stadium.setStadiumName(name);
 
         stadiumDAO.saveStadium(stadium);
+    }
+
+    public static List<Stadium> getAllStadiums(){
+        return stadiumDAO.getAllStadiums();
     }
 
 }

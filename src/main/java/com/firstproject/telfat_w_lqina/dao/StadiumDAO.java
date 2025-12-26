@@ -1,12 +1,11 @@
 package com.firstproject.telfat_w_lqina.dao;
 
 import com.firstproject.telfat_w_lqina.models.Stadium;
-import com.firstproject.telfat_w_lqina.util.HibernateUtil;
 import jakarta.persistence.EntityManager;
 
 import static com.firstproject.telfat_w_lqina.util.HibernateUtil.getEntityManager;
 
-public class AddStadiumDAO {
+public class StadiumDAO {
     public void saveStadium(Stadium stadium) {
         //Sauvgarder le stade dans la bd avec Hibernatte presistance
         EntityManager em = getEntityManager();
