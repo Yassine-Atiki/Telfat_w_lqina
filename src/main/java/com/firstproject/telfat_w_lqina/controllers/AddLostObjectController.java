@@ -9,12 +9,10 @@ import com.firstproject.telfat_w_lqina.util.NavigationUtil;
 import com.firstproject.telfat_w_lqina.util.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;   // Pour l'élément ImageView
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,8 +30,6 @@ public class AddLostObjectController {
     @FXML private ImageView imageView;
 
     private final LostObjectService lostObjectService = new LostObjectService();
-    private Stage stage;
-    private Scene scene;
     private File selectedImageFile;
 
 

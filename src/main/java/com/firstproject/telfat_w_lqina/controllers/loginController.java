@@ -10,13 +10,8 @@ import com.firstproject.telfat_w_lqina.util.NavigationUtil;
 import com.firstproject.telfat_w_lqina.util.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-
-
 
 import java.io.IOException;
 
@@ -24,9 +19,6 @@ import static com.firstproject.telfat_w_lqina.models.UserType.ADMIN;
 import static com.firstproject.telfat_w_lqina.models.UserType.AGENT;
 
 public class loginController {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     @FXML
     TextField usernameTextField;

@@ -20,11 +20,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.AddUsersController">
+<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.AddUsersController">
 
     <!-- SIDEBAR (LEFT) -->
     <left>
-        <VBox prefHeight="700.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #faf8f5); -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 3, 0);" BorderPane.alignment="CENTER">
+        <VBox prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #faf8f5); -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 3, 0);" BorderPane.alignment="CENTER">
 
             <!-- Logo Header avec motif géométrique -->
             <StackPane prefHeight="90.0" style="-fx-background-color: white;">
@@ -258,7 +258,7 @@
             </top>
             <center>
                 <StackPane>
-                    <StackPane opacity="0.08" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" />
+                    <StackPane opacity="0.1" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" />
 
                     <HBox alignment="TOP_CENTER" style="-fx-padding: 30;">
                     <VBox maxWidth="850" spacing="25" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 35;" HBox.hgrow="ALWAYS">
@@ -442,7 +442,7 @@
         </BorderPane>
     </center>
 
-    <!-- FOOTER (BOTTOM) -->
+    <!-- Footer -->
     <bottom>
         <StackPane prefHeight="50.0">
             <!-- Motif zellige dans le footer -->

@@ -5,9 +5,7 @@ import com.firstproject.telfat_w_lqina.util.LogoutUtil;
 import com.firstproject.telfat_w_lqina.util.NavigationUtil;
 import com.firstproject.telfat_w_lqina.util.SessionManager;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -16,8 +14,6 @@ public class AdminController {
     @FXML
     private Label labelAdmin;
 
-    private Stage stage;
-    private Scene scene;
 
     @FXML
     public void initialize() {
