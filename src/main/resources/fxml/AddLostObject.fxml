@@ -26,11 +26,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.AddLostObjectController">
+<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.AddLostObjectController">
 
     <!-- Sidebar Navigation -->
     <left>
-        <VBox prefHeight="700.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #faf8f5); -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 3, 0);" BorderPane.alignment="CENTER">
+        <VBox prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #faf8f5); -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 3, 0);" BorderPane.alignment="CENTER">
 
             <!-- Logo Header avec motif géométrique -->
             <StackPane prefHeight="90.0" style="-fx-background-color: white;">
@@ -435,8 +435,8 @@
                                         </effect>
                                     </VBox>
                                 </VBox>
-
-                        </content></ScrollPane>
+                        </content>
+                    </ScrollPane>
                 </StackPane>
             </center>
         </BorderPane>

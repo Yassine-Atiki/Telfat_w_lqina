@@ -16,7 +16,6 @@ import com.firstproject.telfat_w_lqina.util.Alerts;
 import com.firstproject.telfat_w_lqina.util.LogoutUtil;
 import com.firstproject.telfat_w_lqina.util.NavigationUtil;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -28,7 +27,6 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class AddUsersController {
 
@@ -57,8 +55,6 @@ public class AddUsersController {
     UserService userService = new UserService();
     StadiumDAO stadiumDAO = new StadiumDAO();
 
-    private Stage stage;
-    private Scene scene;
 
 
     public void initialize() {
