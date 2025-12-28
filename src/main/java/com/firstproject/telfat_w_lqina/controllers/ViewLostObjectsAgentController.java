@@ -8,6 +8,7 @@ import com.firstproject.telfat_w_lqina.service.LostObjectService;
 import com.firstproject.telfat_w_lqina.service.StadiumService;
 import com.firstproject.telfat_w_lqina.util.LogoutUtil;
 import com.firstproject.telfat_w_lqina.util.NavigationUtil;
+import com.firstproject.telfat_w_lqina.util.SessionLostObject;
 import com.firstproject.telfat_w_lqina.util.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -21,11 +22,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;  // ← JavaFX, pas AWT
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;     // ← JavaFX, pas AWT
-import javafx.scene.text.FontWeight;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -235,7 +233,13 @@ public class ViewLostObjectsAgentController {
                        """);
                updateBtn.setMaxWidth(Double.MAX_VALUE);
                HBox.setHgrow(updateBtn, Priority.ALWAYS);
-               updateBtn.setOnAction(e -> updateObject(lostObject));
+               updateBtn.setOnAction(e -> {
+                   try {
+                       updateObject(new ActionEvent(),lostObject);
+                   } catch (IOException ex) {
+                       throw new RuntimeException(ex);
+                   }
+               });
 
                Button deleteBtn = new Button("🗑️ Supprimer");
                deleteBtn.setStyle("""
@@ -304,8 +308,9 @@ public class ViewLostObjectsAgentController {
         }
     }
 
-    public void updateObject(LostObject lostObject) {
-
+    public void updateObject(ActionEvent actionEvent ,LostObject lostObject) throws IOException {
+        SessionLostObject.getInstance().setCurentLostObject(lostObject);
+        NavigationUtil.navigate(actionEvent, "/fxml/UpdateLostObjectAgent.fxml");
     }
 
     @FXML

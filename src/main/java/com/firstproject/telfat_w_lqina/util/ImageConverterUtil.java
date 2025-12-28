@@ -27,6 +27,7 @@ public class ImageConverterUtil {
 
     // Convert byte to image pour afficher l'image a partir de la base de donnee
     public static Image convertByteToImage(byte[] imageData){
+
         if (imageData.length==0){
             return null;
         }
