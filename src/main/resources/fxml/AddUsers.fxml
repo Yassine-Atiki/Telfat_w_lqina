@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -257,11 +258,12 @@
                 </StackPane>
             </top>
             <center>
-                <StackPane>
+                <ScrollPane fitToWidth="true" style="-fx-background-color: #faf8f5; -fx-background: #faf8f5;">
+                <StackPane style="-fx-background-color: #faf8f5;">
                     <StackPane opacity="0.1" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" />
 
                     <HBox alignment="TOP_CENTER" style="-fx-padding: 30;">
-                    <VBox maxWidth="850" spacing="25" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 35;" HBox.hgrow="ALWAYS">
+                    <VBox maxWidth="850" spacing="25" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 35; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 0, 4);" HBox.hgrow="ALWAYS">
 
                         <!-- En-tête du formulaire -->
                         <HBox alignment="CENTER_LEFT" spacing="15">
@@ -438,6 +440,7 @@
                     </VBox>
                 </HBox>
                 </StackPane>
+                </ScrollPane>
             </center>
         </BorderPane>
     </center>
