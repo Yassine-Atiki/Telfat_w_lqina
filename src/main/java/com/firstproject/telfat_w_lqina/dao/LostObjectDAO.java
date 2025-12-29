@@ -77,4 +77,25 @@ public class LostObjectDAO {
 
         }
     }
+
+    public boolean update(LostObject lostObject){
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        try {
+            entityTransaction.begin();
+            entityManager.merge(lostObject);
+            entityTransaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (entityTransaction.isActive()) {
+                entityTransaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            entityManager.close();
+        }
+    }
+
 }
+

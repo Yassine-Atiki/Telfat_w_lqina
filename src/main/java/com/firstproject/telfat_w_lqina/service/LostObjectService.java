@@ -81,4 +81,13 @@ public class LostObjectService {
             Alerts.errorAlert("Erreur de suppression", "Impossible de supprimer l'objet perdu.", "L'objet n'a pas été trouvé dans la base de données.");
         }
     }
+
+    public void updateLostObject(LostObject lostObject) {
+        lostObjectDAO.update(lostObject);
+        Alerts.successAlert(
+                "Modification réussie",
+                "Les informations ont été modifiées avec succès.",
+                null
+        );
+    }
 }
