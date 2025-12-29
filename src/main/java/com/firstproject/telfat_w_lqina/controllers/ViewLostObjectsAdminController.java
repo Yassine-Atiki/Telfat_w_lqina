@@ -6,6 +6,7 @@ import com.firstproject.telfat_w_lqina.service.StadiumService;
 import com.firstproject.telfat_w_lqina.service.UserService;
 import com.firstproject.telfat_w_lqina.util.LogoutUtil;
 import com.firstproject.telfat_w_lqina.util.NavigationUtil;
+import com.firstproject.telfat_w_lqina.util.SessionLostObject;
 import com.firstproject.telfat_w_lqina.util.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -234,7 +235,13 @@ public class ViewLostObjectsAdminController {
                        """);
             updateBtn.setMaxWidth(Double.MAX_VALUE);
             HBox.setHgrow(updateBtn, Priority.ALWAYS);
-            updateBtn.setOnAction(e -> updateObject(lostObject));
+            updateBtn.setOnAction(e -> {
+                try {
+                    updateObject(new ActionEvent(),lostObject);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
 
             Button deleteBtn = new Button("🗑️ Supprimer");
             deleteBtn.setStyle("""
@@ -300,8 +307,9 @@ public class ViewLostObjectsAdminController {
         }
     }
 
-    public void updateObject(LostObject lostObject) {
-
+    public void updateObject(ActionEvent actionEvent ,LostObject lostObject) throws IOException {
+        SessionLostObject.getInstance().setCurentLostObject(lostObject);
+        NavigationUtil.navigate(actionEvent, "/fxml/UpdateLostObjectAdmin.fxml");
     }
 
 

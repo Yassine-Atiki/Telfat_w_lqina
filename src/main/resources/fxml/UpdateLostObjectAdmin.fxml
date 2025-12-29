@@ -27,7 +27,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.UpdateLostObjectAgentController">
+<BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.UpdateLostObjectAdminController">
 
     <!-- Sidebar Navigation -->
     <left>
@@ -37,7 +37,7 @@
             <StackPane prefHeight="90.0" style="-fx-background-color: white;">
                 <!-- Motif décoratif subtil -->
                 <HBox alignment="CENTER" opacity="0.08" spacing="-5">
-                    <Polygon fill="#006233" rotate="22.5">
+                    <Polygon fill="#C1272D" rotate="22.5">
                         <points>
                             <Double fx:value="0.0" /> <Double fx:value="-8.0" />
                             <Double fx:value="5.7" /> <Double fx:value="-2.5" />
@@ -46,7 +46,7 @@
                             <Double fx:value="-5.7" /> <Double fx:value="-2.5" />
                         </points>
                     </Polygon>
-                    <Polygon fill="#C1272D" rotate="45">
+                    <Polygon fill="#006233" rotate="45">
                         <points>
                             <Double fx:value="0.0" /> <Double fx:value="-8.0" />
                             <Double fx:value="5.7" /> <Double fx:value="-2.5" />
@@ -82,7 +82,7 @@
                                 <Font name="System Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label text="CAN 2025 - Maroc" textFill="#C1272D">
+                        <Label text="CAN 2025 - Admin" textFill="#C1272D">
                             <font>
                                 <Font name="System Bold" size="11.0" />
                             </font>
@@ -93,11 +93,11 @@
 
             <!-- Ligne décorative avec motif -->
             <HBox alignment="CENTER" prefHeight="2.0" spacing="2" style="-fx-background-color: white;">
-                <Rectangle fill="#006233" height="2.0" width="20.0" />
-                <Rectangle fill="#C1272D" height="2.0" width="5.0" />
-                <Rectangle fill="#006233" height="2.0" width="20.0" />
-                <Rectangle fill="#C1272D" height="2.0" width="5.0" />
-                <Rectangle fill="#006233" height="2.0" width="20.0" />
+                <Rectangle fill="#C1272D" height="2.0" width="20.0" />
+                <Rectangle fill="#006233" height="2.0" width="5.0" />
+                <Rectangle fill="#C1272D" height="2.0" width="20.0" />
+                <Rectangle fill="#006233" height="2.0" width="5.0" />
+                <Rectangle fill="#C1272D" height="2.0" width="20.0" />
                 <HBox HBox.hgrow="ALWAYS">
                     <Rectangle fill="#e9ecef" height="2.0" HBox.hgrow="ALWAYS" />
                 </HBox>
@@ -105,7 +105,7 @@
 
             <!-- Navigation Menu -->
             <VBox spacing="8" style="-fx-padding: 20 15;">
-                <Label text="NAVIGATION" textFill="#6c757d">
+                <Label text="ADMINISTRATION" textFill="#6c757d">
                     <font>
                         <Font name="System Bold" size="10.0" />
                     </font>
@@ -119,33 +119,35 @@
                         <Font size="13.0" />
                     </font>
                 </Button>
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goBack" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  ➕  Ajouter Objet">
+
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#createUser" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  👤  Créer Utilisateur">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Button>
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #006233, #007d42); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text="  ✏️  Modifier Objet">
+
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#viewLostObjects" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #C1272D, #d63844); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text="  📋  List Objets Perdus">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
                     <effect>
-                        <DropShadow color="#00623340" offsetY="2.0" radius="4.0" />
+                        <DropShadow color="#C1272D40" offsetY="2.0" radius="4.0" />
                     </effect>
                 </Button>
 
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#viewLostObjects" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📋  Liste des Objets">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  🔍  Rechercher">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-
                 <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📈  Statistiques">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Button>
+
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📑  Rapports">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Button>
+
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToAddStadium" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text=" ⚽  Ajouter un stade">
                     <font>
                         <Font size="13.0" />
                     </font>
@@ -154,7 +156,7 @@
 
             <VBox VBox.vgrow="ALWAYS" />
 
-            <!-- User Profile Section -->
+            <!-- Admin Profile Section -->
             <StackPane>
                 <HBox alignment="BOTTOM_RIGHT" opacity="0.06">
                     <Polygon fill="#C1272D" rotate="0">
@@ -175,24 +177,24 @@
                     </VBox.margin>
 
                     <VBox spacing="4">
-                        <Label fx:id="labelUser" text="Nom Utilisateur" textFill="#212529">
+                        <Label fx:id="labelUser" text="Nom Administrateur" textFill="#212529">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
                         </Label>
-                        <Label fx:id="userTypeLabel" text="Agent de Terrain" textFill="#6c757d">
+                        <Label text="Administrateur" textFill="#C1272D">
                             <font>
-                                <Font size="12.0" />
+                                <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <Label text="●  En service" textFill="#28a745">
+                        <Label text="● Connecté" textFill="#28a745">
                             <font>
                                 <Font name="System Bold" size="11.0" />
                             </font>
                         </Label>
                     </VBox>
 
-                    <Button prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #dc3545; -fx-border-width: 2; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #dc3545; -fx-cursor: hand;" text="🚪  Déconnexion">
+                    <Button onAction="#logout" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #dc3545; -fx-border-width: 2; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #dc3545; -fx-cursor: hand;" text="🚪  Déconnexion">
                         <font>
                             <Font name="System Bold" size="12.0" />
                         </font>
@@ -210,7 +212,7 @@
             <top>
                 <StackPane prefHeight="80.0">
                     <HBox alignment="CENTER_RIGHT" opacity="0.04" spacing="-8" style="-fx-padding: 0 50 0 0;">
-                        <Polygon fill="#006233" rotate="0">
+                        <Polygon fill="#C1272D" rotate="0">
                             <points>
                                 <Double fx:value="0.0" /> <Double fx:value="-15.0" />
                                 <Double fx:value="13.0" /> <Double fx:value="-7.5" />
@@ -220,7 +222,7 @@
                                 <Double fx:value="-13.0" /> <Double fx:value="-7.5" />
                             </points>
                         </Polygon>
-                        <Polygon fill="#C1272D" rotate="30">
+                        <Polygon fill="#006233" rotate="30">
                             <points>
                                 <Double fx:value="0.0" /> <Double fx:value="-15.0" />
                                 <Double fx:value="13.0" /> <Double fx:value="-7.5" />
@@ -240,14 +242,17 @@
                                 </font>
                             </Label>
                             <HBox alignment="CENTER_LEFT" spacing="6">
-                                <Rectangle arcHeight="3" arcWidth="3" fill="#006233" height="3.0" width="30.0" />
-                                <Rectangle arcHeight="3" arcWidth="3" fill="#C1272D" height="3.0" width="8.0" />
+                                <Rectangle arcHeight="3" arcWidth="3" fill="#C1272D" height="3.0" width="30.0" />
+                                <Rectangle arcHeight="3" arcWidth="3" fill="#006233" height="3.0" width="8.0" />
+                                <Label text="Modifiez les informations de l'objet perdu" textFill="#6c757d">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Label>
                             </HBox>
                         </VBox>
 
                         <HBox HBox.hgrow="ALWAYS" />
-
-                        <HBox spacing="12" />
                     </HBox>
                 </StackPane>
             </top>
@@ -357,7 +362,8 @@
                                                         </font>
                                                     </RadioButton>
                                                 </VBox>
-                                            </VBox>                                        </HBox>
+                                            </VBox>
+                                        </HBox>
 
                                         <!-- Description -->
                                         <VBox spacing="8">
@@ -450,7 +456,7 @@
                                         <VBox.margin>
                                             <Insets top="20.0" />
                                         </VBox.margin>
-                                        <Button onAction="#handleSave" prefHeight="40" prefWidth="180" style="-fx-background-color: #006233; -fx-cursor: hand;" text="Enregistrer" textFill="WHITE">
+                                        <Button onAction="#handleSave" prefHeight="40" prefWidth="180" style="-fx-background-color: #C1272D; -fx-cursor: hand;" text="Enregistrer" textFill="WHITE">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
