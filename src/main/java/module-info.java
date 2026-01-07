@@ -22,4 +22,6 @@ module com.firstproject.telfat_w_lqina {
     exports com.firstproject.telfat_w_lqina;
     exports com.firstproject.telfat_w_lqina.controllers;
     exports com.firstproject.telfat_w_lqina.models;
+    exports com.firstproject.telfat_w_lqina.Enum;
+    opens com.firstproject.telfat_w_lqina.Enum to org.hibernate.orm.core;
 }

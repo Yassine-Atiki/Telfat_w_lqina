@@ -3,7 +3,7 @@ package com.firstproject.telfat_w_lqina.controllers;
 import com.firstproject.telfat_w_lqina.models.LostObject;
 import com.firstproject.telfat_w_lqina.models.Stadium;
 import com.firstproject.telfat_w_lqina.models.User;
-import com.firstproject.telfat_w_lqina.models.UserType;
+import com.firstproject.telfat_w_lqina.Enum.UserType;
 import com.firstproject.telfat_w_lqina.service.LostObjectService;
 import com.firstproject.telfat_w_lqina.service.StadiumService;
 import com.firstproject.telfat_w_lqina.util.LogoutUtil;

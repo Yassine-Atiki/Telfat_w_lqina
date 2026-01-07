@@ -39,4 +39,14 @@ public class AgentController {
     }
 
 
+    public void goToAddComplaint(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddComplaint.fxml");
+    }
+
+    public void goToAgent(ActionEvent event) {
+    }
+
+    public void goToListComplaint(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAgent.fxml");
+    }
 }

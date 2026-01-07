@@ -1,5 +1,6 @@
 package com.firstproject.telfat_w_lqina.controllers;
 
+import com.firstproject.telfat_w_lqina.Enum.UserType;
 import com.firstproject.telfat_w_lqina.models.*;
 import com.firstproject.telfat_w_lqina.service.LostObjectService;
 import com.firstproject.telfat_w_lqina.service.StadiumService;

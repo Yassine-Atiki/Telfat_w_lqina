@@ -15,8 +15,8 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-import static com.firstproject.telfat_w_lqina.models.UserType.ADMIN;
-import static com.firstproject.telfat_w_lqina.models.UserType.AGENT;
+import static com.firstproject.telfat_w_lqina.Enum.UserType.ADMIN;
+import static com.firstproject.telfat_w_lqina.Enum.UserType.AGENT;
 
 public class loginController {
 

@@ -2,7 +2,7 @@ package com.firstproject.telfat_w_lqina.controllers;
 
 import com.firstproject.telfat_w_lqina.models.LostObject;
 import com.firstproject.telfat_w_lqina.models.Stadium;
-import com.firstproject.telfat_w_lqina.models.TypeState;
+import com.firstproject.telfat_w_lqina.Enum.TypeState;
 import com.firstproject.telfat_w_lqina.service.LostObjectService;
 import com.firstproject.telfat_w_lqina.service.StadiumService;
 import com.firstproject.telfat_w_lqina.util.*;
