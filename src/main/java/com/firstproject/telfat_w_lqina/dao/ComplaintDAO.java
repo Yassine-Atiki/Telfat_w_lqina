@@ -100,4 +100,24 @@ public class ComplaintDAO {
         }
 
     }
+
+    public boolean update(Complaint complaint) {
+        boolean is_updated = false;
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        try {
+            entityTransaction.begin();
+            entityManager.merge(complaint);
+            entityTransaction.commit();
+            is_updated = true;
+        } catch (Exception exception) {
+            if (entityTransaction.isActive()) {
+                entityTransaction.rollback();
+            }
+            exception.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+        return is_updated;
+    }
 }

@@ -4,6 +4,8 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -309,7 +311,7 @@
 
                                 <!-- Tableau des réclamations -->
                                 <VBox spacing="15" style="-fx-border-color: #e9ecef; -fx-border-width: 1; -fx-border-radius: 12; -fx-background-color: white;" styleClass="info-card" HBox.hgrow="ALWAYS">
-                                    <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="72.0" prefWidth="769.0" spacing="10">
                                         <VBox spacing="4">
                                             <Label text="Liste des Réclamations" textFill="#1a1a1a">
                                                 <font>
@@ -323,8 +325,17 @@
                                             </HBox>
                                         </VBox>
                                     </HBox>
+                           <HBox prefHeight="100.0" prefWidth="200.0">
+                              <children>
+                                 <DatePicker fx:id="dateFilterDatePicker" />
+                                 <ComboBox fx:id="typeObjetComboBox" prefWidth="150.0" promptText="Type d'objet" />
+                                 <ComboBox fx:id="stadiumComboBox" prefWidth="150.0" promptText="Stadium :" />
+                                 <ComboBox fx:id="statutComboBox" prefWidth="150.0" promptText="Statut" />
+                                 <Button mnemonicParsing="false" onAction="#refreshTableView" text="Rechercher" />
+                              </children>
+                           </HBox>
 
-                                    <TableView fx:id="complaintTableView" prefHeight="550.0" style="-fx-background-color: white;">
+                                    <TableView fx:id="complaintTableView" prefHeight="493.0" prefWidth="757.0" style="-fx-background-color: white;">
                                         <columns>
                                             <TableColumn fx:id="nameComplaintTableColumn" prefWidth="150.0" text="Réclamateur" />
                                             <TableColumn fx:id="typeLosteObjectTableColumn" prefWidth="150.0" text="Type d'objet" />
@@ -519,7 +530,7 @@
                                           <VBox spacing="15" styleClass="info-card info-card-green">
                                               <HBox alignment="CENTER_LEFT" spacing="10">
                                                   <StackPane styleClass="icon-badge-green">
-                                                      <Label text="🖼️" textFill="#006233">
+                                                      <Label text="🖼" textFill="#006233">
                                                           <font>
                                                               <Font size="16.0" />
                                                           </font>
@@ -554,7 +565,7 @@
                                           <VBox spacing="15" styleClass="info-card info-card-red">
                                               <HBox alignment="CENTER_LEFT" spacing="10">
                                                   <StackPane styleClass="icon-badge-red">
-                                                      <Label text="⚙️" textFill="#C1272D">
+                                                      <Label text="⚙" textFill="#C1272D">
                                                           <font>
                                                               <Font size="16.0" />
                                                           </font>
@@ -583,7 +594,7 @@
                                               </VBox>
       
                                               <HBox alignment="CENTER" spacing="12">
-                                                  <Button prefHeight="42.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to bottom right, #006233, #00803d); -fx-background-radius: 10; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="✏️  Modifier">
+                                                  <Button onAction="#goToUpdateComplaint" prefHeight="42.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to bottom right, #006233, #00803d); -fx-background-radius: 10; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="✏  Modifier">
                                                       <font>
                                                           <Font name="System" size="13.0" />
                                                       </font>
@@ -591,7 +602,7 @@
                                                           <DropShadow color="#00623350" offsetY="3.0" radius="6.0" />
                                                       </effect>
                                                   </Button>
-                                                  <Button onAction="#removeComplaint" prefHeight="42.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #dc3545; -fx-border-width: 2.5; -fx-border-radius: 10; -fx-background-radius: 10; -fx-text-fill: #dc3545; -fx-cursor: hand; -fx-font-weight: bold;" text="🗑️  Supprimer">
+                                                  <Button onAction="#removeComplaint" prefHeight="42.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #dc3545; -fx-border-width: 2.5; -fx-border-radius: 10; -fx-background-radius: 10; -fx-text-fill: #dc3545; -fx-cursor: hand; -fx-font-weight: bold;" text="🗑  Supprimer">
                                                       <font>
                                                           <Font name="System" size="13.0" />
                                                       </font>

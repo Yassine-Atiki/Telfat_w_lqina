@@ -104,7 +104,7 @@
 
             <!-- Navigation Menu -->
             <VBox spacing="8" style="-fx-padding: 20 15;">
-                <Label text="NAVIGATION" textFill="#6c757d">
+                <Label text="NAVIGATION" textFill="#495057" style="-fx-font-weight: bold;">
                     <font>
                         <Font name="System" size="10.0" />
                     </font>
@@ -133,7 +133,6 @@
                         <Font size="13.0" />
                     </font>
                 </Button>
-
 
                 <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  🔍  Rechercher">
                     <font>
@@ -171,12 +170,12 @@
                     </VBox.margin>
 
                     <VBox spacing="4">
-                        <Label fx:id="labelUser" text="Nom Utilisateur" textFill="#212529">
+                        <Label text="Nom Utilisateur" textFill="#212529">
                             <font>
                                 <Font name="System" size="14.0" />
                             </font>
                         </Label>
-                        <Label fx:id="userTypeLabel" text="Agent de Terrain" textFill="#6c757d">
+                        <Label text="Agent de Terrain" textFill="#6c757d">
                             <font>
                                 <Font size="12.0" />
                             </font>
@@ -188,7 +187,7 @@
                         </Label>
                     </VBox>
 
-                    <Button prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #dc3545; -fx-border-width: 2; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #dc3545; -fx-cursor: hand;" text="🚪  Déconnexion">
+                    <Button onAction="#seDeconnecter" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #dc3545; -fx-border-width: 2; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #dc3545; -fx-cursor: hand;" text="🚪  Déconnexion">
                         <font>
                             <Font name="System" size="12.0" />
                         </font>
@@ -242,205 +241,213 @@
                         </VBox>
 
                         <HBox HBox.hgrow="ALWAYS" />
-
-                        <HBox spacing="12" />
                     </HBox>
                 </StackPane>
             </top>
 
             <!-- Content - Cards Grid -->
             <center>
-                <StackPane>
-                    <StackPane opacity="0.05" prefHeight="495.0" prefWidth="940.0" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" />
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+                    <content>
+                        <!-- MODIFICATION PRINCIPALE : Structure simplifiée -->
+                        <StackPane>
+                            <!-- Image de fond avec OPACITÉ CORRECTE (comme dans l'autre page) -->
+                            <StackPane opacity="0.08" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" />
 
-                    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
-                        <content>
-                            <!-- Centre - Formulaire -->
-                                <VBox alignment="TOP_CENTER" spacing="30" style="-fx-padding: 40;">
+                            <!-- Contenu principal -->
+                            <VBox alignment="TOP_CENTER" spacing="30" style="-fx-padding: 40;">
 
-                                    <!-- Formulaire -->
-                                    <VBox maxWidth="700" spacing="25" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 35;">
+                                <!-- Formulaire -->
+                                <VBox maxWidth="700" spacing="25" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 35;">
 
-                                        <!-- Section Objet -->
-                                        <VBox spacing="15">
-                                            <Label text="Informations de l'objet" textFill="#C1272D">
+                                    <!-- Section Objet -->
+                                    <VBox spacing="15">
+                                        <Label text="Informations de l'objet" textFill="#C1272D" style="-fx-font-weight: bold;">
+                                            <font>
+                                                <Font name="System" size="16.0" />
+                                            </font>
+                                        </Label>
+
+                                        <GridPane hgap="20" vgap="15">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                                            </columnConstraints>
+
+                                            <!-- Type -->
+                                            <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                                <Label text="Type d'objet" textFill="#333333" style="-fx-font-weight: bold;">
+                                                    <font>
+                                                        <Font name="System" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <ComboBox fx:id="typeComboBox" prefHeight="35" prefWidth="300" promptText="Sélectionner le type" style="-fx-background-color: white; -fx-border-color: #c1c1c1; -fx-border-width: 1px; -fx-border-radius: 5;">
+                                                    <items>
+                                                        <FXCollections fx:factory="observableArrayList">
+                                                            <String fx:value="Électronique" />
+                                                            <String fx:value="Documents" />
+                                                            <String fx:value="Objets personnels" />
+                                                            <String fx:value="Vêtements" />
+                                                            <String fx:value="Sacs" />
+                                                            <String fx:value="Équipement sportif" />
+                                                            <String fx:value="Accessoires" />
+                                                            <String fx:value="Divers" />
+                                                            <String fx:value="Autre / Inconnu" />
+                                                        </FXCollections>
+                                                    </items>
+                                                </ComboBox>
+                                            </VBox>
+
+                                            <!-- Date -->
+                                            <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                                <Label text="Date de découverte" textFill="#333333" style="-fx-font-weight: bold;">
+                                                    <font>
+                                                        <Font name="System" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <DatePicker fx:id="lostDatePicker" prefHeight="35" prefWidth="300" promptText="Sélectionner la date" style="-fx-background-color: white; -fx-border-color: #c1c1c1; -fx-border-width: 1px; -fx-border-radius: 5;" />
+                                            </VBox>
+
+                                            <rowConstraints>
+                                                <RowConstraints />
+                                            </rowConstraints>
+                                        </GridPane>
+
+                                        <!-- Zone -->
+                                        <VBox spacing="8">
+                                            <Label text="Stade / Zone" textFill="#333333" style="-fx-font-weight: bold;">
                                                 <font>
-                                                    <Font name="System" size="16.0" />
+                                                    <Font name="System" size="12.0" />
                                                 </font>
                                             </Label>
-
-                                            <GridPane hgap="20" vgap="15">
-                                                <columnConstraints>
-                                                    <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
-                                                    <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
-                                                </columnConstraints>
-
-                                                <!-- Type -->
-                                                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                                    <Label text="Type d'objet" textFill="#333333">
-                                                        <font>
-                                                            <Font name="System" size="12.0" />
-                                                        </font>
-                                                    </Label>
-                                                    <ComboBox fx:id="typeComboBox" prefHeight="35" prefWidth="300" promptText="Sélectionner le type" style="-fx-background-color: white; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px;">
-                                                        <items>
-                                                            <FXCollections fx:factory="observableArrayList">
-                                                                <String fx:value="Électronique" />
-                                                                <String fx:value="Documents" />
-                                                                <String fx:value="Objets personnels" />
-                                                                <String fx:value="Vêtements" />
-                                                                <String fx:value="Sacs" />
-                                                                <String fx:value="Équipement sportif" />
-                                                                <String fx:value="Accessoires" />
-                                                                <String fx:value="Divers" />
-                                                                <String fx:value="Autre / Inconnu" />
-                                                            </FXCollections>
-                                                        </items>
-                                                    </ComboBox>
-                                                </VBox>
-
-                                                <!-- Date -->
-                                                <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                                    <Label text="Date de découverte" textFill="#333333">
-                                                        <font>
-                                                            <Font name="System" size="12.0" />
-                                                        </font>
-                                                    </Label>
-                                                    <DatePicker fx:id="lostDatePicker" prefHeight="35" prefWidth="300" promptText="Sélectionner la date" style="-fx-background-color: white; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px;" />
-                                                </VBox>
-
-                                                <rowConstraints>
-                                                    <RowConstraints />
-                                                </rowConstraints>
-                                            </GridPane>
-
-                                            <!-- Zone -->
-                                            <VBox spacing="8">
-                                                <Label text="Stade / Zone" textFill="#333333">
-                                                    <font>
-                                                        <Font name="System" size="12.0" />
-                                                    </font>
-                                                </Label>
-                                 <ChoiceBox fx:id="stadiumComboBox" prefHeight="25.0" prefWidth="143.0" />
-                                            </VBox>
-
-                                            <!-- Description -->
-                                            <VBox spacing="8">
-                                                <Label text="Description" textFill="#333333">
-                                                    <font>
-                                                        <Font name="System" size="12.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextArea fx:id="descriptionField" prefRowCount="3" promptText="Décrivez l'objet trouvé en détail..." style="-fx-border-color: #c1c1c1; -fx-border-width: 2px; -fx-border-radius: 5;">
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font>
-                                                </TextArea>
-                                            </VBox>
+                                            <ChoiceBox fx:id="stadiumComboBox" prefHeight="35" prefWidth="300" style="-fx-background-color: white; -fx-border-color: #c1c1c1; -fx-border-width: 1px; -fx-border-radius: 5;" />
                                         </VBox>
-                                        <HBox prefHeight="100.0" prefWidth="200.0">
-                                            <children>
-                                                <Button mnemonicParsing="false" onAction="#chooseImage" text="Choisir une image" />
-                                                <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                            </children>
-                                        </HBox>
 
-                                        <!-- Séparateur -->
-                                        <Line endX="300.0" startX="-300.0" stroke="#e0e0e0" strokeWidth="1.0" />
-
-                                        <!-- Section Agent -->
-                                        <VBox spacing="15">
-                                            <Label text="Informations de l'agent" textFill="#006233">
+                                        <!-- Description -->
+                                        <VBox spacing="8">
+                                            <Label text="Description" textFill="#333333" style="-fx-font-weight: bold;">
                                                 <font>
-                                                    <Font name="System" size="16.0" />
+                                                    <Font name="System" size="12.0" />
                                                 </font>
                                             </Label>
+                                            <TextArea fx:id="descriptionField" prefRowCount="3" promptText="Décrivez l'objet trouvé en détail..." style="-fx-border-color: #c1c1c1; -fx-border-width: 1px; -fx-border-radius: 5; -fx-background-color: white;">
+                                                <font>
+                                                    <Font size="13.0" />
+                                                </font>
+                                            </TextArea>
+                                        </VBox>
+                                    </VBox>
 
-                                            <GridPane hgap="20" vgap="15">
-                                                <columnConstraints>
-                                                    <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
-                                                    <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
-                                                </columnConstraints>
+                                    <!-- Section Image -->
+                                    <VBox spacing="8">
+                                        <Label text="Image de l'objet" textFill="#333333" style="-fx-font-weight: bold;">
+                                            <font>
+                                                <Font name="System" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <HBox spacing="20" alignment="CENTER_LEFT">
+                                            <Button mnemonicParsing="false" onAction="#chooseImage" prefHeight="35" prefWidth="150" text="Choisir une image" style="-fx-background-color: #f8f9fa; -fx-border-color: #c1c1c1; -fx-border-width: 1px; -fx-border-radius: 5;" />
+                                            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: #e0e0e0; -fx-border-width: 1px; -fx-border-radius: 5;" />
+                                        </HBox>
+                                    </VBox>
 
-                                                <!-- Nom -->
-                                                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                                    <Label text="Nom de l'agent" textFill="#333333">
-                                                        <font>
-                                                            <Font name="System" size="12.0" />
-                                                        </font>
-                                                    </Label>
-                                                    <TextField fx:id="ownerNameField" promptText="Nom complet" style="-fx-background-color: transparent; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #333;">
-                                                        <font>
-                                                            <Font size="14.0" />
-                                                        </font>
-                                                    </TextField>
-                                                </VBox>
+                                    <!-- Séparateur -->
+                                    <Line endX="300.0" startX="-300.0" stroke="#e0e0e0" strokeWidth="1.0" />
 
-                                                <!-- Téléphone -->
-                                                <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                                    <Label text="Téléphone" textFill="#333333">
-                                                        <font>
-                                                            <Font name="System" size="12.0" />
-                                                        </font>
-                                                    </Label>
-                                                    <TextField fx:id="phoneField" promptText="+212 6XX XXX XXX" style="-fx-background-color: transparent; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #333;">
-                                                        <font>
-                                                            <Font size="14.0" />
-                                                        </font>
-                                                    </TextField>
-                                                </VBox>
+                                    <!-- Section Agent -->
+                                    <VBox spacing="15">
+                                        <Label text="Informations de l'agent" textFill="#006233" style="-fx-font-weight: bold;">
+                                            <font>
+                                                <Font name="System" size="16.0" />
+                                            </font>
+                                        </Label>
 
-                                                <rowConstraints>
-                                                    <RowConstraints />
-                                                </rowConstraints>
-                                            </GridPane>
+                                        <GridPane hgap="20" vgap="15">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                                            </columnConstraints>
 
-                                            <!-- Email -->
-                                            <VBox spacing="8">
-                                                <Label text="Email" textFill="#333333">
+                                            <!-- Nom -->
+                                            <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                                <Label text="Nom de l'agent" textFill="#333333" style="-fx-font-weight: bold;">
                                                     <font>
                                                         <Font name="System" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField fx:id="emailField" promptText="agent@can2025.ma" style="-fx-background-color: transparent; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #333;">
+                                                <TextField fx:id="ownerNameField" prefHeight="35" promptText="Nom complet" style="-fx-background-color: white; -fx-border-color: #c1c1c1; -fx-border-width: 1px; -fx-border-radius: 5; -fx-text-fill: #333;">
                                                     <font>
                                                         <Font size="14.0" />
                                                     </font>
                                                 </TextField>
                                             </VBox>
+
+                                            <!-- Téléphone -->
+                                            <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                                <Label text="Téléphone" textFill="#333333" style="-fx-font-weight: bold;">
+                                                    <font>
+                                                        <Font name="System" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="phoneField" prefHeight="35" promptText="+212 6XX XXX XXX" style="-fx-background-color: white; -fx-border-color: #c1c1c1; -fx-border-width: 1px; -fx-border-radius: 5; -fx-text-fill: #333;">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </TextField>
+                                            </VBox>
+
+                                            <rowConstraints>
+                                                <RowConstraints />
+                                            </rowConstraints>
+                                        </GridPane>
+
+                                        <!-- Email -->
+                                        <VBox spacing="8">
+                                            <Label text="Email" textFill="#333333" style="-fx-font-weight: bold;">
+                                                <font>
+                                                    <Font name="System" size="12.0" />
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="emailField" prefHeight="35" promptText="agent@can2025.ma" style="-fx-background-color: white; -fx-border-color: #c1c1c1; -fx-border-width: 1px; -fx-border-radius: 5; -fx-text-fill: #333;">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </TextField>
                                         </VBox>
-
-                                        <!-- Boutons -->
-                                        <HBox alignment="CENTER" spacing="15">
-                                            <VBox.margin>
-                                                <Insets top="20.0" />
-                                            </VBox.margin>
-                                            <Button onAction="#reinitialiser" prefHeight="40" prefWidth="150" style="-fx-background-color: transparent; -fx-border-color: #C1272D; -fx-border-width: 2; -fx-cursor: hand;" text="Réinitialiser" textFill="#C1272D">
-                                                <font>
-                                                    <Font name="System" size="13.0" />
-                                                </font>
-                                            </Button>
-                                            <Button onAction="#handleSave" prefHeight="40" prefWidth="180" style="-fx-background-color: #006233; -fx-cursor: hand;" text="Enregistrer" textFill="WHITE">
-                                                <font>
-                                                    <Font name="System" size="13.0" />
-                                                </font>
-                                                <effect>
-                                                    <DropShadow color="#00000033" offsetY="3.0" />
-                                                </effect>
-                                            </Button>
-                                        </HBox>
-
-                                        <effect>
-                                            <DropShadow color="#00000010" radius="10.0" />
-                                        </effect>
                                     </VBox>
+
+                                    <!-- Boutons -->
+                                    <HBox alignment="CENTER" spacing="15">
+                                        <VBox.margin>
+                                            <Insets top="20.0" />
+                                        </VBox.margin>
+                                        <Button onAction="#reinitialiser" prefHeight="40" prefWidth="150" style="-fx-background-color: transparent; -fx-border-color: #C1272D; -fx-border-width: 2; -fx-cursor: hand; -fx-border-radius: 5;" text="Réinitialiser" textFill="#C1272D">
+                                            <font>
+                                                <Font name="System" size="13.0" />
+                                            </font>
+                                        </Button>
+                                        <Button onAction="#handleSave" prefHeight="40" prefWidth="180" style="-fx-background-color: #006233; -fx-cursor: hand; -fx-background-radius: 5;" text="Enregistrer" textFill="WHITE">
+                                            <font>
+                                                <Font name="System" size="13.0" />
+                                            </font>
+                                            <effect>
+                                                <DropShadow color="#00000033" offsetY="3.0" />
+                                            </effect>
+                                        </Button>
+                                    </HBox>
+
+                                    <effect>
+                                        <DropShadow color="#00000010" radius="10.0" />
+                                    </effect>
                                 </VBox>
-                        </content>
-                    </ScrollPane>
-                </StackPane>
+                            </VBox>
+                        </StackPane>
+                    </content>
+                </ScrollPane>
             </center>
         </BorderPane>
     </center>
+
 
     <!-- Footer -->
     <bottom>
@@ -496,5 +503,3 @@
     </bottom>
 
 </BorderPane>
-
-

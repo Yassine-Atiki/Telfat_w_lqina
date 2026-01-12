@@ -87,7 +87,6 @@ public class AddComplaintController {
         }
     }
 
-// ... (autres imports et code restent identiques)
 
     @FXML
     public void saveComplaint() throws IOException {

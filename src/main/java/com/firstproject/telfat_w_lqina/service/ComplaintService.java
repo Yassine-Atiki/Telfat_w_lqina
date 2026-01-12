@@ -13,9 +13,6 @@ import java.util.List;
 public class ComplaintService {
     private CheckSyntaxe checkSyntaxe = new CheckSyntaxe();
     private ComplaintDAO complaintDAO = new ComplaintDAO();
-    private BaseObjectService baseObjectService = new BaseObjectService();
-    private PersonService personService = new PersonService();
-    private ProofService proofService = new ProofService();
 
     public Boolean createComplaint(Complaint complaint) {
         if (checkSyntaxe.checkSyntaxeEmail(complaint.getPerson().getEmail())==false){
@@ -33,17 +30,22 @@ public class ComplaintService {
     public void removeComplaint(long complaintID){
         Complaint complaint = complaintDAO.getComplaintById(complaintID);
         if(complaint != null){
-            try {
-                baseObjectService.remove(complaint.getObject().getId());
-                personService.remove(complaint.getPerson().getId());
-                proofService.remove(complaint.getProof().getId());
-            } catch (ObjectNotFoundException e) {
-                throw new ObjectNotFoundException("Related entity not found while deleting complaint with ID " + complaintID + ": " + e.getMessage());
+            boolean deleted = complaintDAO.removeComplaint(complaint);
+            if (!deleted) {
+                throw new RuntimeException("Failed to delete complaint with ID " + complaintID);
             }
-
-             complaintDAO.removeComplaint(complaint);
-        }else {
-            throw new ObjectNotFoundException ("Complaint with ID " + complaintID + " not found.");
+        } else {
+            throw new ObjectNotFoundException("Complaint with ID " + complaintID + " not found.");
         }
+    }
+
+    public Boolean updateComplaint(Complaint complaint) {
+        if (!checkSyntaxe.checkSyntaxeEmail(complaint.getPerson().getEmail())) {
+            throw new InvalidEmailException("Invalid email format: " + complaint.getPerson().getEmail());
+        }
+        if (!checkSyntaxe.checkSyntaxeTelephone(complaint.getPerson().getTelephone())) {
+            throw new InvalidPhoneException("Invalid telephone format: " + complaint.getPerson().getTelephone());
+        }
+        return complaintDAO.update(complaint);
     }
 }
