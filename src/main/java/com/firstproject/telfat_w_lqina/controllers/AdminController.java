@@ -38,7 +38,12 @@ public class AdminController {
     }
 
     @FXML
-    public void AddStadium(ActionEvent event) throws IOException {
+    public void addStadium(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event,"/fxml/AddStadium.fxml");
+    }
+
+    @FXML
+    public void goToStadiumList(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewStadiums.fxml");
     }
 }

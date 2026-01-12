@@ -3,32 +3,26 @@
 <?import java.lang.Double?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.AddUsersController">
+<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.UpdateStadiumController">
 
-    <!-- SIDEBAR (LEFT) -->
+    <!-- Sidebar Navigation -->
     <left>
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-background: transparent;" vbarPolicy="AS_NEEDED">
-            <VBox minHeight="700.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #faf8f5); -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 3, 0);">
+            <VBox prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #faf8f5); -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 3, 0);">
 
                 <!-- Logo Header avec motif géométrique -->
                 <StackPane prefHeight="90.0" style="-fx-background-color: white;">
@@ -79,12 +73,12 @@
                         </Polygon>
 
                         <VBox spacing="2">
-                            <Label text="Telfat w lqina" textFill="#006233">
+                            <Label text="Telfat w lqina" style="-fx-text-fill: #006233;">
                                 <font>
                                     <Font name="System" size="20.0" />
                                 </font>
                             </Label>
-                            <Label text="CAN 2025 - Admin" textFill="#C1272D">
+                            <Label text="CAN 2025 - Admin" style="-fx-text-fill: #C1272D;">
                                 <font>
                                     <Font name="System" size="11.0" />
                                 </font>
@@ -107,7 +101,7 @@
 
                 <!-- Navigation Menu -->
                 <VBox spacing="8" style="-fx-padding: 20 15;">
-                    <Label text="ADMINISTRATION" textFill="#6c757d">
+                    <Label text="ADMINISTRATION" style="-fx-text-fill: #6c757d;">
                         <font>
                             <Font name="System" size="10.0" />
                         </font>
@@ -116,21 +110,18 @@
                         </VBox.margin>
                     </Label>
 
-                    <!-- Dashboard  -->
+                    <!-- Dashboard -->
                     <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToDashboard" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📊  Tableau de Bord">
                         <font>
                             <Font size="13.0" />
                         </font>
                     </Button>
 
-                    <!-- Créer Utilisateur - ACTIVE -->
-                    <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #C1272D, #d63844); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text="  👤  Créer Utilisateur">
+                    <!-- Créer Utilisateur -->
+                    <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#createUser" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  👤  Créer Utilisateur">
                         <font>
-                            <Font name="System" size="13.0" />
+                            <Font size="13.0" />
                         </font>
-                        <effect>
-                            <DropShadow color="#C1272D40" offsetY="2.0" radius="4.0" />
-                        </effect>
                     </Button>
 
                     <!-- Objets Perdus -->
@@ -161,8 +152,8 @@
                         </font>
                     </Button>
 
-                    <!-- Liste des stades -->
-                    <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToStadiumList" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="Liste des Stades">
+                    <!-- Liste des stades - ACTIVE -->
+                    <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToStadiumList" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #C1272D, #d63844); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text="Liste des Stades">
                         <graphic>
                             <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
                                 <image>
@@ -171,8 +162,11 @@
                             </ImageView>
                         </graphic>
                         <font>
-                            <Font size="13.0" />
+                            <Font name="System" size="13.0" />
                         </font>
+                        <effect>
+                            <DropShadow color="#C1272D40" offsetY="2.0" radius="4.0" />
+                        </effect>
                     </Button>
                 </VBox>
 
@@ -200,17 +194,17 @@
                         </VBox.margin>
 
                         <VBox spacing="4">
-                            <Label fx:id="labelAdmin" text="Nom Administrateur" textFill="#212529">
+                            <Label fx:id="labelAdmin" text="Nom Administrateur" style="-fx-text-fill: #212529;">
                                 <font>
                                     <Font name="System" size="14.0" />
                                 </font>
                             </Label>
-                            <Label text="Administrateur" textFill="#C1272D">
+                            <Label text="Administrateur" style="-fx-text-fill: #C1272D;">
                                 <font>
                                     <Font name="System" size="12.0" />
                                 </font>
                             </Label>
-                            <Label text="●  Connecté" textFill="#28a745">
+                            <Label text="●  Connecté" style="-fx-text-fill: #28a745;">
                                 <font>
                                     <Font name="System" size="11.0" />
                                 </font>
@@ -228,10 +222,11 @@
         </ScrollPane>
     </left>
 
-    <!-- CONTENU PRINCIPAL (CENTER) -->
+    <!-- Main Content Area -->
     <center>
         <BorderPane style="-fx-background-color: transparent;">
-        <!-- Header Bar -->
+
+            <!-- Header Bar -->
             <top>
                 <StackPane prefHeight="80.0">
                     <!-- Motif zellige subtil en arrière-plan -->
@@ -260,7 +255,7 @@
 
                     <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20 35; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);">
                         <VBox spacing="2">
-                            <Label text="Ajouter un Stade" textFill="#212529">
+                            <Label text="Modifier le Stade" style="-fx-text-fill: #212529;">
                                 <font>
                                     <Font name="System" size="24.0" />
                                 </font>
@@ -268,7 +263,7 @@
                             <HBox alignment="CENTER_LEFT" spacing="6">
                                 <Rectangle arcHeight="3" arcWidth="3" fill="#C1272D" height="3.0" width="30.0" />
                                 <Rectangle arcHeight="3" arcWidth="3" fill="#006233" height="3.0" width="8.0" />
-                                <Label text="Enregistrez un nouveau stade dans le système" textFill="#6c757d">
+                                <Label text="Mettez à jour les informations du stade" style="-fx-text-fill: #6c757d;">
                                     <font>
                                         <Font size="13.0" />
                                     </font>
@@ -278,189 +273,170 @@
                     </HBox>
                 </StackPane>
             </top>
+
+            <!-- Form Content -->
             <center>
-                <ScrollPane fitToWidth="true" style="-fx-background-color: #faf8f5; -fx-background: #faf8f5;">
-                <StackPane style="-fx-background-color: #faf8f5;">
-                    <StackPane opacity="0.1" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" />
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+                    <StackPane style="-fx-background-color: transparent;">
+                        <!-- Image zellige en arrière-plan très subtil -->
+                        <StackPane opacity="0.1" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" />
 
-                    <HBox alignment="TOP_CENTER" style="-fx-padding: 30;">
-                    <VBox maxWidth="850" spacing="25" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 35; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 0, 4);" HBox.hgrow="ALWAYS">
+                        <VBox alignment="CENTER" spacing="30" style="-fx-padding: 45 50;">
 
-                        <!-- En-tête du formulaire -->
-                        <HBox alignment="CENTER_LEFT" spacing="15">
-                            <VBox spacing="5">
-                                <Label text="Informations de l'utilisateur" textFill="#333333">
-                                    <font>
-                                        <Font name="System" size="20.0" />
-                                    </font>
-                                </Label>
-                                <Label text="Remplissez tous les champs requis (*)" textFill="#999999">
-                                    <font>
-                                        <Font size="12.0" />
-                                    </font>
-                                </Label>
-                            </VBox>
-                        </HBox>
-
-                        <Separator />
-
-                        <!-- Formulaire en grille 2 colonnes -->
-                        <GridPane hgap="25" vgap="20">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
-                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
-                            </columnConstraints>
-
-                            <!-- Nom d'utilisateur -->
-                            <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                <HBox spacing="5">
-                                    <Label text="Nom d'utilisateur" textFill="#333333">
-                                        <font>
-                                            <Font name="System" size="13.0" />
-                                        </font>
-                                    </Label>
-                                    <Label text="*" textFill="#C1272D">
-                                        <font>
-                                            <Font name="System" size="13.0" />
-                                        </font>
-                                    </Label>
+                            <!-- Form Card -->
+                            <StackPane maxWidth="600.0">
+                                <!-- Motif coin décoratif -->
+                                <HBox alignment="TOP_RIGHT" opacity="0.08">
+                                    <StackPane.margin>
+                                        <Insets right="20" top="20" />
+                                    </StackPane.margin>
+                                    <Polygon fill="#006233" rotate="45">
+                                        <points>
+                                            <Double fx:value="0.0" /> <Double fx:value="-15.0" />
+                                            <Double fx:value="10.6" /> <Double fx:value="-7.5" />
+                                            <Double fx:value="10.6" /> <Double fx:value="7.5" />
+                                            <Double fx:value="0.0" /> <Double fx:value="15.0" />
+                                            <Double fx:value="-10.6" /> <Double fx:value="7.5" />
+                                            <Double fx:value="-10.6" /> <Double fx:value="-7.5" />
+                                        </points>
+                                    </Polygon>
                                 </HBox>
-                                <TextField fx:id="usernameTextField" prefHeight="40" promptText="Saisir le nom d'utilisateur" style="-fx-background-color: #fafafa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-text-fill: #333;">
-                                    <font>
-                                        <Font size="13.0" />
-                                    </font>
-                                </TextField>
-                            </VBox>
 
-                            <!-- Mot de passe -->
-                            <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                <HBox spacing="5">
-                                    <Label text="Mot de passe" textFill="#333333">
-                                        <font>
-                                            <Font name="System" size="13.0" />
-                                        </font>
-                                    </Label>
-                                    <Label text="*" textFill="#C1272D">
-                                        <font>
-                                            <Font name="System" size="13.0" />
-                                        </font>
-                                    </Label>
-                                </HBox>
-                                <PasswordField fx:id="passwordField" prefHeight="40" promptText="Minimum 8 caractères" style="-fx-background-color: #fafafa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-text-fill: #333;">
-                                    <font>
-                                        <Font size="13.0" />
-                                    </font>
-                                </PasswordField>
-                            </VBox>
+                                <VBox spacing="30" style="-fx-background-color: white; -fx-background-radius: 20; -fx-padding: 50 60; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 3);">
 
-                            <!-- Email -->
-                            <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                <HBox spacing="5">
-                                    <Label text="Adresse email" textFill="#333333">
-                                        <font>
-                                            <Font name="System" size="13.0" />
-                                        </font>
-                                    </Label>
-                                    <Label text="*" textFill="#C1272D">
-                                        <font>
-                                            <Font name="System" size="13.0" />
-                                        </font>
-                                    </Label>
-                                </HBox>
-                                <TextField fx:id="emailTextField" prefHeight="40" promptText="exemple@can2025.ma" style="-fx-background-color: #fafafa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-text-fill: #333;">
-                                    <font>
-                                        <Font size="13.0" />
-                                    </font>
-                                </TextField>
-                            </VBox>
+                                    <!-- Icon and Title -->
+                                    <VBox alignment="CENTER" spacing="12">
+                                        <StackPane>
+                                            <HBox alignment="CENTER" style="-fx-background-color: #e8f5e9; -fx-background-radius: 50; -fx-pref-width: 80; -fx-pref-height: 80;">
+                                                <effect>
+                                                    <DropShadow color="#00633315" offsetY="2.0" radius="5.0" />
+                                                </effect>
+                                            </HBox>
+                                            <Label text="⚽" style="-fx-text-fill: #006233;">
+                                                <font>
+                                                    <Font size="42.0" />
+                                                </font>
+                                            </Label>
+                                        </StackPane>
 
-                            <!-- Téléphone -->
-                            <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                <HBox spacing="5">
-                                    <Label text="Numéro de téléphone" textFill="#333333">
-                                        <font>
-                                            <Font name="System" size="13.0" />
-                                        </font>
-                                    </Label>
-                                    <Label text="*" textFill="#C1272D">
-                                        <font>
-                                            <Font name="System" size="13.0" />
-                                        </font>
-                                    </Label>
-                                </HBox>
-                                <TextField fx:id="telephoneTextField" prefHeight="40" promptText="+212 6XX XXX XXX" style="-fx-background-color: #fafafa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-text-fill: #333;">
-                                    <font>
-                                        <Font size="13.0" />
-                                    </font>
-                                </TextField>
-                            </VBox>
+                                        <VBox alignment="CENTER" spacing="6">
+                                            <Label text="Modifier le Stade" style="-fx-text-fill: #1a1a1a;">
+                                                <font>
+                                                    <Font name="System" size="26.0" />
+                                                </font>
+                                            </Label>
+                                            <Label text="Mettez à jour les informations du stade" style="-fx-text-fill: #757575;">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </Label>
+                                        </VBox>
+                                    </VBox>
 
-                            <!-- Type d'utilisateur -->
-                            <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                                <HBox spacing="5">
-                                    <Label text="Type d'utilisateur" textFill="#333333">
-                                        <font>
-                                            <Font name="System" size="13.0" />
-                                        </font>
-                                    </Label>
-                                    <Label text="*" textFill="#C1272D">
-                                        <font>
-                                            <Font name="System" size="13.0" />
-                                        </font>
-                                    </Label>
-                                </HBox>
-                                <ComboBox fx:id="userTypeComboBox" maxWidth="Infinity" prefHeight="40" promptText="Sélectionner le rôle" style="-fx-background-color: #fafafa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" />
-                            </VBox>
+                                    <!-- Decorative divider -->
+                                    <HBox alignment="CENTER" spacing="4">
+                                        <Rectangle arcHeight="2" arcWidth="2" fill="#C1272D" height="2.0" width="60.0" />
+                                        <Rectangle arcHeight="2" arcWidth="2" fill="#006233" height="2.0" width="15.0" />
+                                        <Rectangle arcHeight="2" arcWidth="2" fill="#C1272D" height="2.0" width="60.0" />
+                                    </HBox>
 
-                            <!-- Stade associé (pour les agents uniquement) -->
-                            <VBox fx:id="stadiumContainer" spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                <HBox spacing="5">
-                                    <Label text="Stade associé" textFill="#333333">
-                                        <font>
-                                            <Font name="System" size="13.0" />
-                                        </font>
-                                    </Label>
-                                    <Label text="(optionnel)" textFill="#999999">
-                                        <font>
-                                            <Font size="11.0" />
-                                        </font>
-                                    </Label>
-                                </HBox>
-                                <ComboBox fx:id="stadiumComboBox" maxWidth="Infinity" prefHeight="40" promptText="Sélectionner un stade" style="-fx-background-color: #fafafa; -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" />
-                            </VBox>
+                                    <!-- Form Fields -->
+                                    <VBox spacing="25">
+                                        <!-- Stadium Name Field -->
+                                        <VBox spacing="10">
+                                            <HBox alignment="CENTER_LEFT" spacing="8">
+                                                <Label text="⚽" style="-fx-text-fill: #006233;">
+                                                    <font>
+                                                        <Font size="18.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label text="Nom du Stade" style="-fx-text-fill: #424242;">
+                                                    <font>
+                                                        <Font name="System" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label text="*" style="-fx-text-fill: #C1272D;">
+                                                    <font>
+                                                        <Font name="System" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </HBox>
 
-                            <rowConstraints>
-                                <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
-                            </rowConstraints>
-                        </GridPane>
+                                            <TextField fx:id="stadiumNameField" prefHeight="50.0" promptText="Ex: Stade Mohammed V" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1.5; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 14 20; -fx-font-size: 14px; -fx-prompt-text-fill: #bdbdbd;">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </TextField>
+                                        </VBox>
 
-                        <Separator />
+                                        <!-- City Field -->
+                                        <VBox spacing="10">
+                                            <HBox alignment="CENTER_LEFT" spacing="8">
+                                                <Label text="📍" style="-fx-text-fill: #C1272D;">
+                                                    <font>
+                                                        <Font size="18.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label text="Ville" style="-fx-text-fill: #424242;">
+                                                    <font>
+                                                        <Font name="System" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label text="*" style="-fx-text-fill: #C1272D;">
+                                                    <font>
+                                                        <Font name="System" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                            </HBox>
 
-                        <!-- Boutons d'action -->
-                        <HBox alignment="CENTER_RIGHT" spacing="12">
-                            <Button onAction="#goBack" prefHeight="42" prefWidth="130" style="-fx-background-color: white; -fx-border-color: #d0d0d0; -fx-border-width: 1.5; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: #666666;" text="Annuler">
-                                <font>
-                                    <Font name="System" size="13.0" />
-                                </font>
-                            </Button>
-                            <Button onAction="#createUser" prefHeight="42" prefWidth="180" style="-fx-background-color: #006233; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;" text="Créer l'utilisateur" textFill="WHITE">
-                                <font>
-                                    <Font name="System" size="13.0" />
-                                </font>
-                                <effect>
-                                    <DropShadow color="#00623355" offsetY="3.0" radius="6.0" />
-                                </effect>
-                            </Button>
-                        </HBox>
+                                            <TextField fx:id="cityField" prefHeight="50.0" promptText="Ex: Casablanca" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1.5; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 14 20; -fx-font-size: 14px; -fx-prompt-text-fill: #bdbdbd;">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </TextField>
+                                        </VBox>
 
-                        <effect>
-                            <DropShadow color="#00000008" radius="12.0" />
-                        </effect>
-                    </VBox>
-                </HBox>
-                </StackPane>
+                                        <!-- Error Message Label -->
+                                        <Label fx:id="errorLabel" textFill="#dc3545" visible="false" wrapText="true">
+                                            <font>
+                                                <Font name="System" size="12.0" />
+                                            </font>
+                                        </Label>
+
+                                        <!-- Action Buttons -->
+                                        <HBox alignment="CENTER" spacing="15" style="-fx-padding: 15 0 0 0;">
+                                            <!-- Cancel Button -->
+                                            <Button onAction="#goToStadiumList" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1.5; -fx-border-radius: 10; -fx-background-radius: 10; -fx-text-fill: #424242; -fx-cursor: hand;" text="↩  Annuler">
+                                                <font>
+                                                    <Font name="System" size="15.0" />
+                                                </font>
+                                            </Button>
+
+                                            <!-- Delete Button -->
+                                            <Button onAction="#handleDeleteStadium" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #dc3545; -fx-background-radius: 10; -fx-cursor: hand; -fx-text-fill: white;" text="Supprimer">
+                                                <font>
+                                                    <Font name="System" size="15.0" />
+                                                </font>
+                                                <effect>
+                                                    <DropShadow color="#dc354530" offsetY="2.0" radius="6.0" />
+                                                </effect>
+                                            </Button>
+
+                                            <!-- Update Button -->
+                                            <Button onAction="#handleUpdateStadium" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #006233; -fx-background-radius: 10; -fx-cursor: hand; -fx-text-fill: white;" text="Modifier">
+                                                <font>
+                                                    <Font name="System" size="15.0" />
+                                                </font>
+                                                <effect>
+                                                    <DropShadow color="#00623330" offsetY="2.0" radius="6.0" />
+                                                </effect>
+                                            </Button>
+                                        </HBox>
+                                    </VBox>
+                                </VBox>
+                            </StackPane>
+                        </VBox>
+                    </StackPane>
                 </ScrollPane>
             </center>
         </BorderPane>
@@ -511,6 +487,7 @@
     </bottom>
 
 </BorderPane>
+
 
 
 

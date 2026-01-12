@@ -13,17 +13,28 @@ public class LostObject extends BaseObject {
     @Column(name = "image", columnDefinition = "LONGBLOB")
     private byte[] image;
 
-    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private TypeState typeState = TypeState.IN_STORAGE;
 
-    @Column(name = "agentName", nullable = false)
+    @Column(name = "agentName")
     private String agentName;
 
-    @Column(name = "Telephone", nullable = false)
+    @Column(name = "Telephone")
     private String phone;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
+
+    // Relation vers le propriétaire (quand l'objet est rendu)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id")
+    private Person owner;
+
+    // Relation vers la preuve de présence
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "proof_id")
+    private Proof proof;
 
     // Constructeur avec ID
     public LostObject(String agentName, String description, String email, Long id,
@@ -87,5 +98,22 @@ public class LostObject extends BaseObject {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    // Getters et Setters pour owner et proof
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
+    }
+
+    public Proof getProof() {
+        return proof;
+    }
+
+    public void setProof(Proof proof) {
+        this.proof = proof;
     }
 }

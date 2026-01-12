@@ -220,7 +220,7 @@ public class ViewLostObjectsAdminController {
             HBox buttonsBox = new HBox(10);
             buttonsBox.setAlignment(Pos.CENTER);
 
-            Button updateBtn = new Button("✏️ Modifier");
+            Button updateBtn = new Button("Modifier");
             updateBtn.setStyle("""
                            -fx-background-color: #006233;
                            -fx-text-fill: white;
@@ -240,7 +240,7 @@ public class ViewLostObjectsAdminController {
                 }
             });
 
-            Button deleteBtn = new Button("🗑️ Supprimer");
+            Button deleteBtn = new Button("Supprimer");
             deleteBtn.setStyle("""
                            -fx-background-color: #dc3545;
                            -fx-text-fill: white;
@@ -321,16 +321,18 @@ public class ViewLostObjectsAdminController {
     }
 
     @FXML
-    public void goToAddStadium(ActionEvent event) throws IOException {
+    public void viewLostObjects(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event, "/fxml/ViewLostObjectsAdmin.fxml");
+    }
+
+    @FXML
+    public void addStadium(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event,"/fxml/AddStadium.fxml");
     }
 
     @FXML
-    public void goBack(ActionEvent event) throws IOException {
-        User currentUser = SessionManager.getInstance().getCurrentUser();
-        if (currentUser.getUserType() == UserType.ADMIN){
-            NavigationUtil.navigate(event, "/fxml/Admin.fxml");
-        }
+    public void goToStadiumList(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewStadiums.fxml");
     }
 
     @FXML

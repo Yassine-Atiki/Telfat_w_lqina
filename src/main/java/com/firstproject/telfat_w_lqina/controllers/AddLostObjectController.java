@@ -95,15 +95,17 @@ public class AddLostObjectController {
         }
 
         try {
-            // Récupérer les données
-            LostObject obj = new LostObject();
-            obj.setType(typeComboBox.getValue());
-            obj.setDescription(descriptionField.getText());
-            obj.setLostDate(lostDatePicker.getValue());
-            obj.setZone(stadiumComboBox.getValue());
-            obj.setAgentName(ownerNameField.getText());
-            obj.setPhone(phoneField.getText());
-            obj.setEmail(emailField.getText());
+            // Créer l'objet avec le constructeur complet pour éviter les problèmes de nullable
+            LostObject obj = new LostObject(
+                    ownerNameField.getText(),    // agentName
+                    descriptionField.getText(),  // description
+                    emailField.getText(),        // email
+                    lostDatePicker.getValue(),   // lostDate
+                    phoneField.getText(),        // phone
+                    typeComboBox.getValue(),     // type
+                    stadiumComboBox.getValue(),  // zone
+                    null                         // image (sera ajoutée par le service)
+            );
 
             // Appeler le service
             lostObjectService.addLostObject(obj, selectedImageFile);
@@ -115,6 +117,7 @@ public class AddLostObjectController {
         } catch (Exception e) {
             Alerts.errorAlert("Erreur", "Erreur lors de l'enregistrement",
                     "Une erreur s'est produite : " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

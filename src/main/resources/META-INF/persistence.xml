@@ -10,7 +10,13 @@
         <class>com.firstproject.telfat_w_lqina.models.User</class>
         <class>com.firstproject.telfat_w_lqina.models.Admin</class>
         <class>com.firstproject.telfat_w_lqina.models.Agent</class>
+        <class>com.firstproject.telfat_w_lqina.models.BaseObject</class>
         <class>com.firstproject.telfat_w_lqina.models.LostObject</class>
+        <class>com.firstproject.telfat_w_lqina.models.Person</class>
+        <class>com.firstproject.telfat_w_lqina.models.IdentityDocument</class>
+        <class>com.firstproject.telfat_w_lqina.models.Proof</class>
+        <class>com.firstproject.telfat_w_lqina.models.Stadium</class>
+        <class>com.firstproject.telfat_w_lqina.models.Complaint</class>
 
         <properties>
             <!-- Utilisation des variables depuis database.properties -->

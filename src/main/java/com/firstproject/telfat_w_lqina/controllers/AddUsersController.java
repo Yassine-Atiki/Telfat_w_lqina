@@ -51,6 +51,9 @@ public class AddUsersController {
     @FXML
     private VBox stadiumContainer;
 
+    @FXML
+    private javafx.scene.control.Label labelAdmin;
+
 
     UserService userService = new UserService();
     StadiumDAO stadiumDAO = new StadiumDAO();
@@ -58,6 +61,12 @@ public class AddUsersController {
 
 
     public void initialize() {
+        // Récupérer l'utilisateur connecté depuis SessionManager
+        User currentUser = com.firstproject.telfat_w_lqina.util.SessionManager.getInstance().getCurrentUser();
+        if (currentUser != null && labelAdmin != null) {
+            labelAdmin.setText(currentUser.getUsername());
+        }
+
         userTypeComboBox.getItems().addAll("ADMIN", "AGENT");
 
         // Charger les stades disponibles
@@ -180,13 +189,18 @@ public class AddUsersController {
     }
 
     @FXML
-    public void goToLostObject(ActionEvent event) throws IOException {
+    public void viewLostObjects(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event,"/fxml/ViewLostObjectsAdmin.fxml");
     }
 
     @FXML
-    public void goToAddStadium(ActionEvent event) throws IOException {
+    public void addStadium(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event,"/fxml/AddStadium.fxml");
+    }
+
+    @FXML
+    public void goToStadiumList(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewStadiums.fxml");
     }
 
     @FXML

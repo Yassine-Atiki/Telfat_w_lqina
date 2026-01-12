@@ -78,12 +78,12 @@
                     <VBox spacing="2">
                         <Label text="Telfat w lqina" textFill="#006233">
                             <font>
-                                <Font name="System Bold" size="20.0" />
+                                <Font name="System" size="20.0" />
                             </font>
                         </Label>
                         <Label text="CAN 2025 - Maroc" textFill="#C1272D">
                             <font>
-                                <Font name="System Bold" size="11.0" />
+                                <Font name="System" size="11.0" />
                             </font>
                         </Label>
                     </VBox>
@@ -106,7 +106,7 @@
             <VBox spacing="8" style="-fx-padding: 20 15;">
                 <Label text="NAVIGATION" textFill="#6c757d">
                     <font>
-                        <Font name="System Bold" size="10.0" />
+                        <Font name="System" size="10.0" />
                     </font>
                     <VBox.margin>
                         <Insets bottom="8" left="10" top="5" />
@@ -121,7 +121,7 @@
 
                 <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #006233, #007d42); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text="  ➕  Ajouter Objet">
                     <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font name="System" size="13.0" />
                     </font>
                     <effect>
                         <DropShadow color="#00623340" offsetY="2.0" radius="4.0" />
@@ -173,7 +173,7 @@
                     <VBox spacing="4">
                         <Label fx:id="labelUser" text="Nom Utilisateur" textFill="#212529">
                             <font>
-                                <Font name="System Bold" size="14.0" />
+                                <Font name="System" size="14.0" />
                             </font>
                         </Label>
                         <Label fx:id="userTypeLabel" text="Agent de Terrain" textFill="#6c757d">
@@ -183,14 +183,14 @@
                         </Label>
                         <Label text="●  En service" textFill="#28a745">
                             <font>
-                                <Font name="System Bold" size="11.0" />
+                                <Font name="System" size="11.0" />
                             </font>
                         </Label>
                     </VBox>
 
                     <Button prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #dc3545; -fx-border-width: 2; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #dc3545; -fx-cursor: hand;" text="🚪  Déconnexion">
                         <font>
-                            <Font name="System Bold" size="12.0" />
+                            <Font name="System" size="12.0" />
                         </font>
                     </Button>
                 </VBox>
@@ -232,7 +232,7 @@
                         <VBox spacing="2">
                             <Label text="Enregistrer un Objet Trouvé" textFill="#212529">
                                 <font>
-                                    <Font name="System Bold" size="24.0" />
+                                    <Font name="System" size="24.0" />
                                 </font>
                             </Label>
                             <HBox alignment="CENTER_LEFT" spacing="6">
@@ -265,7 +265,7 @@
                                         <VBox spacing="15">
                                             <Label text="Informations de l'objet" textFill="#C1272D">
                                                 <font>
-                                                    <Font name="System Bold" size="16.0" />
+                                                    <Font name="System" size="16.0" />
                                                 </font>
                                             </Label>
 
@@ -277,9 +277,9 @@
 
                                                 <!-- Type -->
                                                 <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                                    <Label text="Type d'objet" textFill="#666666">
+                                                    <Label text="Type d'objet" textFill="#333333">
                                                         <font>
-                                                            <Font name="System Bold" size="12.0" />
+                                                            <Font name="System" size="12.0" />
                                                         </font>
                                                     </Label>
                                                     <ComboBox fx:id="typeComboBox" prefHeight="35" prefWidth="300" promptText="Sélectionner le type" style="-fx-background-color: white; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px;">
@@ -301,9 +301,9 @@
 
                                                 <!-- Date -->
                                                 <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                                    <Label text="Date de découverte" textFill="#666666">
+                                                    <Label text="Date de découverte" textFill="#333333">
                                                         <font>
-                                                            <Font name="System Bold" size="12.0" />
+                                                            <Font name="System" size="12.0" />
                                                         </font>
                                                     </Label>
                                                     <DatePicker fx:id="lostDatePicker" prefHeight="35" prefWidth="300" promptText="Sélectionner la date" style="-fx-background-color: white; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px;" />
@@ -316,9 +316,9 @@
 
                                             <!-- Zone -->
                                             <VBox spacing="8">
-                                                <Label text="Stade / Zone" textFill="#666666">
+                                                <Label text="Stade / Zone" textFill="#333333">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System" size="12.0" />
                                                     </font>
                                                 </Label>
                                  <ChoiceBox fx:id="stadiumComboBox" prefHeight="25.0" prefWidth="143.0" />
@@ -326,9 +326,9 @@
 
                                             <!-- Description -->
                                             <VBox spacing="8">
-                                                <Label text="Description" textFill="#666666">
+                                                <Label text="Description" textFill="#333333">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System" size="12.0" />
                                                     </font>
                                                 </Label>
                                                 <TextArea fx:id="descriptionField" prefRowCount="3" promptText="Décrivez l'objet trouvé en détail..." style="-fx-border-color: #c1c1c1; -fx-border-width: 2px; -fx-border-radius: 5;">
@@ -352,7 +352,7 @@
                                         <VBox spacing="15">
                                             <Label text="Informations de l'agent" textFill="#006233">
                                                 <font>
-                                                    <Font name="System Bold" size="16.0" />
+                                                    <Font name="System" size="16.0" />
                                                 </font>
                                             </Label>
 
@@ -364,9 +364,9 @@
 
                                                 <!-- Nom -->
                                                 <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                                    <Label text="Nom de l'agent" textFill="#666666">
+                                                    <Label text="Nom de l'agent" textFill="#333333">
                                                         <font>
-                                                            <Font name="System Bold" size="12.0" />
+                                                            <Font name="System" size="12.0" />
                                                         </font>
                                                     </Label>
                                                     <TextField fx:id="ownerNameField" promptText="Nom complet" style="-fx-background-color: transparent; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #333;">
@@ -378,9 +378,9 @@
 
                                                 <!-- Téléphone -->
                                                 <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                                    <Label text="Téléphone" textFill="#666666">
+                                                    <Label text="Téléphone" textFill="#333333">
                                                         <font>
-                                                            <Font name="System Bold" size="12.0" />
+                                                            <Font name="System" size="12.0" />
                                                         </font>
                                                     </Label>
                                                     <TextField fx:id="phoneField" promptText="+212 6XX XXX XXX" style="-fx-background-color: transparent; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #333;">
@@ -397,9 +397,9 @@
 
                                             <!-- Email -->
                                             <VBox spacing="8">
-                                                <Label text="Email" textFill="#666666">
+                                                <Label text="Email" textFill="#333333">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System" size="12.0" />
                                                     </font>
                                                 </Label>
                                                 <TextField fx:id="emailField" promptText="agent@can2025.ma" style="-fx-background-color: transparent; -fx-border-color: #c1c1c1; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #333;">
@@ -417,12 +417,12 @@
                                             </VBox.margin>
                                             <Button onAction="#reinitialiser" prefHeight="40" prefWidth="150" style="-fx-background-color: transparent; -fx-border-color: #C1272D; -fx-border-width: 2; -fx-cursor: hand;" text="Réinitialiser" textFill="#C1272D">
                                                 <font>
-                                                    <Font name="System Bold" size="13.0" />
+                                                    <Font name="System" size="13.0" />
                                                 </font>
                                             </Button>
                                             <Button onAction="#handleSave" prefHeight="40" prefWidth="180" style="-fx-background-color: #006233; -fx-cursor: hand;" text="Enregistrer" textFill="WHITE">
                                                 <font>
-                                                    <Font name="System Bold" size="13.0" />
+                                                    <Font name="System" size="13.0" />
                                                 </font>
                                                 <effect>
                                                     <DropShadow color="#00000033" offsetY="3.0" />
@@ -496,3 +496,5 @@
     </bottom>
 
 </BorderPane>
+
+

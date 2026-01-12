@@ -20,6 +20,7 @@ public class LostObjectDAO {
         } catch (Exception e) {
             if (em.getTransaction().isActive()) em.getTransaction().rollback();
             e.printStackTrace();
+            throw new RuntimeException("Erreur lors de la sauvegarde de l'objet perdu: " + e.getMessage(), e);
         } finally {
             em.close();
         }

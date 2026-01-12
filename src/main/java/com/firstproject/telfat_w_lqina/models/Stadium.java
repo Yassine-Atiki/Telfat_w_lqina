@@ -7,10 +7,13 @@ import jakarta.persistence.*;
 public class Stadium {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "NomStade", nullable = false, unique = true)
     private String StadiumName;
+
+    @Column(name = "Ville")
+    private String city;
 
     // Constructeurs
     public Stadium() {
@@ -20,9 +23,14 @@ public class Stadium {
         this.StadiumName = stadiumName;
     }
 
+    public Stadium(String stadiumName, String city) {
+        this.StadiumName = stadiumName;
+        this.city = city;
+    }
+
     // Getters et Setters
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -34,11 +42,20 @@ public class Stadium {
         this.StadiumName = stadiumName;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     @Override
     public String toString() {
         return "Stadium{" +
                 "id=" + id +
                 ", StadiumName='" + StadiumName + '\'' +
+                ", city='" + city + '\'' +
                 '}';
     }
 }

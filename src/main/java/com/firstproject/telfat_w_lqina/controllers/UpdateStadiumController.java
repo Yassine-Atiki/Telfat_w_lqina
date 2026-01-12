@@ -1,20 +1,22 @@
 package com.firstproject.telfat_w_lqina.controllers;
 
+import com.firstproject.telfat_w_lqina.models.Stadium;
 import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.service.StadiumService;
 import com.firstproject.telfat_w_lqina.util.LogoutUtil;
 import com.firstproject.telfat_w_lqina.util.NavigationUtil;
 import com.firstproject.telfat_w_lqina.util.SessionManager;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.Optional;
 
-public class AddStadiumController {
+public class UpdateStadiumController {
 
     @FXML
     private TextField stadiumNameField;
@@ -28,8 +30,7 @@ public class AddStadiumController {
     @FXML
     private Label labelAdmin;
 
-    private EntityManagerFactory emf;
-    private EntityManager em;
+    private Stadium currentStadium;
 
     @FXML
     public void initialize() {
@@ -39,7 +40,14 @@ public class AddStadiumController {
             labelAdmin.setText(currentUser.getUsername());
         }
 
-        // Ajouter un listener pour styliser le champ lors du focus
+        currentStadium = StadiumService.getSelectedStadium();
+
+        if (currentStadium != null) {
+            stadiumNameField.setText(currentStadium.getStadiumName());
+            cityField.setText(currentStadium.getCity() != null ? currentStadium.getCity() : "");
+        }
+
+        // Ajouter un listener pour styliser les champs lors du focus
         stadiumNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 stadiumNameField.setStyle("-fx-background-color: #ffffff; -fx-border-color: #006233; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 14 20; -fx-font-size: 14px;");
@@ -57,36 +65,7 @@ public class AddStadiumController {
         });
     }
 
-    @FXML
-    public void handleAddStadium(ActionEvent event) {
-        errorLabel.setVisible(false);
-
-        String stadiumName = stadiumNameField.getText().trim();
-        String city = cityField.getText().trim();
-
-        if (stadiumName.isEmpty()) {
-            showError("⚠️ Le nom du stade est requis!");
-            return;
-        }
-
-        if (city.isEmpty()) {
-            showError("⚠️ La ville est requise!");
-            return;
-        }
-
-        try {
-            StadiumService.addStadium(stadiumName, city);
-            showSuccess("✓ Stade ajouté avec succès!");
-            stadiumNameField.clear();
-            cityField.clear();
-        } catch (IllegalArgumentException e) {
-            showError(e.getMessage());
-        } catch (Exception e) {
-            showError("❌ Erreur système");
-        }
-    }
-
-
+    // Navigation methods for sidebar
     @FXML
     public void goToDashboard(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event, "/fxml/Admin.fxml");
@@ -108,13 +87,67 @@ public class AddStadiumController {
     }
 
     @FXML
-    public void goToStadiumList(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event, "/fxml/ViewStadiums.fxml");
+    public void logout(ActionEvent event) throws IOException {
+        LogoutUtil.logout(event);
     }
 
     @FXML
-    public void logout(ActionEvent event) throws IOException {
-        LogoutUtil.logout(event);
+    public void handleUpdateStadium(ActionEvent event) {
+        errorLabel.setVisible(false);
+
+        String stadiumName = stadiumNameField.getText().trim();
+        String city = cityField.getText().trim();
+
+        if (stadiumName.isEmpty()) {
+            showError("Le nom du stade est requis!");
+            return;
+        }
+
+        if (city.isEmpty()) {
+            showError("La ville est requise!");
+            return;
+        }
+
+        try {
+            StadiumService.updateStadium(currentStadium.getId(), stadiumName, city);
+            showSuccessAndNavigate("✓ Stade modifié avec succès!");
+        } catch (IllegalArgumentException e) {
+            showError(e.getMessage());
+        } catch (Exception e) {
+            showError("Erreur système");
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleDeleteStadium(ActionEvent event) {
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirmation de suppression");
+        confirmAlert.setHeaderText("Supprimer le stade");
+        confirmAlert.setContentText("Êtes-vous sûr de vouloir supprimer ce stade ?");
+
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                StadiumService.deleteStadium(currentStadium.getId());
+
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Succès");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("✓ Stade supprimé avec succès!");
+                successAlert.showAndWait();
+
+                goToStadiumList(event);
+            } catch (Exception e) {
+                showError("Erreur lors de la suppression");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    public void goToStadiumList(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event, "/fxml/ViewStadiums.fxml");
     }
 
     private void showError(String message) {
@@ -126,13 +159,18 @@ public class AddStadiumController {
         stadiumNameField.setStyle("-fx-background-color: #fff5f5; -fx-border-color: #dc3545; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 14 20; -fx-font-size: 14px;");
     }
 
-    private void showSuccess(String message) {
-        errorLabel.setText(message);
-        errorLabel.setTextFill(javafx.scene.paint.Color.web("#28a745"));
-        errorLabel.setVisible(true);
+    private void showSuccessAndNavigate(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Succès");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
 
-        // Style du champ en succès
-        stadiumNameField.setStyle("-fx-background-color: #f0fdf4; -fx-border-color: #28a745; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12 18; -fx-font-size: 14px;");
+        try {
+            goToStadiumList(new ActionEvent());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
 }
+

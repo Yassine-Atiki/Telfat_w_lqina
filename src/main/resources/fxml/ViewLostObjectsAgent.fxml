@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewLostObjectsAgentController">
+<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewLostObjectsAgentController">
 
     <!-- Sidebar Navigation -->
     <left>
@@ -70,12 +70,12 @@
                     <VBox spacing="2">
                         <Label text="Telfat w lqina" textFill="#006233">
                             <font>
-                                <Font name="System Bold" size="20.0" />
+                                <Font name="System" size="20.0" />
                             </font>
                         </Label>
                         <Label text="CAN 2025 - Maroc" textFill="#C1272D">
                             <font>
-                                <Font name="System Bold" size="11.0" />
+                                <Font name="System" size="11.0" />
                             </font>
                         </Label>
                     </VBox>
@@ -98,7 +98,7 @@
             <VBox spacing="8" style="-fx-padding: 20 15;">
                 <Label text="NAVIGATION" textFill="#6c757d">
                     <font>
-                        <Font name="System Bold" size="10.0" />
+                        <Font name="System" size="10.0" />
                     </font>
                     <VBox.margin>
                         <Insets bottom="8" left="10" top="5" />
@@ -119,7 +119,7 @@
 
                 <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #006233, #007d42); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text="  📋  Liste des Objets">
                     <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font name="System" size="13.0" />
                     </font>
                     <effect>
                         <DropShadow color="#00623340" offsetY="2.0" radius="4.0" />
@@ -164,7 +164,7 @@
                     <VBox spacing="4">
                         <Label fx:id="labelUser" text="Nom Utilisateur" textFill="#212529">
                             <font>
-                                <Font name="System Bold" size="14.0" />
+                                <Font name="System" size="14.0" />
                             </font>
                         </Label>
                         <Label fx:id="userTypeLabel" text="Agent de Terrain" textFill="#6c757d">
@@ -174,14 +174,14 @@
                         </Label>
                         <Label text="●  En service" textFill="#28a745">
                             <font>
-                                <Font name="System Bold" size="11.0" />
+                                <Font name="System" size="11.0" />
                             </font>
                         </Label>
                     </VBox>
 
                     <Button onAction="#seDeconnecter" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #dc3545; -fx-border-width: 2; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #dc3545; -fx-cursor: hand;" text="🚪  Déconnexion">
                         <font>
-                            <Font name="System Bold" size="12.0" />
+                            <Font name="System" size="12.0" />
                         </font>
                     </Button>
                 </VBox>
@@ -223,7 +223,7 @@
                         <VBox spacing="2">
                             <Label text="Liste des Objets Perdus" textFill="#212529">
                                 <font>
-                                    <Font name="System Bold" size="24.0" />
+                                    <Font name="System" size="24.0" />
                                 </font>
                             </Label>
                             <HBox alignment="CENTER_LEFT" spacing="6">
@@ -231,7 +231,7 @@
                                 <Rectangle arcHeight="3" arcWidth="3" fill="#C1272D" height="3.0" width="8.0" />
                                 <Label fx:id="totalLabel" text="Total: 0 objets" textFill="#6c757d">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System" size="13.0" />
                                     </font>
                                 </Label>
                             </HBox>
@@ -242,7 +242,7 @@
                         <HBox spacing="12">
                             <Button onAction="#refreshCards" prefHeight="40" prefWidth="130" style="-fx-background-color: #006233; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: white;" text="🔄  Actualiser">
                                 <font>
-                                    <Font name="System Bold" size="12.0" />
+                                    <Font name="System" size="12.0" />
                                 </font>
                                 <effect>
                                     <DropShadow color="#00623340" offsetY="2.0" radius="4.0" />
@@ -250,7 +250,7 @@
                             </Button>
                             <Button onAction="#addNewObject" prefHeight="40" prefWidth="160" style="-fx-background-color: #C1272D; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: white;" text="➕  Ajouter Objet">
                                 <font>
-                                    <Font name="System Bold" size="12.0" />
+                                    <Font name="System" size="12.0" />
                                 </font>
                                 <effect>
                                     <DropShadow color="#C1272D40" offsetY="2.0" radius="4.0" />
@@ -329,7 +329,7 @@
                                 <VBox alignment="CENTER" spacing="8">
                                     <Label text="Aucun objet perdu" textFill="#212529">
                                         <font>
-                                            <Font name="System Bold" size="20.0" />
+                                            <Font name="System" size="20.0" />
                                         </font>
                                     </Label>
                                     <Label text="Les objets perdus enregistrés apparaîtront ici" textFill="#6c757d">
@@ -340,7 +340,7 @@
                                 </VBox>
                                 <Button onAction="#addNewObject" style="-fx-background-color: #006233; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 12 24;" text="➕  Ajouter votre premier objet">
                                     <font>
-                                        <Font name="System Bold" size="13.0" />
+                                        <Font name="System" size="13.0" />
                                     </font>
                                 </Button>
                             </VBox>
@@ -405,3 +405,6 @@
     </bottom>
 
 </BorderPane>
+
+
+

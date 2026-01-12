@@ -7,6 +7,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -19,9 +21,10 @@
 
     <!-- Sidebar Navigation -->
     <left>
-        <VBox prefWidth="260.0" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 12, 0, 2, 0);" BorderPane.alignment="CENTER">
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-background: transparent;" vbarPolicy="AS_NEEDED">
+            <VBox minHeight="700.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #ffffff, #faf8f5); -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 3, 0);">
 
-            <!-- Logo Header avec motif géométrique -->
+                <!-- Logo Header avec motif géométrique -->
             <StackPane prefHeight="90.0" style="-fx-background-color: white;">
                 <!-- Motif décoratif subtil -->
                 <HBox alignment="CENTER" opacity="0.08" spacing="-5">
@@ -72,12 +75,12 @@
                     <VBox spacing="2">
                         <Label text="Telfat w lqina" textFill="#006233">
                             <font>
-                                <Font name="System Bold" size="20.0" />
+                                <Font name="System" size="20.0" />
                             </font>
                         </Label>
                         <Label text="CAN 2025 - Admin" textFill="#C1272D">
                             <font>
-                                <Font name="System Bold" size="11.0" />
+                                <Font name="System" size="11.0" />
                             </font>
                         </Label>
                     </VBox>
@@ -100,7 +103,7 @@
             <VBox spacing="8" style="-fx-padding: 20 15;">
                 <Label text="ADMINISTRATION" textFill="#6c757d">
                     <font>
-                        <Font name="System Bold" size="10.0" />
+                        <Font name="System" size="10.0" />
                     </font>
                     <VBox.margin>
                         <Insets bottom="8" left="10" top="5" />
@@ -151,6 +154,19 @@
                         <DropShadow color="#C1272D40" offsetY="2.0" radius="4.0" />
                     </effect>
                 </Button>
+                <!-- Liste des stades -->
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToStadiumList" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="Liste des Stades">
+                    <graphic>
+                        <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/stade.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Button>
             </VBox>
 
             <VBox VBox.vgrow="ALWAYS" />
@@ -179,29 +195,30 @@
                     <VBox spacing="4">
                         <Label fx:id="labelAdmin" text="Nom Administrateur" textFill="#212529">
                             <font>
-                                <Font name="System Bold" size="14.0" />
+                                <Font name="System" size="14.0" />
                             </font>
                         </Label>
                         <Label text="Administrateur" textFill="#C1272D">
                             <font>
-                                <Font name="System Bold" size="12.0" />
+                                <Font name="System" size="12.0" />
                             </font>
                         </Label>
                         <Label text="●  Connecté" textFill="#28a745">
                             <font>
-                                <Font name="System Bold" size="11.0" />
+                                <Font name="System" size="11.0" />
                             </font>
                         </Label>
                     </VBox>
 
                     <Button onAction="#logout" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #dc3545; -fx-border-width: 2; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #dc3545; -fx-cursor: hand;" text="🚪  Déconnexion">
                         <font>
-                            <Font name="System Bold" size="12.0" />
+                            <Font name="System" size="12.0" />
                         </font>
                     </Button>
                 </VBox>
             </StackPane>
         </VBox>
+        </ScrollPane>
     </left>
 
     <!-- Main Content Area -->
@@ -239,7 +256,7 @@
                         <VBox spacing="2">
                             <Label text="Ajouter un Stade" textFill="#212529">
                                 <font>
-                                    <Font name="System Bold" size="24.0" />
+                                    <Font name="System" size="24.0" />
                                 </font>
                             </Label>
                             <HBox alignment="CENTER_LEFT" spacing="6">
@@ -304,7 +321,7 @@
                                     <VBox alignment="CENTER" spacing="6">
                                         <Label text="Nouveau Stade" textFill="#1a1a1a">
                                             <font>
-                                                <Font name="System Bold" size="26.0" />
+                                                <Font name="System" size="26.0" />
                                             </font>
                                         </Label>
                                         <Label text="Ajoutez un stade pour la CAN 2025" textFill="#757575">
@@ -334,12 +351,12 @@
                                             </Label>
                                             <Label text="Nom du Stade" textFill="#424242">
                                                 <font>
-                                                    <Font name="System Bold" size="15.0" />
+                                                    <Font name="System" size="15.0" />
                                                 </font>
                                             </Label>
                                             <Label text="*" textFill="#C1272D">
                                                 <font>
-                                                    <Font name="System Bold" size="18.0" />
+                                                    <Font name="System" size="18.0" />
                                                 </font>
                                             </Label>
                                         </HBox>
@@ -358,10 +375,37 @@
                                         </Label>
                                     </VBox>
 
+                                    <!-- City Field -->
+                                    <VBox spacing="10">
+                                        <HBox alignment="CENTER_LEFT" spacing="8">
+                                            <Label text="📍" textFill="#C1272D">
+                                                <font>
+                                                    <Font size="18.0" />
+                                                </font>
+                                            </Label>
+                                            <Label text="Ville" textFill="#424242">
+                                                <font>
+                                                    <Font name="System" size="15.0" />
+                                                </font>
+                                            </Label>
+                                            <Label text="*" textFill="#C1272D">
+                                                <font>
+                                                    <Font name="System" size="18.0" />
+                                                </font>
+                                            </Label>
+                                        </HBox>
+
+                                        <TextField fx:id="cityField" prefHeight="50.0" promptText="Ex: Casablanca" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1.5; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 14 20; -fx-font-size: 14px; -fx-prompt-text-fill: #bdbdbd;">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </TextField>
+                                    </VBox>
+
                                     <!-- Error Message Label -->
                                     <Label fx:id="errorLabel" textFill="#dc3545" visible="false" wrapText="true">
                                         <font>
-                                            <Font name="System Bold" size="12.0" />
+                                            <Font name="System" size="12.0" />
                                         </font>
                                     </Label>
 
@@ -370,14 +414,14 @@
                                         <!-- Cancel Button -->
                                         <Button onAction="#goToDashboard" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1.5; -fx-border-radius: 10; -fx-background-radius: 10; -fx-text-fill: #424242; -fx-cursor: hand;" text="↩  Annuler">
                                             <font>
-                                                <Font name="System Bold" size="15.0" />
+                                                <Font name="System" size="15.0" />
                                             </font>
                                         </Button>
 
                                         <!-- Submit Button -->
                                         <Button onAction="#handleAddStadium" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #006233; -fx-background-radius: 10; -fx-cursor: hand; -fx-text-fill: white;" text="✓  Enregistrer le Stade">
                                             <font>
-                                                <Font name="System Bold" size="15.0" />
+                                                <Font name="System" size="15.0" />
                                             </font>
                                             <effect>
                                                 <DropShadow color="#00623330" offsetY="2.0" radius="6.0" />
@@ -439,3 +483,6 @@
     </bottom>
 
 </BorderPane>
+
+
+

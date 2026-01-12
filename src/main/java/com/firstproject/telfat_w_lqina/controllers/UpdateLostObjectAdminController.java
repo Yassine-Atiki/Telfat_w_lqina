@@ -76,21 +76,28 @@ public class UpdateLostObjectAdminController {
     }
 
     @FXML
-    public void goBack(ActionEvent event) throws IOException {
+    public void goToDashboard(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event,"/fxml/Admin.fxml");
     }
+
     @FXML
     public void viewLostObjects(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event, "/fxml/ViewLostObjectsAdmin.fxml");
     }
+
     @FXML
     public void createUser(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event,"/fxml/AddUsers.fxml");
     }
 
     @FXML
-    public void goToAddStadium(ActionEvent event) throws IOException {
+    public void addStadium(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event,"/fxml/AddStadium.fxml");
+    }
+
+    @FXML
+    public void goToStadiumList(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewStadiums.fxml");
     }
 
     @FXML

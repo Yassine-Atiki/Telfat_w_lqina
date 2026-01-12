@@ -22,7 +22,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewComplaintAgentController">
+<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewComplaintAgentController">
 
     <!-- CSS Inline -->
     <stylesheets>
@@ -80,12 +80,12 @@
                             <VBox spacing="2">
                                 <Label text="Telfat w lqina" textFill="#006233">
                                     <font>
-                                        <Font name="System Bold" size="20.0" />
+                                        <Font name="System" size="20.0" />
                                     </font>
                                 </Label>
                                 <Label text="CAN 2025 - Maroc" textFill="#C1272D">
                                     <font>
-                                        <Font name="System Bold" size="11.0" />
+                                        <Font name="System" size="11.0" />
                                     </font>
                                 </Label>
                             </VBox>
@@ -108,7 +108,7 @@
                     <VBox spacing="8" style="-fx-padding: 20 15;">
                         <Label text="NAVIGATION" textFill="#404040">
                             <font>
-                                <Font name="System Bold" size="10.0" />
+                                <Font name="System" size="10.0" />
                             </font>
                             <VBox.margin>
                                 <Insets bottom="8" left="10" top="5" />
@@ -153,7 +153,7 @@
 
                         <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #006233, #007d42); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text="  📋  Liste des Réclamations">
                             <font>
-                                <Font name="System Bold" size="13.0" />
+                                <Font name="System" size="13.0" />
                             </font>
                             <effect>
                                 <DropShadow color="#00623340" offsetY="2.0" radius="4.0" />
@@ -186,7 +186,7 @@
                             <VBox spacing="4">
                                 <Label fx:id="labelAgent" text="Nom de l'Agent" textFill="#212529">
                                     <font>
-                                        <Font name="System Bold" size="14.0" />
+                                        <Font name="System" size="14.0" />
                                     </font>
                                 </Label>
                                 <Label fx:id="labelAdmin" text="Agent de Terrain" textFill="#404040">
@@ -196,14 +196,14 @@
                                 </Label>
                                 <Label text="◉  En service" textFill="#28a745">
                                     <font>
-                                        <Font name="System Bold" size="11.0" />
+                                        <Font name="System" size="11.0" />
                                     </font>
                                 </Label>
                             </VBox>
 
                             <Button onAction="#seDeconnecter" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #dc3545; -fx-border-width: 2; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #dc3545; -fx-cursor: hand;" text="🚪  Déconnexion">
                                 <font>
-                                    <Font name="System Bold" size="12.0" />
+                                    <Font name="System" size="12.0" />
                                 </font>
                             </Button>
                         </VBox>
@@ -247,7 +247,7 @@
                         <VBox spacing="2">
                             <Label text="Gestion des Réclamations" textFill="#212529">
                                 <font>
-                                    <Font name="System Bold" size="24.0" />
+                                    <Font name="System" size="24.0" />
                                 </font>
                             </Label>
                             <HBox alignment="CENTER_LEFT" spacing="6">
@@ -267,12 +267,12 @@
                             <VBox alignment="CENTER" spacing="2" style="-fx-background-color: #f0f9f4; -fx-background-radius: 8; -fx-padding: 12 20;">
                                 <Label text="24" textFill="#006233">
                                     <font>
-                                        <Font name="System Bold" size="22.0" />
+                                        <Font name="System" size="22.0" />
                                     </font>
                                 </Label>
                                 <Label text="Total" textFill="#006233">
                                     <font>
-                                        <Font name="System Bold" size="10.0" />
+                                        <Font name="System" size="10.0" />
                                     </font>
                                 </Label>
                             </VBox>
@@ -280,12 +280,12 @@
                             <VBox alignment="CENTER" spacing="2" style="-fx-background-color: #fef2f2; -fx-background-radius: 8; -fx-padding: 12 20;">
                                 <Label text="12" textFill="#C1272D">
                                     <font>
-                                        <Font name="System Bold" size="22.0" />
+                                        <Font name="System" size="22.0" />
                                     </font>
                                 </Label>
                                 <Label text="En attente" textFill="#C1272D">
                                     <font>
-                                        <Font name="System Bold" size="10.0" />
+                                        <Font name="System" size="10.0" />
                                     </font>
                                 </Label>
                             </VBox>
@@ -313,7 +313,7 @@
                                         <VBox spacing="4">
                                             <Label text="Liste des Réclamations" textFill="#1a1a1a">
                                                 <font>
-                                                    <Font name="System Bold" size="18.0" />
+                                                    <Font name="System" size="18.0" />
                                                 </font>
                                             </Label>
                                             <HBox alignment="CENTER_LEFT" spacing="4">
@@ -353,7 +353,7 @@
                                                   </StackPane>
                                                   <Label text="Informations Personnelles" textFill="#1a1a1a">
                                                       <font>
-                                                          <Font name="System Bold" size="15.0" />
+                                                          <Font name="System" size="15.0" />
                                                       </font>
                                                   </Label>
                                               </HBox>
@@ -379,7 +379,7 @@
                                                   </Label>
                                                   <Label fx:id="lastNameLabel" text="---" textFill="#1a1a1a" GridPane.columnIndex="1">
                                                       <font>
-                                                          <Font name="System Bold" size="12.0" />
+                                                          <Font name="System" size="12.0" />
                                                       </font>
                                                   </Label>
       
@@ -390,7 +390,7 @@
                                                   </Label>
                                                   <Label fx:id="firstNameLabel" text="---" textFill="#1a1a1a" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                       <font>
-                                                          <Font name="System Bold" size="12.0" />
+                                                          <Font name="System" size="12.0" />
                                                       </font>
                                                   </Label>
       
@@ -401,7 +401,7 @@
                                                   </Label>
                                                   <Label fx:id="emailLabel" text="---" textFill="#1a1a1a" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                       <font>
-                                                          <Font name="System Bold" size="12.0" />
+                                                          <Font name="System" size="12.0" />
                                                       </font>
                                                   </Label>
       
@@ -412,7 +412,7 @@
                                                   </Label>
                                                   <Label fx:id="teleLabel" text="---" textFill="#1a1a1a" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                       <font>
-                                                          <Font name="System Bold" size="12.0" />
+                                                          <Font name="System" size="12.0" />
                                                       </font>
                                                   </Label>
       
@@ -423,7 +423,7 @@
                                                   </Label>
                                                   <Label fx:id="documentTypeLabel" text="---" textFill="#1a1a1a" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                                       <font>
-                                                          <Font name="System Bold" size="12.0" />
+                                                          <Font name="System" size="12.0" />
                                                       </font>
                                                   </Label>
       
@@ -434,7 +434,7 @@
                                                   </Label>
                                                   <Label fx:id="documentNumberLabel" text="---" textFill="#1a1a1a" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                                       <font>
-                                                          <Font name="System Bold" size="12.0" />
+                                                          <Font name="System" size="12.0" />
                                                       </font>
                                                   </Label>
                                               </GridPane>
@@ -452,7 +452,7 @@
                                                   </StackPane>
                                                   <Label text="Objet Perdu" textFill="#1a1a1a">
                                                       <font>
-                                                          <Font name="System Bold" size="15.0" />
+                                                          <Font name="System" size="15.0" />
                                                       </font>
                                                   </Label>
                                               </HBox>
@@ -476,7 +476,7 @@
                                                   </Label>
                                                   <Label fx:id="typeObjetLabel" text="---" textFill="#1a1a1a" GridPane.columnIndex="1">
                                                       <font>
-                                                          <Font name="System Bold" size="12.0" />
+                                                          <Font name="System" size="12.0" />
                                                       </font>
                                                   </Label>
       
@@ -487,7 +487,7 @@
                                                   </Label>
                                                   <Label fx:id="lostDateLabel" text="---" textFill="#1a1a1a" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                       <font>
-                                                          <Font name="System Bold" size="12.0" />
+                                                          <Font name="System" size="12.0" />
                                                       </font>
                                                   </Label>
       
@@ -498,7 +498,7 @@
                                                   </Label>
                                                   <Label fx:id="zoneLabel" text="---" textFill="#1a1a1a" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                       <font>
-                                                          <Font name="System Bold" size="12.0" />
+                                                          <Font name="System" size="12.0" />
                                                       </font>
                                                   </Label>
       
@@ -527,7 +527,7 @@
                                                   </StackPane>
                                                   <Label text="Preuve" textFill="#1a1a1a">
                                                       <font>
-                                                          <Font name="System Bold" size="15.0" />
+                                                          <Font name="System" size="15.0" />
                                                       </font>
                                                   </Label>
                                               </HBox>
@@ -540,7 +540,7 @@
                                                   </Label>
                                                   <Label fx:id="proofTypeLabel" text="---" textFill="#1a1a1a">
                                                       <font>
-                                                          <Font name="System Bold" size="12.0" />
+                                                          <Font name="System" size="12.0" />
                                                       </font>
                                                   </Label>
                                               </HBox>
@@ -562,7 +562,7 @@
                                                   </StackPane>
                                                   <Label text="Statut et Actions" textFill="#1a1a1a">
                                                       <font>
-                                                          <Font name="System Bold" size="15.0" />
+                                                          <Font name="System" size="15.0" />
                                                       </font>
                                                   </Label>
                                               </HBox>
@@ -571,12 +571,12 @@
                                                   <HBox alignment="CENTER_LEFT" spacing="8">
                                                       <Label text="📊 Statut :" textFill="#404040">
                                                           <font>
-                                                              <Font name="System Bold" size="12.0" />
+                                                              <Font name="System" size="12.0" />
                                                           </font>
                                                       </Label>
                                                       <Label fx:id="StatusComplaintLabel" style="-fx-background-color: #e7f5e9; -fx-background-radius: 6; -fx-padding: 4 12;" text="---" textFill="#1a1a1a">
                                                           <font>
-                                                              <Font name="System Bold" size="12.0" />
+                                                              <Font name="System" size="12.0" />
                                                           </font>
                                                       </Label>
                                                   </HBox>
@@ -585,7 +585,7 @@
                                               <HBox alignment="CENTER" spacing="12">
                                                   <Button prefHeight="42.0" prefWidth="160.0" style="-fx-background-color: linear-gradient(to bottom right, #006233, #00803d); -fx-background-radius: 10; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" text="✏️  Modifier">
                                                       <font>
-                                                          <Font name="System Bold" size="13.0" />
+                                                          <Font name="System" size="13.0" />
                                                       </font>
                                                       <effect>
                                                           <DropShadow color="#00623350" offsetY="3.0" radius="6.0" />
@@ -593,7 +593,7 @@
                                                   </Button>
                                                   <Button onAction="#removeComplaint" prefHeight="42.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #dc3545; -fx-border-width: 2.5; -fx-border-radius: 10; -fx-background-radius: 10; -fx-text-fill: #dc3545; -fx-cursor: hand; -fx-font-weight: bold;" text="🗑️  Supprimer">
                                                       <font>
-                                                          <Font name="System Bold" size="13.0" />
+                                                          <Font name="System" size="13.0" />
                                                       </font>
                                                       <effect>
                                                           <DropShadow color="#dc354520" offsetY="2.0" radius="4.0" />
@@ -678,3 +678,6 @@
     </bottom>
 
 </BorderPane>
+
+
+
