@@ -1,5 +1,6 @@
 package com.firstproject.telfat_w_lqina.controllers;
 
+import com.firstproject.telfat_w_lqina.Enum.TypeState;
 import com.firstproject.telfat_w_lqina.Enum.UserType;
 import com.firstproject.telfat_w_lqina.models.*;
 import com.firstproject.telfat_w_lqina.service.LostObjectService;
@@ -47,6 +48,9 @@ public class ViewLostObjectsAdminController {
     private DatePicker dateFilterDatePicker;
     @FXML
     private ComboBox<String> stadiumComboBox;
+    @FXML
+    private ComboBox<String> stateComboBox;
+
 
 
     private final LostObjectService lostObjectService = new LostObjectService();
@@ -78,6 +82,10 @@ public class ViewLostObjectsAdminController {
             stadiumComboBox.getItems().add(stadium.getStadiumName());
         }
         stadiumComboBox.getSelectionModel().selectFirst();
+
+        stateComboBox.getItems().addAll("Tous","En Stockage","Rendu");
+        stateComboBox.getSelectionModel().selectFirst();
+
         // Charger les données
         loadLostObjects();
     }
@@ -98,6 +106,10 @@ public class ViewLostObjectsAdminController {
         }
         if (stadiumComboBox.getValue() !=null && !stadiumComboBox.getValue().equals("Selectionner un Stade")) {
             lostObjectsList = lostObjectService.getLostObjectsByStadium(stadiumComboBox.getValue(), lostObjectsList);
+        }
+        if (stateComboBox.getValue() !=null && !stateComboBox.getValue().equals("Tous")) {
+            TypeState selectedState = stateComboBox.getValue().equals("En Stockage") ? TypeState.IN_STORAGE : TypeState.RETURNED;
+            lostObjectsList = lostObjectService.getLostObjectsByState(selectedState, lostObjectsList);
         }
     }
 
@@ -338,6 +350,18 @@ public class ViewLostObjectsAdminController {
     @FXML
     public void logout(ActionEvent event) throws IOException {
         LogoutUtil.logout(event);
+    }
+
+    public void clearDateFilter(ActionEvent event) {
+        dateFilterDatePicker.setValue(null);
+    }
+
+    public void clearAllFilters(ActionEvent event) {
+        finedByComboBox.getSelectionModel().selectFirst();
+        dateFilterDatePicker.setValue(null);
+        stadiumComboBox.getSelectionModel().selectFirst();
+        stateComboBox.getSelectionModel().selectFirst();
+        loadLostObjects();
     }
 }
 

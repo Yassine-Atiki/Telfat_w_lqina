@@ -159,4 +159,24 @@ public class LostObjectService {
             return false;
         }
     }
+
+    public List<LostObject> getLostObjectsByState(TypeState typeState , List<LostObject> lostObjects){
+        List<LostObject> lostObjectListByState = new ArrayList<>();
+        for (LostObject lostObject : lostObjects){
+            if (lostObject.getTypeState() == typeState){
+                lostObjectListByState.add(lostObject);
+            }
+        }
+        return lostObjectListByState;
+    }
+
+    public List<LostObject> getLostObjectsByType(String type , List<LostObject> lostObjects){
+        List<LostObject> lostObjectListByType = new ArrayList<>();
+        for (LostObject lostObject : lostObjects){
+            if (lostObject.getType().equals(type)){
+                lostObjectListByType.add(lostObject);
+            }
+        }
+        return lostObjectListByType;
+    }
 }

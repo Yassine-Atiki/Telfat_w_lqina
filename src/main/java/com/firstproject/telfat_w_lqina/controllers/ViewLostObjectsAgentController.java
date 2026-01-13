@@ -1,15 +1,12 @@
 package com.firstproject.telfat_w_lqina.controllers;
 
+import com.firstproject.telfat_w_lqina.Enum.*;
 import com.firstproject.telfat_w_lqina.models.LostObject;
 import com.firstproject.telfat_w_lqina.models.Stadium;
 import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.models.Person;
 import com.firstproject.telfat_w_lqina.models.Proof;
 import com.firstproject.telfat_w_lqina.models.IdentityDocument;
-import com.firstproject.telfat_w_lqina.Enum.UserType;
-import com.firstproject.telfat_w_lqina.Enum.TypeState;
-import com.firstproject.telfat_w_lqina.Enum.DocumentType;
-import com.firstproject.telfat_w_lqina.Enum.PresenceProofType;
 import com.firstproject.telfat_w_lqina.service.LostObjectService;
 import com.firstproject.telfat_w_lqina.service.StadiumService;
 import com.firstproject.telfat_w_lqina.util.LogoutUtil;
@@ -43,6 +40,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.firstproject.telfat_w_lqina.util.ImageConverterUtil.convertByteToImage;
+
 public class ViewLostObjectsAgentController {
 
     @FXML
@@ -65,33 +63,41 @@ public class ViewLostObjectsAgentController {
 
     @FXML
     private DatePicker dateFilterDatePicker;
+
     @FXML
     private ComboBox<String> stadiumComboBox;
 
+    @FXML
+    private ComboBox<String> stateComboBox;
+
+    @FXML
+    private ComboBox<String> typeComboBox;
 
     private final LostObjectService lostObjectService = new LostObjectService();
     private List<LostObject> lostObjectsList;
-    private List<Stadium> stadiums ;
+    private List<Stadium> stadiums;
 
     @FXML
     public void initialize() {
-        // Récupérer l'utilisateur connecté
         User currentUser = SessionManager.getInstance().getCurrentUser();
         if (currentUser != null) {
             labelUser.setText(currentUser.getUsername());
         }
-        finedByComboBox.setItems(FXCollections.observableArrayList("Tout le mande","moi-meme"));
-        // Set default selection
+
+        finedByComboBox.setItems(FXCollections.observableArrayList("Tout le monde", "moi-même"));
         finedByComboBox.getSelectionModel().selectFirst();
 
         stadiums = StadiumService.getAllStadiums();
         stadiumComboBox.getItems().clear();
-        stadiumComboBox.getItems().add("Selectionner un Stade");
+        stadiumComboBox.getItems().add("Sélectionner un Stade");
         for (Stadium stadium : stadiums) {
             stadiumComboBox.getItems().add(stadium.getStadiumName());
         }
         stadiumComboBox.getSelectionModel().selectFirst();
-        // Charger les données
+
+        stateComboBox.getItems().addAll("Tous", "En Stockage", "Rendu");
+        stateComboBox.getSelectionModel().selectFirst();
+
         loadLostObjects();
     }
 
@@ -102,7 +108,7 @@ public class ViewLostObjectsAgentController {
     }
 
     public void searsh() {
-        if (finedByComboBox.getValue().equals("moi-meme")) {
+        if (finedByComboBox.getValue() != null && finedByComboBox.getValue().equals("moi-même")) {
             User currentUser = SessionManager.getInstance().getCurrentUser();
             lostObjectsList = lostObjectService.getLostObjectsByOwnerName(currentUser.getUsername(), lostObjectsList);
         }
@@ -110,8 +116,14 @@ public class ViewLostObjectsAgentController {
         if (dateFilterDatePicker.getValue() != null) {
             lostObjectsList = lostObjectService.getLostObjectsByDate(dateFilterDatePicker.getValue(), lostObjectsList);
         }
-        if (stadiumComboBox.getValue() !=null && !stadiumComboBox.getValue().equals("Selectionner un Stade")) {
+
+        if (stadiumComboBox.getValue() != null && !stadiumComboBox.getValue().equals("Sélectionner un Stade")) {
             lostObjectsList = lostObjectService.getLostObjectsByStadium(stadiumComboBox.getValue(), lostObjectsList);
+        }
+
+        if (stateComboBox.getValue() != null && !stateComboBox.getValue().equals("Tous")) {
+            TypeState selectedState = stateComboBox.getValue().equals("En Stockage") ? TypeState.IN_STORAGE : TypeState.RETURNED;
+            lostObjectsList = lostObjectService.getLostObjectsByState(selectedState, lostObjectsList);
         }
     }
 
@@ -155,7 +167,6 @@ public class ViewLostObjectsAgentController {
         shadow.setOffsetY(4);
         card.setEffect(shadow);
 
-        // Zone image
         StackPane imageContainer = new StackPane();
         imageContainer.setPrefHeight(180);
         imageContainer.setStyle("-fx-background-color: #f8f9fa; -fx-background-radius: 16 16 0 0;");
@@ -166,12 +177,9 @@ public class ViewLostObjectsAgentController {
                 ImageView imageView = new ImageView(convertByteToImage(lostObject.getImage()));
                 imageView.setPreserveRatio(true);
                 imageView.setSmooth(true);
-
-                // largeur max sans déformation
                 imageView.setFitWidth(260);
                 imageView.setFitHeight(180);
 
-                // coins arrondis en haut
                 Rectangle clip = new Rectangle(260, 180);
                 clip.setArcWidth(16);
                 clip.setArcHeight(16);
@@ -189,12 +197,10 @@ public class ViewLostObjectsAgentController {
             imageContainer.getChildren().add(placeholder);
         }
 
-        // Zone contenu
         VBox content = new VBox(12);
         content.setPadding(new Insets(20));
         content.setAlignment(Pos.TOP_LEFT);
 
-        // Type
         String typeText = (lostObject.getType() != null && !lostObject.getType().isEmpty()) ? lostObject.getType() : "Non spécifié";
         Label typeLabel = new Label(typeText);
         typeLabel.setStyle("""
@@ -204,7 +210,6 @@ public class ViewLostObjectsAgentController {
     """);
         typeLabel.setMaxWidth(240);
 
-        // Description
         Label descLabel = new Label(lostObject.getDescription());
         descLabel.setWrapText(true);
         descLabel.setMaxWidth(240);
@@ -214,7 +219,6 @@ public class ViewLostObjectsAgentController {
         -fx-text-fill: #495057;
     """);
 
-        // Informations
         VBox infoBox = new VBox(6);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = lostObject.getLostDate().format(formatter);
@@ -224,120 +228,112 @@ public class ViewLostObjectsAgentController {
         HBox agentBox = createInfoRow("👤", lostObject.getAgentName());
         infoBox.getChildren().addAll(dateBox, zoneBox, agentBox);
 
-        // Séparateur
         Line separator = new Line(0, 0, 240, 0);
         separator.setStroke(Color.web("#ced4da"));
         separator.setStrokeWidth(0.8);
         separator.setOpacity(0.6);
-           if (lostObject.getAgentName().equals(SessionManager.getInstance().getCurrentUser().getUsername())) {
 
-               // Boutons
-               HBox buttonsBox = new HBox(10);
-               buttonsBox.setAlignment(Pos.CENTER);
+        if (lostObject.getAgentName().equals(SessionManager.getInstance().getCurrentUser().getUsername())) {
+            HBox buttonsBox = new HBox(10);
+            buttonsBox.setAlignment(Pos.CENTER);
 
-               Button updateBtn = new Button("Modifier");
-               updateBtn.setStyle("""
-                           -fx-background-color: #006233;
-                           -fx-text-fill: white;
-                           -fx-font-size: 12px;
-                           -fx-font-weight: bold;
-                           -fx-background-radius: 8;
-                           -fx-padding: 8 20;
-                           -fx-cursor: hand;
-                       """);
-               updateBtn.setMaxWidth(Double.MAX_VALUE);
-               HBox.setHgrow(updateBtn, Priority.ALWAYS);
-               updateBtn.setOnAction(e -> {
-                   try {
-                       updateObject(new ActionEvent(),lostObject);
-                   } catch (IOException ex) {
-                       throw new RuntimeException(ex);
-                   }
-               });
+            Button updateBtn = new Button("Modifier");
+            updateBtn.setStyle("""
+                        -fx-background-color: #006233;
+                        -fx-text-fill: white;
+                        -fx-font-size: 12px;
+                        -fx-font-weight: bold;
+                        -fx-background-radius: 8;
+                        -fx-padding: 8 20;
+                        -fx-cursor: hand;
+                    """);
+            updateBtn.setMaxWidth(Double.MAX_VALUE);
+            HBox.setHgrow(updateBtn, Priority.ALWAYS);
+            updateBtn.setOnAction(e -> {
+                try {
+                    updateObject(new ActionEvent(), lostObject);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
 
-               Button deleteBtn = new Button("Supprimer");
-               deleteBtn.setStyle("""
-                           -fx-background-color: #dc3545;
-                           -fx-text-fill: white;
-                           -fx-font-size: 12px;
-                           -fx-font-weight: bold;
-                           -fx-background-radius: 8;
-                           -fx-padding: 8 20;
-                           -fx-cursor: hand;
-                       """);
-               deleteBtn.setMaxWidth(Double.MAX_VALUE);
-               HBox.setHgrow(deleteBtn, Priority.ALWAYS);
-               deleteBtn.setOnAction(e -> removeObject(lostObject));
+            Button deleteBtn = new Button("Supprimer");
+            deleteBtn.setStyle("""
+                        -fx-background-color: #dc3545;
+                        -fx-text-fill: white;
+                        -fx-font-size: 12px;
+                        -fx-font-weight: bold;
+                        -fx-background-radius: 8;
+                        -fx-padding: 8 20;
+                        -fx-cursor: hand;
+                    """);
+            deleteBtn.setMaxWidth(Double.MAX_VALUE);
+            HBox.setHgrow(deleteBtn, Priority.ALWAYS);
+            deleteBtn.setOnAction(e -> removeObject(lostObject));
 
-               buttonsBox.getChildren().addAll(updateBtn, deleteBtn);
+            buttonsBox.getChildren().addAll(updateBtn, deleteBtn);
 
-               // Bouton "Marquer comme trouvé" - Visible seulement si l'objet est IN_STORAGE
-               if (lostObject.getTypeState() == TypeState.IN_STORAGE) {
-                   Button markFoundBtn = new Button("✅ Marquer trouvé");
-                   markFoundBtn.setStyle("""
-                           -fx-background-color: linear-gradient(to right, #006233, #007d42);
-                           -fx-text-fill: white;
-                           -fx-font-size: 11px;
-                           -fx-font-weight: bold;
-                           -fx-background-radius: 8;
-                           -fx-padding: 8 15;
-                           -fx-cursor: hand;
-                       """);
-                   markFoundBtn.setMaxWidth(Double.MAX_VALUE);
-                   markFoundBtn.setOnAction(e -> showMarkAsFoundPopup(lostObject));
+            if (lostObject.getTypeState() == TypeState.IN_STORAGE) {
+                Button markFoundBtn = new Button("✅ Marquer trouvé");
+                markFoundBtn.setStyle("""
+                        -fx-background-color: linear-gradient(to right, #006233, #007d42);
+                        -fx-text-fill: white;
+                        -fx-font-size: 11px;
+                        -fx-font-weight: bold;
+                        -fx-background-radius: 8;
+                        -fx-padding: 8 15;
+                        -fx-cursor: hand;
+                    """);
+                markFoundBtn.setMaxWidth(Double.MAX_VALUE);
+                markFoundBtn.setOnAction(e -> showMarkAsFoundPopup(lostObject));
 
-                   // Ajouter le bouton sur une nouvelle ligne
-                   VBox allButtons = new VBox(8);
-                   allButtons.getChildren().addAll(buttonsBox, markFoundBtn);
-                   content.getChildren().addAll(typeLabel, descLabel, infoBox, separator, allButtons);
-               } else {
-                   // Afficher un badge "RENDU" si l'objet est déjà retourné
-                   Label returnedBadge = new Label("✅ RENDU");
-                   returnedBadge.setStyle("""
-                           -fx-background-color: #d4edda;
-                           -fx-text-fill: #155724;
-                           -fx-font-size: 11px;
-                           -fx-font-weight: bold;
-                           -fx-padding: 5 15;
-                           -fx-background-radius: 15;
-                       """);
-                   returnedBadge.setAlignment(Pos.CENTER);
+                VBox allButtons = new VBox(8);
+                allButtons.getChildren().addAll(buttonsBox, markFoundBtn);
+                content.getChildren().addAll(typeLabel, descLabel, infoBox, separator, allButtons);
+            } else {
+                Label returnedBadge = new Label("✅ RENDU");
+                returnedBadge.setStyle("""
+                        -fx-background-color: #d4edda;
+                        -fx-text-fill: #155724;
+                        -fx-font-size: 11px;
+                        -fx-font-weight: bold;
+                        -fx-padding: 5 15;
+                        -fx-background-radius: 15;
+                    """);
+                returnedBadge.setAlignment(Pos.CENTER);
 
-                   VBox allButtons = new VBox(8);
-                   allButtons.setAlignment(Pos.CENTER);
-                   allButtons.getChildren().addAll(returnedBadge, buttonsBox);
-                   content.getChildren().addAll(typeLabel, descLabel, infoBox, separator, allButtons);
-               }
-           }
-        else {
-           // Pour les objets d'autres agents, afficher le statut
-           if (lostObject.getTypeState() == TypeState.RETURNED) {
-               Label returnedBadge = new Label("✅ RENDU");
-               returnedBadge.setStyle("""
-                       -fx-background-color: #d4edda;
-                       -fx-text-fill: #155724;
-                       -fx-font-size: 11px;
-                       -fx-font-weight: bold;
-                       -fx-padding: 5 15;
-                       -fx-background-radius: 15;
-                   """);
-               content.getChildren().addAll(typeLabel, descLabel, infoBox, separator, returnedBadge);
-           } else {
-               Label storageBadge = new Label("📦 EN STOCKAGE");
-               storageBadge.setStyle("""
-                       -fx-background-color: #fff3cd;
-                       -fx-text-fill: #856404;
-                       -fx-font-size: 11px;
-                       -fx-font-weight: bold;
-                       -fx-padding: 5 15;
-                       -fx-background-radius: 15;
-                   """);
-               content.getChildren().addAll(typeLabel, descLabel, infoBox, separator, storageBadge);
-           }
-       }
+                VBox allButtons = new VBox(8);
+                allButtons.setAlignment(Pos.CENTER);
+                allButtons.getChildren().addAll(returnedBadge, buttonsBox);
+                content.getChildren().addAll(typeLabel, descLabel, infoBox, separator, allButtons);
+            }
+        } else {
+            if (lostObject.getTypeState() == TypeState.RETURNED) {
+                Label returnedBadge = new Label("✅ RENDU");
+                returnedBadge.setStyle("""
+                    -fx-background-color: #d4edda;
+                    -fx-text-fill: #155724;
+                    -fx-font-size: 11px;
+                    -fx-font-weight: bold;
+                    -fx-padding: 5 15;
+                    -fx-background-radius: 15;
+                """);
+                content.getChildren().addAll(typeLabel, descLabel, infoBox, separator, returnedBadge);
+            } else {
+                Label storageBadge = new Label("📦 EN STOCKAGE");
+                storageBadge.setStyle("""
+                    -fx-background-color: #fff3cd;
+                    -fx-text-fill: #856404;
+                    -fx-font-size: 11px;
+                    -fx-font-weight: bold;
+                    -fx-padding: 5 15;
+                    -fx-background-radius: 15;
+                """);
+                content.getChildren().addAll(typeLabel, descLabel, infoBox, separator, storageBadge);
+            }
+        }
 
         card.getChildren().addAll(imageContainer, content);
-
         return card;
     }
 
@@ -372,7 +368,6 @@ public class ViewLostObjectsAgentController {
                 lostObjectService.removeLostObject(selectedObject);
                 loadLostObjects();
 
-                // Afficher un message de succès
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Succès");
                 successAlert.setHeaderText(null);
@@ -382,7 +377,7 @@ public class ViewLostObjectsAgentController {
         }
     }
 
-    public void updateObject(ActionEvent actionEvent ,LostObject lostObject) throws IOException {
+    public void updateObject(ActionEvent actionEvent, LostObject lostObject) throws IOException {
         SessionLostObject.getInstance().setCurentLostObject(lostObject);
         NavigationUtil.navigate(actionEvent, "/fxml/UpdateLostObjectAgent.fxml");
     }
@@ -405,17 +400,12 @@ public class ViewLostObjectsAgentController {
         LogoutUtil.logout(event);
     }
 
-    /**
-     * Affiche le popup pour marquer un objet comme trouvé/rendu
-     */
     private void showMarkAsFoundPopup(LostObject lostObject) {
-        // Créer la fenêtre modale
         Stage popupStage = new Stage();
         popupStage.initModality(Modality.APPLICATION_MODAL);
         popupStage.initStyle(StageStyle.UNDECORATED);
         popupStage.setTitle("Marquer comme trouvé");
 
-        // Container principal
         VBox mainContainer = new VBox(0);
         mainContainer.setStyle("""
             -fx-background-color: white;
@@ -425,7 +415,6 @@ public class ViewLostObjectsAgentController {
         mainContainer.setPrefWidth(550);
         mainContainer.setMaxWidth(550);
 
-        // ===== HEADER =====
         HBox header = new HBox();
         header.setAlignment(Pos.CENTER_LEFT);
         header.setPadding(new Insets(20, 25, 20, 25));
@@ -443,12 +432,10 @@ public class ViewLostObjectsAgentController {
 
         header.getChildren().addAll(titleLabel, spacer, closeBtn);
 
-        // ===== CONTENT =====
         VBox content = new VBox(20);
         content.setPadding(new Insets(25));
         content.setStyle("-fx-background-color: #fafafa;");
 
-        // --- Info objet ---
         HBox objectInfo = new HBox(15);
         objectInfo.setAlignment(Pos.CENTER_LEFT);
         objectInfo.setPadding(new Insets(15));
@@ -467,7 +454,6 @@ public class ViewLostObjectsAgentController {
 
         objectInfo.getChildren().addAll(objectIcon, objectDetails);
 
-        // --- Section Propriétaire ---
         Label ownerSectionLabel = new Label("📋 INFORMATIONS DU PROPRIÉTAIRE");
         ownerSectionLabel.setStyle("-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #006233;");
 
@@ -476,13 +462,9 @@ public class ViewLostObjectsAgentController {
         ownerGrid.setVgap(12);
         ownerGrid.setPadding(new Insets(10, 0, 0, 0));
 
-        // Prénom
         TextField firstNameField = createStyledTextField("Prénom");
-        // Nom
         TextField lastNameField = createStyledTextField("Nom");
-        // Email
         TextField emailField = createStyledTextField("Email");
-        // Téléphone
         TextField phoneField = createStyledTextField("Téléphone (+212...)");
 
         ownerGrid.add(createFieldWithLabel("Prénom *", firstNameField), 0, 0);
@@ -490,7 +472,6 @@ public class ViewLostObjectsAgentController {
         ownerGrid.add(createFieldWithLabel("Email *", emailField), 0, 1);
         ownerGrid.add(createFieldWithLabel("Téléphone *", phoneField), 1, 1);
 
-        // --- Section Document ---
         Label docSectionLabel = new Label("🪪 DOCUMENT D'IDENTITÉ");
         docSectionLabel.setStyle("-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #006233;");
         VBox.setMargin(docSectionLabel, new Insets(10, 0, 0, 0));
@@ -500,20 +481,17 @@ public class ViewLostObjectsAgentController {
         docGrid.setVgap(12);
         docGrid.setPadding(new Insets(10, 0, 0, 0));
 
-        // Type de document
         ComboBox<DocumentType> docTypeCombo = new ComboBox<>();
         docTypeCombo.getItems().addAll(DocumentType.values());
         docTypeCombo.setPromptText("Type de document");
         docTypeCombo.setStyle("-fx-pref-width: 200; -fx-pref-height: 40; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ddd;");
         docTypeCombo.getSelectionModel().selectFirst();
 
-        // Numéro de document
         TextField docNumberField = createStyledTextField("Numéro du document");
 
         docGrid.add(createFieldWithLabel("Type *", docTypeCombo), 0, 0);
         docGrid.add(createFieldWithLabel("Numéro *", docNumberField), 1, 0);
 
-        // --- Section Preuve ---
         Label proofSectionLabel = new Label("🎫 PREUVE DE PRÉSENCE AU STADE");
         proofSectionLabel.setStyle("-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #006233;");
         VBox.setMargin(proofSectionLabel, new Insets(10, 0, 0, 0));
@@ -523,14 +501,12 @@ public class ViewLostObjectsAgentController {
         proofGrid.setVgap(12);
         proofGrid.setPadding(new Insets(10, 0, 0, 0));
 
-        // Type de preuve
         ComboBox<PresenceProofType> proofTypeCombo = new ComboBox<>();
         proofTypeCombo.getItems().addAll(PresenceProofType.values());
         proofTypeCombo.setPromptText("Type de preuve");
         proofTypeCombo.setStyle("-fx-pref-width: 200; -fx-pref-height: 40; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ddd;");
         proofTypeCombo.getSelectionModel().selectFirst();
 
-        // Image de preuve
         final File[] selectedProofImage = {null};
         ImageView proofImageView = new ImageView();
         proofImageView.setFitWidth(80);
@@ -556,7 +532,7 @@ public class ViewLostObjectsAgentController {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Sélectionner l'image de preuve");
             fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.gif")
+                    new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.gif")
             );
             File file = fileChooser.showOpenDialog(popupStage);
             if (file != null) {
@@ -580,15 +556,13 @@ public class ViewLostObjectsAgentController {
         proofGrid.add(createFieldWithLabel("Type *", proofTypeCombo), 0, 0);
         proofGrid.add(createFieldWithLabel("Image preuve *", imageBox), 0, 1, 2, 1);
 
-        // Assembler le contenu
         content.getChildren().addAll(
-            objectInfo,
-            ownerSectionLabel, ownerGrid,
-            docSectionLabel, docGrid,
-            proofSectionLabel, proofGrid
+                objectInfo,
+                ownerSectionLabel, ownerGrid,
+                docSectionLabel, docGrid,
+                proofSectionLabel, proofGrid
         );
 
-        // ===== FOOTER =====
         HBox footer = new HBox(15);
         footer.setAlignment(Pos.CENTER_RIGHT);
         footer.setPadding(new Insets(20, 25, 20, 25));
@@ -619,7 +593,6 @@ public class ViewLostObjectsAgentController {
         """);
 
         confirmBtn.setOnAction(e -> {
-            // Créer les objets
             IdentityDocument identityDocument = new IdentityDocument();
             identityDocument.setType(docTypeCombo.getValue());
             identityDocument.setDocumentNumber(docNumberField.getText());
@@ -634,7 +607,6 @@ public class ViewLostObjectsAgentController {
             Proof proof = new Proof();
             proof.setPresenceProofType(proofTypeCombo.getValue());
 
-            // Convertir l'image en bytes
             if (selectedProofImage[0] != null) {
                 try {
                     byte[] imageBytes = ImageConverterUtil.convertImageToByte(selectedProofImage[0]);
@@ -644,40 +616,32 @@ public class ViewLostObjectsAgentController {
                 }
             }
 
-            // Appeler le service
             boolean success = lostObjectService.markAsReturned(lostObject, owner, proof);
 
             if (success) {
                 popupStage.close();
-                loadLostObjects(); // Rafraîchir la liste
+                loadLostObjects();
             }
         });
 
         footer.getChildren().addAll(cancelBtn, confirmBtn);
 
-        // Assembler tout
         mainContainer.getChildren().addAll(header, content, footer);
 
-        // ScrollPane pour le contenu
         ScrollPane scrollPane = new ScrollPane(mainContainer);
         scrollPane.setFitToWidth(true);
         scrollPane.setStyle("-fx-background-color: transparent; -fx-background: transparent;");
         scrollPane.setMaxHeight(650);
 
-        // Scene
         Scene scene = new Scene(scrollPane);
         scene.setFill(Color.TRANSPARENT);
         popupStage.setScene(scene);
         popupStage.initStyle(StageStyle.TRANSPARENT);
 
-        // Centrer la fenêtre
         popupStage.centerOnScreen();
         popupStage.showAndWait();
     }
 
-    /**
-     * Crée un TextField stylisé
-     */
     private TextField createStyledTextField(String prompt) {
         TextField field = new TextField();
         field.setPromptText(prompt);
@@ -693,14 +657,25 @@ public class ViewLostObjectsAgentController {
         return field;
     }
 
-    /**
-     * Crée un champ avec son label
-     */
     private VBox createFieldWithLabel(String labelText, javafx.scene.Node field) {
         VBox container = new VBox(5);
         Label label = new Label(labelText);
         label.setStyle("-fx-font-size: 12px; -fx-text-fill: #555;");
         container.getChildren().addAll(label, field);
         return container;
+    }
+
+    public void clearDateFilter(ActionEvent event) {
+        dateFilterDatePicker.setValue(null);
+        loadLostObjects();
+    }
+
+    public void clearAllFilters(ActionEvent event) {
+        finedByComboBox.getSelectionModel().selectFirst();
+        dateFilterDatePicker.setValue(null);
+        stadiumComboBox.getSelectionModel().selectFirst();
+        stateComboBox.getSelectionModel().selectFirst();
+        typeComboBox.getSelectionModel().selectFirst();
+        loadLostObjects();
     }
 }

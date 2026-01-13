@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.Double?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -20,11 +22,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.AddComplaintController">
+<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.AddComplaintController">
 
     <!-- Sidebar Navigation -->
     <left>
@@ -32,7 +35,6 @@
 
             <!-- Logo Header avec motif géométrique -->
             <StackPane prefHeight="90.0" style="-fx-background-color: white;">
-                <!-- Motif décoratif subtil -->
                 <HBox alignment="CENTER" opacity="0.08" spacing="-5">
                     <Polygon fill="#006233" rotate="22.5">
                         <points>
@@ -88,7 +90,7 @@
                 </HBox>
             </StackPane>
 
-            <!-- Ligne décorative avec motif -->
+            <!-- Ligne décorative -->
             <HBox alignment="CENTER" prefHeight="2.0" spacing="2" style="-fx-background-color: white;">
                 <Rectangle fill="#006233" height="2.0" width="20.0" />
                 <Rectangle fill="#C1272D" height="2.0" width="5.0" />
@@ -123,7 +125,7 @@
                     </font>
                 </Button>
 
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #006233, #007d42); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text="  📝  Nouvelle Plainte">
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #006233, #007d42); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text="  📝  Nouvelle Réclamation">
                     <font>
                         <Font name="System" size="13.0" />
                     </font>
@@ -201,7 +203,7 @@
 
             <!-- Header Bar -->
             <top>
-                <StackPane prefHeight="80.0">
+                <StackPane prefHeight="97.0">
                     <HBox alignment="CENTER_RIGHT" opacity="0.04" spacing="-8" style="-fx-padding: 0 50 0 0;">
                         <Polygon fill="#006233" rotate="0">
                             <points>
@@ -225,9 +227,9 @@
                         </Polygon>
                     </HBox>
 
-                    <HBox alignment="CENTER_LEFT" prefHeight="137.0" prefWidth="940.0" spacing="20" style="-fx-background-color: white; -fx-padding: 20 35; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);">
+                    <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20 35; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);">
                         <VBox spacing="2">
-                            <Label text="Nouvelle Plainte" textFill="#212529">
+                            <Label text="Nouvelle Réclamation" textFill="#212529">
                                 <font>
                                     <Font name="System" size="24.0" />
                                 </font>
@@ -235,221 +237,430 @@
                             <HBox alignment="CENTER_LEFT" spacing="6">
                                 <Rectangle arcHeight="3" arcWidth="3" fill="#006233" height="3.0" width="30.0" />
                                 <Rectangle arcHeight="3" arcWidth="3" fill="#C1272D" height="3.0" width="8.0" />
-                                <Label text="Remplissez toutes les informations ci-dessous" textFill="#6c757d">
-                                    <font>
-                                        <Font name="System" size="13.0" />
-                                    </font>
-                                </Label>
                             </HBox>
                         </VBox>
-
-                        <HBox HBox.hgrow="ALWAYS" />
-
-                        <HBox spacing="12">
-                            <Button onAction="#goBack" prefHeight="40" prefWidth="130" style="-fx-background-color: #6c757d; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: white;" text="⬅️  Retour">
-                                <font>
-                                    <Font name="System" size="12.0" />
-                                </font>
-                                <effect>
-                                    <DropShadow color="#6c757d40" offsetY="2.0" radius="4.0" />
-                                </effect>
-                            </Button>
-                        </HBox>
                     </HBox>
                 </StackPane>
             </top>
 
-            <!-- Content - Formulaire complet -->
+            <!-- Content - Formulaire avec ScrollPane -->
             <center>
-                <StackPane>
-                    <StackPane opacity="0.05" prefHeight="495.0" prefWidth="940.0" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" />
+                <ScrollPane fitToWidth="true" style="-fx-background: #faf8f5; -fx-background-color: transparent;">
+                    <StackPane>
+                        <!-- Image de fond -->
+                        <StackPane opacity="0.08" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;">
+                            <VBox prefHeight="900.0" />
+                        </StackPane>
 
-                    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
-                        <VBox spacing="25" style="-fx-padding: 30 40;">
+                        <!-- Formulaire -->
+                        <VBox alignment="TOP_CENTER" spacing="35" style="-fx-padding: 40;">
 
-                            <!-- SECTION 1: Informations de la Personne -->
-                            <VBox style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);">
-                                <HBox alignment="CENTER_LEFT" spacing="12">
-                                    <Label style="-fx-font-size: 20;" text="👤" />
-                                    <Label style="-fx-font-weight: bold; -fx-font-size: 18;" text="Informations de la Personne" textFill="#006233" />
-                                </HBox>
+                            <VBox maxWidth="750" spacing="0" style="-fx-background-color: white; -fx-background-radius: 16; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 18, 0, 0, 4);">
 
-                                <GridPane hgap="15" style="-fx-padding: 20 0 0 0;" vgap="12">
-                                    <!-- Ligne 1 -->
-                                    <Label style="-fx-font-weight: bold;" text="Prénom *:" textFill="#495057" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                                    <TextField fx:id="firstNameField" prefWidth="250" promptText="Entrez le prénom" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
-                                    <Label style="-fx-font-weight: bold;" text="Nom *:" textFill="#495057" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                                    <TextField fx:id="lastNameField" prefWidth="250" promptText="Entrez le nom" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-
-                                    <!-- Ligne 2 -->
-                                    <Label style="-fx-font-weight: bold;" text="Email *:" textFill="#495057" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                                    <TextField fx:id="emailField" prefWidth="250" promptText="exemple@email.com" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-                                    <Label style="-fx-font-weight: bold;" text="Téléphone *:" textFill="#495057" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <TextField fx:id="phoneField" prefWidth="250" promptText="+212 6XX XX XX XX" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-
-                                    <!-- Ligne 3 - Document d'identité -->
-                                    <Label style="-fx-font-weight: bold;" text="Type de document *:" textFill="#495057" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                                    <HBox spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                        <RadioButton fx:id="cinRadio" text="CIN">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="documentTypeGroup" />
-                                 </toggleGroup></RadioButton>
-                                        <RadioButton fx:id="passportRadio" text="Passeport" toggleGroup="$documentTypeGroup" />
+                                <!-- En-tête du formulaire -->
+                                <VBox style="-fx-background-color: #f8f9fa; -fx-background-radius: 16 16 0 0; -fx-padding: 30 40; -fx-border-color: #dee2e6; -fx-border-width: 0 0 2 0;">
+                                    <HBox alignment="CENTER_LEFT" spacing="15">
+                                        <VBox alignment="CENTER_LEFT" spacing="3">
+                                            <Label text="Formulaire de réclamation" textFill="#212529">
+                                                <font>
+                                                    <Font name="System Bold" size="20.0" />
+                                                </font>
+                                            </Label>
+                                            <Label text="Veuillez remplir tous les champs obligatoires" textFill="#6c757d">
+                                                <font>
+                                                    <Font size="12.0" />
+                                                </font>
+                                            </Label>
+                                        </VBox>
                                     </HBox>
+                                </VBox>
 
-                                    <Label style="-fx-font-weight: bold;" text="Numéro de document *:" textFill="#495057" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <TextField fx:id="documentNumberField" prefWidth="250" promptText="Numéro CIN/Passeport" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                           <columnConstraints>
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints />
-                           </rowConstraints>
-                                </GridPane>
-                            </VBox>
+                                <!-- Contenu du formulaire -->
+                                <VBox spacing="30" style="-fx-padding: 40;">
 
-                            <!-- SECTION 2: Informations de l'Objet Perdu -->
-                            <VBox style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);">
-                                <HBox alignment="CENTER_LEFT" spacing="12">
-                                    <Label style="-fx-font-size: 20;" text="📦" />
-                                    <Label style="-fx-font-weight: bold; -fx-font-size: 18;" text="Informations de l'Objet Perdu" textFill="#006233" />
-                                </HBox>
+                                    <!-- SECTION 1: Informations de la Personne -->
+                                    <VBox spacing="20">
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Rectangle arcHeight="4" arcWidth="4" fill="#C1272D" height="22" width="4" />
+                                            <Label text="Informations de la Personne" textFill="#212529">
+                                                <font>
+                                                    <Font name="System Bold" size="16.0" />
+                                                </font>
+                                            </Label>
+                                        </HBox>
 
-                                <GridPane hgap="15" style="-fx-padding: 20 0 0 0;" vgap="12">
-                                    <!-- Ligne 1 -->
-                                    <Label style="-fx-font-weight: bold;" text="Type d'objet *:" textFill="#495057" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                                    <ComboBox fx:id="objectTypeComboBox" prefWidth="250" promptText="Sélectionner le type" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                        <GridPane hgap="25" vgap="20">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                                            </columnConstraints>
 
-                                    <Label style="-fx-font-weight: bold;" text="Date de perte *:" textFill="#495057" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                                    <DatePicker fx:id="lostDatePicker" prefWidth="250" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                                            <!-- Ligne 1 -->
+                                            <VBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                                <Label text="Prénom *" textFill="#495057">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="firstNameField" prefHeight="42" promptText="Entrez le prénom" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13; -fx-text-fill: #212529; -fx-padding: 10;">
+                                                    <font>
+                                                        <Font size="13.0" />
+                                                    </font>
+                                                </TextField>
+                                            </VBox>
 
-                                    <!-- Ligne 2 -->
-                                    <Label style="-fx-font-weight: bold;" text="Stade *:" textFill="#495057" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                                    <ComboBox fx:id="stadiumComboBox" prefWidth="250" promptText="Sélectionner un stade" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                            <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                                <Label text="Nom *" textFill="#495057">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="lastNameField" prefHeight="42" promptText="Entrez le nom" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13; -fx-text-fill: #212529; -fx-padding: 10;">
+                                                    <font>
+                                                        <Font size="13.0" />
+                                                    </font>
+                                                </TextField>
+                                            </VBox>
 
-                                    <Label style="-fx-font-weight: bold;" text="Description détaillée:" textFill="#495057" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
-                                    <TextArea fx:id="objectDescriptionArea" prefHeight="80" prefWidth="250" promptText="Décrivez l'objet (couleur, marque, particularités...)" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="2" />
-                           <columnConstraints>
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints />
-                           </rowConstraints>
-                                </GridPane>
-                            </VBox>
+                                            <!-- Ligne 2 -->
+                                            <VBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                                <Label text="Email *" textFill="#495057">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="emailField" prefHeight="42" promptText="exemple@email.com" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13; -fx-text-fill: #212529; -fx-padding: 10;">
+                                                    <font>
+                                                        <Font size="13.0" />
+                                                    </font>
+                                                </TextField>
+                                            </VBox>
 
-                            <!-- SECTION 3: Informations de la Preuve -->
-                            <VBox style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);">
-                                <HBox alignment="CENTER_LEFT" spacing="12">
-                                    <Label style="-fx-font-size: 20;" text="📷" />
-                                    <Label style="-fx-font-weight: bold; -fx-font-size: 18;" text="Informations de la Preuve" textFill="#006233" />
-                                </HBox>
+                                            <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <Label text="Téléphone *" textFill="#495057">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="phoneField" prefHeight="42" promptText="+212 6XX XX XX XX" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13; -fx-text-fill: #212529; -fx-padding: 10;">
+                                                    <font>
+                                                        <Font size="13.0" />
+                                                    </font>
+                                                </TextField>
+                                            </VBox>
 
-                                <GridPane hgap="15" style="-fx-padding: 20 0 0 0;" vgap="12">
-                                    <!-- Ligne 1 -->
-                                    <Label style="-fx-font-weight: bold;" text="Type de preuve *:" textFill="#495057" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                                    <HBox spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                        <RadioButton fx:id="ticketRadio" text="Ticket">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="proofTypeGroup" />
-                                 </toggleGroup></RadioButton>
-                                        <RadioButton fx:id="badgeRadio" text="Badge" toggleGroup="$proofTypeGroup" />
-                                    </HBox>
+                                            <!-- Ligne 3 - Document d'identité -->
+                                            <VBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                                <Label text="Type de document *" textFill="#495057">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <HBox spacing="20" style="-fx-padding: 10 0 0 0;">
+                                                    <RadioButton fx:id="cinRadio" text="CIN" style="-fx-font-size: 13;">
+                                                        <toggleGroup>
+                                                            <ToggleGroup fx:id="documentTypeGroup" />
+                                                        </toggleGroup>
+                                                    </RadioButton>
+                                                    <RadioButton fx:id="passportRadio" text="Passeport" toggleGroup="$documentTypeGroup" style="-fx-font-size: 13;" />
+                                                </HBox>
+                                            </VBox>
 
-                                    <Label style="-fx-font-weight: bold;" text="Image de la preuve:" textFill="#495057" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                                    <VBox spacing="8" GridPane.columnIndex="3" GridPane.rowIndex="0">
-                                        <Button fx:id="uploadImageBtn" onAction="#chooseImage" prefHeight="35" prefWidth="200" style="-fx-background-color: #006233; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: white;" text="📁  Choisir une image">
-                                            <font>
-                                                <Font name="System" size="12.0" />
-                                            </font>
-                                        </Button>
-                                        <Label fx:id="imageFileNameLabel" style="-fx-font-size: 11;" text="Aucune image sélectionnée" textFill="#6c757d" />
+                                            <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                <Label text="Numéro de document *" textFill="#495057">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="documentNumberField" prefHeight="42" promptText="Numéro CIN/Passeport" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13; -fx-text-fill: #212529; -fx-padding: 10;">
+                                                    <font>
+                                                        <Font size="13.0" />
+                                                    </font>
+                                                </TextField>
+                                            </VBox>
+                                        </GridPane>
                                     </VBox>
-                           <ImageView fx:id="imageView" fitHeight="80.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
-                           <columnConstraints>
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints />
-                           </rowConstraints>
-                                </GridPane>
-                            </VBox>
 
-                            <!-- SECTION 4: Informations de la Plainte -->
-                            <VBox style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);">
-                                <HBox alignment="CENTER_LEFT" spacing="12">
-                                    <Label style="-fx-font-size: 20;" text="📝" />
-                                    <Label style="-fx-font-weight: bold; -fx-font-size: 18;" text="Informations de la Plainte" textFill="#006233" />
-                                </HBox>
+                                    <!-- Séparateur élégant -->
+                                    <HBox alignment="CENTER" spacing="15">
+                                        <Line endX="150.0" stroke="#dee2e6" strokeWidth="1.5" />
+                                        <Polygon fill="#C1272D" opacity="0.7">
+                                            <points>
+                                                <Double fx:value="0.0" /> <Double fx:value="-6.0" />
+                                                <Double fx:value="5.2" /> <Double fx:value="-3.0" />
+                                                <Double fx:value="5.2" /> <Double fx:value="3.0" />
+                                                <Double fx:value="0.0" /> <Double fx:value="6.0" />
+                                                <Double fx:value="-5.2" /> <Double fx:value="3.0" />
+                                                <Double fx:value="-5.2" /> <Double fx:value="-3.0" />
+                                            </points>
+                                        </Polygon>
+                                        <Line endX="150.0" stroke="#dee2e6" strokeWidth="1.5" />
+                                    </HBox>
 
-                                <GridPane hgap="15" style="-fx-padding: 20 0 0 0;" vgap="12">
-                                    <!-- Ligne 1 -->
-                                    <Label style="-fx-font-weight: bold;" text="Statut de la plainte *:" textFill="#495057" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                                    <ComboBox fx:id="complaintStatusComboBox" prefWidth="250" promptText="Sélectionner le statut" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                           <columnConstraints>
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints />
-                           </rowConstraints>
-                                </GridPane>
-                            </VBox>
+                                    <!-- SECTION 2: Informations de l'Objet Perdu -->
+                                    <VBox spacing="20">
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Rectangle arcHeight="4" arcWidth="4" fill="#006233" height="22" width="4" />
+                                            <Label text="Informations de l'Objet Perdu" textFill="#212529">
+                                                <font>
+                                                    <Font name="System Bold" size="16.0" />
+                                                </font>
+                                            </Label>
+                                        </HBox>
 
-                            <!-- Boutons d'action -->
-                            <HBox alignment="CENTER" spacing="20" style="-fx-padding: 20 0;">
-                                <Button onAction="#clearForm" prefHeight="45" prefWidth="180" style="-fx-background-color: #6c757d; -fx-background-radius: 8; -fx-cursor: hand; -fx-text-fill: white; -fx-font-size: 14;" text="🗑️  Tout effacer">
-                                    <font>
-                                        <Font name="System" size="13.0" />
-                                    </font>
-                                    <effect>
-                                        <DropShadow color="#6c757d40" offsetY="2.0" radius="4.0" />
-                                    </effect>
-                                </Button>
-                                <Button onAction="#saveComplaint" prefHeight="45" prefWidth="220" style="-fx-background-color: #006233; -fx-background-radius: 8; -fx-cursor: hand; -fx-text-fill: white; -fx-font-size: 14;" text="💾  Enregistrer la plainte">
-                                    <font>
-                                        <Font name="System" size="14.0" />
-                                    </font>
-                                    <effect>
-                                        <DropShadow color="#00623340" offsetY="2.0" radius="5.0" />
-                                    </effect>
-                                </Button>
-                            </HBox>
+                                        <GridPane hgap="25" vgap="20">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                                            </columnConstraints>
 
-                            <!-- Section Information -->
-                            <VBox spacing="10" style="-fx-background-color: #f8f9fa; -fx-background-radius: 12; -fx-padding: 20; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);">
-                                <HBox alignment="CENTER_LEFT" spacing="10">
-                                    <Label style="-fx-font-size: 18;" text="ℹ️" />
-                                    <Label style="-fx-font-weight: bold; -fx-font-size: 16;" text="Informations importantes" textFill="#006233" />
-                                </HBox>
-                                <Label text="• Les champs marqués d'un astérisque (*) sont obligatoires." textFill="#6c757d" wrapText="true" />
-                                <Label text="• Assurez-vous que les informations de la personne correspondent à sa pièce d'identité." textFill="#6c757d" wrapText="true" />
-                                <Label text="• La preuve (ticket ou badge) doit être valide et datée du jour de l'événement." textFill="#6c757d" wrapText="true" />
-                                <Label text="• Vous pouvez ajouter des photos supplémentaires de l'objet si disponibles." textFill="#6c757d" wrapText="true" />
+                                            <!-- Ligne 1 -->
+                                            <VBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                                <Label text="Type d'objet *" textFill="#495057">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <ComboBox fx:id="objectTypeComboBox" prefHeight="42" prefWidth="320" promptText="Sélectionner le type" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13;">
+                                                    <items>
+                                                        <FXCollections fx:factory="observableArrayList">
+                                                            <String fx:value="Électronique" />
+                                                            <String fx:value="Documents" />
+                                                            <String fx:value="Objets personnels" />
+                                                            <String fx:value="Vêtements" />
+                                                            <String fx:value="Sacs" />
+                                                            <String fx:value="Équipement sportif" />
+                                                            <String fx:value="Accessoires" />
+                                                            <String fx:value="Divers" />
+                                                            <String fx:value="Autre / Inconnu" />
+                                                        </FXCollections>
+                                                    </items>
+                                                </ComboBox>
+                                            </VBox>
+
+                                            <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                                <Label text="Date de perte *" textFill="#495057">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <DatePicker fx:id="lostDatePicker" prefHeight="42" prefWidth="320" promptText="JJ/MM/AAAA" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13;" />
+                                            </VBox>
+
+                                            <!-- Ligne 2 -->
+                                            <VBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                                <Label text="Stade *" textFill="#495057">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <ComboBox fx:id="stadiumComboBox" prefHeight="42" prefWidth="320" promptText="Sélectionner un stade" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13;" />
+                                            </VBox>
+
+                                            <VBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                                                <Label text="Description détaillée" textFill="#495057">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextArea fx:id="objectDescriptionArea" prefHeight="110" prefWidth="320" promptText="Décrivez l'objet (couleur, marque, particularités...)" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13; -fx-text-fill: #212529;" wrapText="true">
+                                                    <font>
+                                                        <Font size="13.0" />
+                                                    </font>
+                                                </TextArea>
+                                            </VBox>
+                                        </GridPane>
+                                    </VBox>
+
+                                    <!-- Séparateur élégant -->
+                                    <HBox alignment="CENTER" spacing="15">
+                                        <Line endX="150.0" stroke="#dee2e6" strokeWidth="1.5" />
+                                        <Polygon fill="#006233" opacity="0.7">
+                                            <points>
+                                                <Double fx:value="0.0" /> <Double fx:value="-6.0" />
+                                                <Double fx:value="5.2" /> <Double fx:value="-3.0" />
+                                                <Double fx:value="5.2" /> <Double fx:value="3.0" />
+                                                <Double fx:value="0.0" /> <Double fx:value="6.0" />
+                                                <Double fx:value="-5.2" /> <Double fx:value="3.0" />
+                                                <Double fx:value="-5.2" /> <Double fx:value="-3.0" />
+                                            </points>
+                                        </Polygon>
+                                        <Line endX="150.0" stroke="#dee2e6" strokeWidth="1.5" />
+                                    </HBox>
+
+                                    <!-- SECTION 3: Informations de la Preuve -->
+                                    <VBox spacing="20">
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Rectangle arcHeight="4" arcWidth="4" fill="#C1272D" height="22" width="4" />
+                                            <Label text="Informations de la Preuve" textFill="#212529">
+                                                <font>
+                                                    <Font name="System Bold" size="16.0" />
+                                                </font>
+                                            </Label>
+                                        </HBox>
+
+                                        <GridPane hgap="25" vgap="20">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                                            </columnConstraints>
+
+                                            <VBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                                <Label text="Type de preuve *" textFill="#495057">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <HBox spacing="20" style="-fx-padding: 10 0 0 0;">
+                                                    <RadioButton fx:id="ticketRadio" text="Ticket" style="-fx-font-size: 13;">
+                                                        <toggleGroup>
+                                                            <ToggleGroup fx:id="proofTypeGroup" />
+                                                        </toggleGroup>
+                                                    </RadioButton>
+                                                    <RadioButton fx:id="badgeRadio" text="Badge" toggleGroup="$proofTypeGroup" style="-fx-font-size: 13;" />
+                                                </HBox>
+                                            </VBox>
+
+                                            <!-- Image de la preuve -->
+                                            <VBox spacing="10" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                                <Label text="Image de la preuve" textFill="#495057">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <VBox alignment="CENTER" spacing="15" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 2; -fx-border-style: dashed; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 25;">
+                                                    <VBox alignment="CENTER" spacing="12">
+                                                        <StackPane>
+                                                            <Rectangle arcHeight="12" arcWidth="12" fill="#e9ecef" height="180" stroke="#dee2e6" strokeType="INSIDE" strokeWidth="2" width="240" />
+                                                            <ImageView fx:id="imageView" fitHeight="176.0" fitWidth="236.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);" />
+                                                            <VBox alignment="CENTER" opacity="0.5" spacing="8">
+                                                                <Label text="📷" textFill="#adb5bd">
+                                                                    <font>
+                                                                        <Font size="48.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Label text="Aperçu de l'image" textFill="#6c757d">
+                                                                    <font>
+                                                                        <Font size="12.0" />
+                                                                    </font>
+                                                                </Label>
+                                                            </VBox>
+                                                        </StackPane>
+                                                        <Button fx:id="uploadImageBtn" onAction="#chooseImage" prefHeight="42" prefWidth="240" style="-fx-background-color: white; -fx-border-color: #006233; -fx-border-width: 2; -fx-text-fill: #006233; -fx-cursor: hand; -fx-background-radius: 8; -fx-border-radius: 8; -fx-font-weight: bold;" text="📁  Parcourir les fichiers">
+                                                            <font>
+                                                                <Font name="System Bold" size="13.0" />
+                                                            </font>
+                                                            <effect>
+                                                                <DropShadow color="#00000015" offsetY="2.0" radius="4.0" />
+                                                            </effect>
+                                                        </Button>
+                                                        <Label fx:id="imageFileNameLabel" text="Format accepté: JPG, PNG (Max 5MB)" textFill="#6c757d">
+                                                            <font>
+                                                                <Font size="11.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </VBox>
+                                                </VBox>
+                                            </VBox>
+                                        </GridPane>
+                                    </VBox>
+
+                                    <!-- Séparateur élégant -->
+                                    <HBox alignment="CENTER" spacing="15">
+                                        <Line endX="150.0" stroke="#dee2e6" strokeWidth="1.5" />
+                                        <Polygon fill="#C1272D" opacity="0.7">
+                                            <points>
+                                                <Double fx:value="0.0" /> <Double fx:value="-6.0" />
+                                                <Double fx:value="5.2" /> <Double fx:value="-3.0" />
+                                                <Double fx:value="5.2" /> <Double fx:value="3.0" />
+                                                <Double fx:value="0.0" /> <Double fx:value="6.0" />
+                                                <Double fx:value="-5.2" /> <Double fx:value="3.0" />
+                                                <Double fx:value="-5.2" /> <Double fx:value="-3.0" />
+                                            </points>
+                                        </Polygon>
+                                        <Line endX="150.0" stroke="#dee2e6" strokeWidth="1.5" />
+                                    </HBox>
+
+                                    <!-- SECTION 4: Informations de la Plainte -->
+                                    <VBox spacing="20">
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Rectangle arcHeight="4" arcWidth="4" fill="#006233" height="22" width="4" />
+                                            <Label text="Informations de la Plainte" textFill="#212529">
+                                                <font>
+                                                    <Font name="System Bold" size="16.0" />
+                                                </font>
+                                            </Label>
+                                        </HBox>
+
+                                        <VBox spacing="10">
+                                            <Label text="Statut de la plainte *" textFill="#495057">
+                                                <font>
+                                                    <Font name="System Bold" size="13.0" />
+                                                </font>
+                                            </Label>
+                                            <ComboBox fx:id="complaintStatusComboBox" prefHeight="42" prefWidth="665" promptText="Sélectionner le statut" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 13;" />
+                                        </VBox>
+                                    </VBox>
+
+                                    <!-- Note obligatoire -->
+                                    <HBox alignment="CENTER" spacing="10" style="-fx-border-color: #006233; -fx-border-width: 1 1 1 4; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 15 20;">
+                                        <VBox alignment="CENTER_LEFT" spacing="6" HBox.hgrow="ALWAYS">
+                                            <HBox alignment="CENTER_LEFT" spacing="8">
+                                                <Label text="ℹ" textFill="#006233">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label text="Informations importantes" textFill="#006233">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                            </HBox>
+                                            <Label text="• Les champs marqués d'un astérisque (*) sont obligatoires" textFill="#495057">
+                                                <font>
+                                                    <Font size="12.0" />
+                                                </font>
+                                            </Label>
+                                            <Label text="• Assurez-vous que les informations de la personne correspondent à sa pièce d'identité" textFill="#495057">
+                                                <font>
+                                                    <Font size="12.0" />
+                                                </font>
+                                            </Label>
+                                            <Label text="• La preuve (ticket ou badge) doit être valide et datée du jour de l'événement" textFill="#495057">
+                                                <font>
+                                                    <Font size="12.0" />
+                                                </font>
+                                            </Label>
+                                        </VBox>
+                                    </HBox>
+
+                                    <!-- Boutons d'action -->
+                                    <HBox alignment="CENTER" spacing="20" style="-fx-padding: 20 0 0 0;">
+                                        <Button onAction="#clearForm" prefHeight="48" prefWidth="180" style="-fx-background-color: white; -fx-border-color: #C1272D; -fx-border-width: 2.5; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand; -fx-text-fill: #C1272D; -fx-font-weight: bold;" text="🔄  Réinitialiser">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                            <effect>
+                                                <DropShadow color="#C1272D20" offsetY="2.0" radius="4.0" />
+                                            </effect>
+                                        </Button>
+
+                                        <Button onAction="#saveComplaint" prefHeight="48" prefWidth="220" style="-fx-background-color: linear-gradient(to right, #006233, #007d42); -fx-cursor: hand; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" text="✓  Enregistrer la plainte">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                            <effect>
+                                                <DropShadow color="#00623350" offsetY="3.0" radius="6.0" />
+                                            </effect>
+                                        </Button>
+                                    </HBox>
+
+                                </VBox>
                             </VBox>
                         </VBox>
-                    </ScrollPane>
-                </StackPane>
+                    </StackPane>
+                </ScrollPane>
             </center>
         </BorderPane>
     </center>
@@ -508,6 +719,3 @@
     </bottom>
 
 </BorderPane>
-
-
-

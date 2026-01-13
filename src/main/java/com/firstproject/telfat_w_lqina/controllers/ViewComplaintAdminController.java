@@ -2,13 +2,14 @@ package com.firstproject.telfat_w_lqina.controllers;
 
 import com.firstproject.telfat_w_lqina.Enum.StatusComplaint;
 import com.firstproject.telfat_w_lqina.Enum.TypeObjet;
-import com.firstproject.telfat_w_lqina.exception.NotFoundException.ObjectNotFoundException;
 import com.firstproject.telfat_w_lqina.models.Agent;
 import com.firstproject.telfat_w_lqina.models.Complaint;
 import com.firstproject.telfat_w_lqina.models.Stadium;
 import com.firstproject.telfat_w_lqina.service.ComplaintService;
 import com.firstproject.telfat_w_lqina.service.StadiumService;
-import com.firstproject.telfat_w_lqina.util.*;
+import com.firstproject.telfat_w_lqina.service.UserService;
+import com.firstproject.telfat_w_lqina.util.ImageConverterUtil;
+import com.firstproject.telfat_w_lqina.util.SessionManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,11 +18,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
-public class ViewComplaintAgentController {
+public class ViewComplaintAdminController {
+
 
     @FXML
     private TableView<Complaint> complaintTableView;
@@ -75,14 +75,11 @@ public class ViewComplaintAgentController {
     @FXML
     private DatePicker dateFilterDatePicker;
 
-    @FXML private Label nb;
-
     private ComplaintService complaintService = new ComplaintService();
     private ObservableList<Complaint> complaintObservableList;
     private List<Complaint> complaintList;
     private Complaint selectedComplaint;
     private List<Stadium> listStadium = StadiumService.getAllStadiums();
-    private Agent currentUser = (Agent) SessionManager.getInstance().getCurrentUser();
 
     @FXML
     public void initialize() {
@@ -155,14 +152,13 @@ public class ViewComplaintAgentController {
                 listStadium.stream().map(Stadium::getStadiumName).toList()
         );
         stadiumComboBox.getItems().add(0, "Tous");
-        stadiumComboBox.setValue(currentUser.getStadium().getStadiumName());
+        stadiumComboBox.setValue("Tous");
 
         statutComboBox.getItems().clear();
         statutComboBox.getItems().addAll(
                 "Tous", "Recherche en cours", "Objet retrouvé", "Objet non retrouvé"
         );
         statutComboBox.setValue("Recherche en cours");
-        nb.setText(String.valueOf(complaintObservableList.size()));
     }
 
     private void displayComplaintDetails(Complaint complaint) {
@@ -208,59 +204,6 @@ public class ViewComplaintAgentController {
         } catch (Exception e) {
             System.err.println("Erreur lors de l'affichage des détails: " + e.getMessage());
             e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void goToAgent(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event, "/fxml/Agent.fxml");
-    }
-
-    @FXML
-    public void addLostObject(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event, "/fxml/AddLostObject.fxml");
-    }
-
-    @FXML
-    public void viewLostObjects(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event, "/fxml/ViewLostObjectsAgent.fxml");
-    }
-
-    @FXML
-    public void goToAddComplaint(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event, "/fxml/AddComplaint.fxml");
-    }
-
-    @FXML
-    public void seDeconnecter(ActionEvent event) throws IOException {
-        LogoutUtil.logout(event);
-    }
-
-    public void removeComplaint(ActionEvent event) {
-        if (selectedComplaint == null) {
-            Alerts.errorAlert("Erreur", null, "Veuillez sélectionner une réclamation à supprimer.");
-            return;
-        }
-
-        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmationAlert.setTitle("Confirmation de suppression");
-        confirmationAlert.setHeaderText("Voulez-vous vraiment supprimer cette réclamation ?");
-        confirmationAlert.setContentText("Cette action est irréversible.");
-        confirmationAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
-
-        Optional<ButtonType> result = confirmationAlert.showAndWait();
-
-        if (result.isPresent() && result.get() == ButtonType.YES) {
-            try {
-                complaintService.removeComplaint(selectedComplaint.getId());
-                complaintObservableList.remove(selectedComplaint);
-                clearComplaintDetails();
-                Alerts.successAlert("Succès", null, "La réclamation a été supprimée avec succès.");
-            } catch (ObjectNotFoundException objectNotFoundException) {
-                Alerts.errorAlert("Erreur", null, "La réclamation n'a pas été trouvée.");
-            } catch (Exception e) {
-                Alerts.errorAlert("Erreur", null, "Une erreur est survenue lors de la suppression: " + e.getMessage());
-            }
         }
     }
 
@@ -378,19 +321,26 @@ public class ViewComplaintAgentController {
         }
     }
 
-    @FXML
-    public void goToUpdateComplaint(ActionEvent event) throws IOException {
-        if (selectedComplaint == null) {
-            Alerts.errorAlert("Erreur", null, "Veuillez sélectionner une réclamation à modifier.");
-            return;
-        }
 
-        // Sauvegarder la réclamation sélectionnée dans la session
-        SessionComplaint.getInstance().setCurentComplaint(selectedComplaint);
 
-        // Naviguer vers la page de mise à jour
-        NavigationUtil.navigate(event, "/fxml/UpdateComplaint.fxml");
+    public void goToAdmin(ActionEvent event) {
     }
+
+    public void createUser(ActionEvent event) {
+    }
+
+    public void viewLostObjects(ActionEvent event) {
+    }
+
+    public void goToStadiumList(ActionEvent event) {
+    }
+
+    public void addStadium(ActionEvent event) {
+    }
+
+    public void logout(ActionEvent event) {
+    }
+
 
     public void clearFilters(ActionEvent event) {
         dateFilterDatePicker.setValue(null);

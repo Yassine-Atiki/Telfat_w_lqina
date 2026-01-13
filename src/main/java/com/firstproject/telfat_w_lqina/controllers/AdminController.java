@@ -46,4 +46,8 @@ public class AdminController {
     public void goToStadiumList(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event,"/fxml/ViewStadiums.fxml");
     }
+
+    public void goToComplaintList(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAdmin.fxml");
+    }
 }

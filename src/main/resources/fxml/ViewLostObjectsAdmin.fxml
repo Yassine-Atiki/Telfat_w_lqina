@@ -7,7 +7,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,7 +19,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewLostObjectsAdminController">
+<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewLostObjectsAdminController">
 
     <!-- SIDEBAR (LEFT) -->
     <left>
@@ -76,12 +75,12 @@
                         </Polygon>
 
                         <VBox spacing="2">
-                            <Label text="Telfat w lqina" style="-fx-text-fill: #006233;">
+                            <Label style="-fx-text-fill: #006233;" text="Telfat w lqina">
                                 <font>
                                     <Font name="System" size="20.0" />
                                 </font>
                             </Label>
-                            <Label text="CAN 2025 - Admin" style="-fx-text-fill: #C1272D;">
+                            <Label style="-fx-text-fill: #C1272D;" text="CAN 2025 - Admin">
                                 <font>
                                     <Font name="System" size="11.0" />
                                 </font>
@@ -104,7 +103,7 @@
 
                 <!-- Navigation Menu -->
                 <VBox spacing="8" style="-fx-padding: 20 15;">
-                    <Label text="ADMINISTRATION" style="-fx-text-fill: #6c757d;">
+                    <Label style="-fx-text-fill: #6c757d;" text="ADMINISTRATION">
                         <font>
                             <Font name="System" size="10.0" />
                         </font>
@@ -161,7 +160,7 @@
                     <!-- Liste des stades -->
                     <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToStadiumList" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="Liste des Stades">
                         <graphic>
-                            <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
+                            <ImageView fitHeight="18" fitWidth="18" preserveRatio="true">
                                 <image>
                                     <Image url="@../images/stade.png" />
                                 </image>
@@ -197,17 +196,17 @@
                         </VBox.margin>
 
                         <VBox spacing="4">
-                            <Label fx:id="labelUser" text="Nom Administrateur" style="-fx-text-fill: #212529;">
+                            <Label fx:id="labelUser" style="-fx-text-fill: #212529;" text="Nom Administrateur">
                                 <font>
                                     <Font name="System" size="14.0" />
                                 </font>
                             </Label>
-                            <Label text="Administrateur" style="-fx-text-fill: #C1272D;">
+                            <Label style="-fx-text-fill: #C1272D;" text="Administrateur">
                                 <font>
                                     <Font name="System" size="12.0" />
                                 </font>
                             </Label>
-                            <Label text="●  Connecté" style="-fx-text-fill: #28a745;">
+                            <Label style="-fx-text-fill: #28a745;" text="●  Connecté">
                                 <font>
                                     <Font name="System" size="11.0" />
                                 </font>
@@ -257,7 +256,7 @@
 
                     <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20 35; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);">
                         <VBox spacing="2">
-                            <Label text="Ajouter un Stade" textFill="#212529">
+                            <Label text="Objets Perdus" textFill="#212529">
                                 <font>
                                     <Font name="System" size="24.0" />
                                 </font>
@@ -265,93 +264,194 @@
                             <HBox alignment="CENTER_LEFT" spacing="6">
                                 <Rectangle arcHeight="3" arcWidth="3" fill="#C1272D" height="3.0" width="30.0" />
                                 <Rectangle arcHeight="3" arcWidth="3" fill="#006233" height="3.0" width="8.0" />
-                                <Label text="Enregistrez un nouveau stade dans le système" textFill="#6c757d">
+                                <Label fx:id="totalLabel" text="Total: 0 objets" textFill="#6c757d">
                                     <font>
                                         <Font size="13.0" />
                                     </font>
                                 </Label>
                             </HBox>
                         </VBox>
+
+                        <HBox HBox.hgrow="ALWAYS" />
+
+                        <HBox spacing="12">
+                            <Button onAction="#refreshCards" prefHeight="40" prefWidth="130" style="-fx-background-color: #C1272D; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: white;" text="🔄  Actualiser">
+                                <font>
+                                    <Font name="System" size="12.0" />
+                                </font>
+                                <effect>
+                                    <DropShadow color="#C1272D40" offsetY="2.0" radius="4.0" />
+                                </effect>
+                            </Button>
+                        </HBox>
                     </HBox>
                 </StackPane>
             </top>
-                <!-- Content - Cards Grid -->
-                <center>
-                    <StackPane>
-                        <StackPane opacity="0.05" prefHeight="495.0" prefWidth="940.0" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" />
 
-                        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
-                            <VBox style="-fx-padding: 30 40;">
-                                <HBox prefHeight="65.0" prefWidth="857.0">
-                                    <children>
-                                        <DatePicker fx:id="dateFilterDatePicker" prefHeight="31.0" prefWidth="175.0" />
-                                        <ComboBox fx:id="finedByComboBox" prefHeight="31.0" prefWidth="150.0" promptText="Trouver par :" />
-                                        <ComboBox fx:id="stadiumComboBox" prefHeight="31.0" prefWidth="150.0" promptText="Stadium :" />
-                                        <TextField prefHeight="31.0" prefWidth="210.0" />
-                                        <Button mnemonicParsing="false" onAction="#refreshCards" prefHeight="32.0" prefWidth="130.0" text="Rechercher" />
-                                    </children>
+            <!-- Content - Cards Grid -->
+            <center>
+                <StackPane>
+                    <StackPane opacity="0.05" prefHeight="495.0" prefWidth="940.0" style="-fx-background-image: url('file:src/main/resources/images/zellige.png'); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" />
+
+                    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+                        <VBox spacing="25" style="-fx-padding: 30 40;">
+                            <!-- SECTION DE RECHERCHE ET FILTRES AMÉLIORÉE -->
+                            <VBox fx:id="filtersSection" spacing="20" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3); -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 12;">
+                                <!-- En-tête de la section de filtres -->
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <Rectangle arcHeight="4" arcWidth="4" fill="#C1272D" height="22.0" width="4.0" />
+                                    <Label style="-fx-font-weight: bold; -fx-text-fill: #212529;" text="Filtres de Recherche">
+                                        <font>
+                                            <Font name="System" size="16.0" />
+                                        </font>
+                                    </Label>
+                                    <Rectangle arcHeight="3" arcWidth="3" fill="#006233" height="3.0" width="15.0" />
                                 </HBox>
-                                <!-- Container pour les cartes -->
-                                <FlowPane fx:id="cardsContainer" hgap="20" style="-fx-padding: 0;" vgap="20">
-                                    <!-- Les cartes seront ajoutées dynamiquement ici -->
 
-                                    <!-- Exemple de structure d'une carte (à créer dynamiquement dans le contrôleur) -->
-                                    <!--
-                                    <VBox style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 0; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);" prefWidth="280">
-                                        <StackPane style="-fx-background-color: #f8f9fa; -fx-background-radius: 12 12 0 0;" prefHeight="200">
-                                            <ImageView fitWidth="280" fitHeight="200" preserveRatio="true" />
-                                            <Label text="📦" style="-fx-font-size: 48; -fx-text-fill: #dee2e6;" />
-                                        </StackPane>
+                                <!-- Description -->
+                                <Label text="Affinez votre recherche en utilisant les filtres ci-dessous" textFill="#6c757d">
+                                    <font>
+                                        <Font name="System" size="12.0" />
+                                    </font>
+                                </Label>
 
-                                        <VBox spacing="12" style="-fx-padding: 20;">
-                                            <Label text="Type" style="-fx-font-weight: bold; -fx-font-size: 16; -fx-text-fill: #006233;" />
-                                            <Label text="Description" style="-fx-text-fill: #495057; -fx-font-size: 13;" wrapText="true" />
+                                <!-- Ligne séparatrice décorative -->
+                                <HBox alignment="CENTER_LEFT" prefHeight="2.0" spacing="5">
+                                    <Rectangle fill="#e9ecef" height="1.0" width="30.0" />
+                                    <Rectangle fill="#C1272D" height="1.0" width="8.0" />
+                                    <Rectangle fill="#e9ecef" height="1.0" width="30.0" />
+                                    <Rectangle fill="#006233" height="1.0" width="5.0" />
+                                    <Rectangle fill="#e9ecef" height="1.0" HBox.hgrow="ALWAYS" />
+                                </HBox>
 
-                                            <VBox spacing="6">
-                                                <HBox spacing="8">
-                                                    <Label text="📅" style="-fx-text-fill: #6c757d;" />
-                                                    <Label text="Date" style="-fx-text-fill: #6c757d; -fx-font-size: 12;" />
-                                                </HBox>
-                                                <HBox spacing="8">
-                                                    <Label text="📍" style="-fx-text-fill: #6c757d;" />
-                                                    <Label text="Zone" style="-fx-text-fill: #6c757d; -fx-font-size: 12;" />
-                                                </HBox>
-                                                <HBox spacing="8">
-                                                    <Label text="👤" style="-fx-text-fill: #6c757d;" />
-                                                    <Label text="Agent" style="-fx-text-fill: #6c757d; -fx-font-size: 12;" />
-                                                </HBox>
-                                            </VBox>
-
-                                            <Line endX="240" stroke="#e9ecef" strokeWidth="1" />
-
-                                            <HBox spacing="10">
-                                                <Button text="✏️ Modifier" style="-fx-background-color: #006233; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-size: 11; -fx-padding: 8 16;" HBox.hgrow="ALWAYS" />
-                                                <Button text="🗑️ Supprimer" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-size: 11; -fx-padding: 8 16;" HBox.hgrow="ALWAYS" />
-                                            </HBox>
-                                        </VBox>
-                                    </VBox>
-                                    -->
-                                </FlowPane>
-
-                                <!-- Message si aucun objet -->
-                                <VBox fx:id="emptyStateContainer" alignment="CENTER" prefHeight="365.0" prefWidth="857.0" spacing="20" style="-fx-padding: 80;" visible="true">
-                                    <VBox alignment="CENTER" spacing="8">
-                                        <Label text="Aucun objet perdu" textFill="#212529">
+                                <!-- Ligne 1 des filtres -->
+                                <HBox alignment="CENTER_LEFT" spacing="15">
+                                    <!-- Filtre Date -->
+                                    <VBox prefWidth="220" spacing="8">
+                                        <Label text="Date de perte" textFill="#495057">
                                             <font>
-                                                <Font name="System" size="20.0" />
+                                                <Font name="System Bold" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label text="Les objets perdus enregistrés apparaîtront ici" textFill="#6c757d">
+                                        <HBox alignment="CENTER_LEFT" spacing="8">
+                                            <DatePicker fx:id="dateFilterDatePicker" prefHeight="38.0" prefWidth="165.0" promptText="Sélectionner" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 12;" />
+                                            <Button onAction="#clearDateFilter" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #fff5f5; -fx-border-color: #dc3545; -fx-border-width: 1.5; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #dc3545; -fx-cursor: hand; -fx-font-weight: bold;" text="✕">
+                                                <font>
+                                                    <Font name="System" size="14.0" />
+                                                </font>
+                                            </Button>
+                                        </HBox>
+                                    </VBox>
+
+                                    <!-- Filtre Trouvé par -->
+                                    <VBox prefWidth="220" spacing="8">
+                                        <Label text="Trouvé par" textFill="#495057">
                                             <font>
-                                                <Font size="14.0" />
+                                                <Font name="System Bold" size="12.0" />
                                             </font>
                                         </Label>
+                                        <ComboBox fx:id="finedByComboBox" prefHeight="38.0" prefWidth="220.0" promptText="Sélectionner un agent" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 12;" />
                                     </VBox>
+
+                                    <!-- Filtre Stade -->
+                                    <VBox prefWidth="220" spacing="8" HBox.hgrow="ALWAYS">
+                                        <Label text="Stade" textFill="#495057">
+                                            <font>
+                                                <Font name="System Bold" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <ComboBox fx:id="stadiumComboBox" prefHeight="38.0" prefWidth="220.0" promptText="Sélectionner un stade" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 12;" />
+                                    </VBox>
+                                </HBox>
+
+                                <!-- Ligne 2 des filtres -->
+                                <HBox alignment="CENTER_LEFT" spacing="15">
+                                    <!-- Filtre Statut -->
+                                    <VBox prefWidth="220" spacing="8">
+                                        <Label text="Statut de l'objet" textFill="#495057">
+                                            <font>
+                                                <Font name="System Bold" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <ComboBox fx:id="stateComboBox" prefHeight="38.0" prefWidth="220.0" promptText="Sélectionner un statut" style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-width: 1.5; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 12;">
+                                            <effect>
+                                                <DropShadow color="#00000010" offsetY="1.0" radius="2.0" />
+                                            </effect>
+                                        </ComboBox>
+                                    </VBox>
+
+                                    <!-- Boutons d'action -->
+                                    <VBox prefWidth="220" spacing="8" HBox.hgrow="ALWAYS">
+                                        <Label text="Actions" textFill="#495057">
+                                            <font>
+                                                <Font name="System Bold" size="12.0" />
+                                            </font>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Button onAction="#refreshCards" prefHeight="38.0" prefWidth="105.0" style="-fx-background-color: linear-gradient(to right, #C1272D, #d63844); -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: white; -fx-font-weight: bold;">
+                                                <font>
+                                                    <Font name="System" size="11.0" />
+                                                </font>
+                                                <text>🔍 Filtrer</text>
+                                                <effect>
+                                                    <DropShadow color="#C1272D40" offsetY="2.0" radius="4.0" />
+                                                </effect>
+                                            </Button>
+
+                                            <Button onAction="#clearAllFilters" prefHeight="38.0" prefWidth="105.0" style="-fx-background-color: white; -fx-border-color: #6c757d; -fx-border-width: 1.5; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #6c757d; -fx-cursor: hand; -fx-font-weight: bold;">
+                                                <font>
+                                                    <Font name="System" size="11.0" />
+                                                </font>
+                                                <text>✕ Effacer</text>
+                                            </Button>
+                                        </HBox>
+                                    </VBox>
+                                </HBox>
+
+                                <!-- Indicateur de filtres actifs -->
+                                <HBox fx:id="activeFiltersIndicator" alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #fff0f0; -fx-background-radius: 6; -fx-padding: 10 15; -fx-border-color: #f5c6cb; -fx-border-width: 1; -fx-border-radius: 6;" visible="false">
+                                    <Label text="🎯 Filtres actifs:" textFill="#C1272D">
+                                        <font>
+                                            <Font name="System Bold" size="12.0" />
+                                        </font>
+                                    </Label>
+                                    <Label fx:id="activeFiltersLabel" text="Aucun filtre actif" textFill="#721c24">
+                                        <font>
+                                            <Font name="System" size="11.0" />
+                                        </font>
+                                    </Label>
+                                </HBox>
+                            </VBox>
+
+                            <!-- Container pour les cartes -->
+                            <FlowPane fx:id="cardsContainer" hgap="20" style="-fx-padding: 0;" vgap="20">
+                                <!-- Les cartes seront ajoutées dynamiquement ici -->
+                            </FlowPane>
+
+                            <!-- Message si aucun objet -->
+                            <VBox fx:id="emptyStateContainer" alignment="CENTER" prefHeight="365.0" prefWidth="857.0" spacing="20" style="-fx-padding: 80;" visible="true">
+                                <VBox alignment="CENTER" spacing="8">
+                                    <Label text="📦">
+                                        <font>
+                                            <Font size="64.0" />
+                                        </font>
+                                    </Label>
+                                    <Label text="Aucun objet perdu" textFill="#212529">
+                                        <font>
+                                            <Font name="System" size="20.0" />
+                                        </font>
+                                    </Label>
+                                    <Label text="Les objets perdus enregistrés apparaîtront ici" textFill="#6c757d">
+                                        <font>
+                                            <Font size="14.0" />
+                                        </font>
+                                    </Label>
                                 </VBox>
                             </VBox>
-                        </ScrollPane>
-                    </StackPane>
-                </center>
+                        </VBox>
+                    </ScrollPane>
+                </StackPane>
+            </center>
         </BorderPane>
     </center>
 
@@ -400,7 +500,3 @@
     </bottom>
 
 </BorderPane>
-
-
-
-
