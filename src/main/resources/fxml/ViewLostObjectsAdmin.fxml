@@ -28,7 +28,7 @@
                 <StackPane prefHeight="90.0" style="-fx-background-color: white;">
                     <!-- Motif décoratif subtil -->
                     <HBox alignment="CENTER" opacity="0.08" spacing="-5">
-                        <Polygon fill="#C1272D" rotate="22.5">
+                        <Polygon fill="#006233" rotate="22.5">
                             <points>
                                 <Double fx:value="0.0" /> <Double fx:value="-8.0" />
                                 <Double fx:value="5.7" /> <Double fx:value="-2.5" />
@@ -37,7 +37,7 @@
                                 <Double fx:value="-5.7" /> <Double fx:value="-2.5" />
                             </points>
                         </Polygon>
-                        <Polygon fill="#006233" rotate="45">
+                        <Polygon fill="#C1272D" rotate="45">
                             <points>
                                 <Double fx:value="0.0" /> <Double fx:value="-8.0" />
                                 <Double fx:value="5.7" /> <Double fx:value="-2.5" />
@@ -72,15 +72,15 @@
                             </effect>
                         </Polygon>
 
-                        <VBox alignment="CENTER" spacing="8">
-                            <Label style="-fx-text-fill: #212529;" text="Aucun objet perdu">
+                        <VBox spacing="2">
+                            <Label style="-fx-text-fill: #006233;" text="Telfat w lqina">
                                 <font>
-                                    <Font name="System Bold" size="20.0" />
+                                    <Font name="System" size="20.0" />
                                 </font>
                             </Label>
-                            <Label style="-fx-text-fill: #6c757d;" text="Les objets perdus enregistrés apparaîtront ici">
+                            <Label style="-fx-text-fill: #C1272D;" text="CAN 2025 - Maroc">
                                 <font>
-                                    <Font size="14.0" />
+                                    <Font name="System" size="11.0" />
                                 </font>
                             </Label>
                         </VBox>
