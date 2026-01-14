@@ -47,6 +47,7 @@ public class AddComplaintController {
     @FXML private ComboBox<String> complaintStatusComboBox;
     @FXML private ImageView imageView;
     @FXML private Label imageFileNameLabel;
+    @FXML private Label labelUser;
 
     private StadiumService stadiumService = new StadiumService();
     private List<Stadium> stadiums = new ArrayList<>();
@@ -55,6 +56,11 @@ public class AddComplaintController {
     private Agent currentAgent = (Agent) SessionManager.getInstance().getCurrentUser();
 
     public void initialize() {
+
+        // Récupérer l'utilisateur connecté depuis SessionManager
+        User currentUser = SessionManager.getInstance().getCurrentUser();
+        labelUser.setText(currentUser.getUsername());
+
         // Associer les groupes de boutons radio
         cinRadio.setToggleGroup(documentTypeGroup);
         passportRadio.setToggleGroup(documentTypeGroup);
@@ -208,7 +214,7 @@ public class AddComplaintController {
             if (isCreated) {
                 Alerts.successAlert("Réclamation ajoutée", "Succès", "La réclamation a été ajoutée avec succès.");
                 clearForm();  // Nettoyer le formulaire après succès
-                NavigationUtil.navigate(new ActionEvent(), "/fxml/Agent.fxml");
+                NavigationUtil.navigate(new ActionEvent(), "/fxml/ViewComplaintAgent.fxml");
             } else {
                 Alerts.errorAlert("Erreur", "Échec de l'enregistrement",
                         "La réclamation n'a pas pu être enregistrée. Veuillez réessayer.");
@@ -246,17 +252,28 @@ public class AddComplaintController {
     }
 
     @FXML
-    private void goBack() {
-        // TODO: Implémenter la navigation retour
+    public void viewLostObjects(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewLostObjectsAgent.fxml");
     }
 
     @FXML
-    private void goToObjectsList() {
-        // TODO: Implémenter la navigation vers la liste des objets
+    public void goTDashboard(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event, "/fxml/Agent.fxml");
     }
 
     @FXML
-    private void seDeconnecter() {
-        // TODO: Implémenter la déconnexion
+    public void seDeconnecter(ActionEvent event) throws IOException {
+        LogoutUtil.logout(event);
     }
+
+    @FXML
+    public void goToAddLostObject(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddLostObject.fxml");
+    }
+
+    @FXML
+    public void goToListComplaint(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAgent.fxml");
+    }
+
 }

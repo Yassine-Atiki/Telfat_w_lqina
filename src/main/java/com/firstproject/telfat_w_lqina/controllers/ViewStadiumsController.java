@@ -48,6 +48,11 @@ public class ViewStadiumsController {
     }
 
     @FXML
+    public void goToStatistique(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AdminStatistics.fxml");
+    }
+
+    @FXML
     public void createUser(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event, "/fxml/AddUsers.fxml");
     }
@@ -65,6 +70,11 @@ public class ViewStadiumsController {
     @FXML
     public void goToStadiumList(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event, "/fxml/ViewStadiums.fxml");
+    }
+
+    @FXML
+    public void goToComplaintList(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAdmin.fxml");
     }
 
     @FXML
@@ -247,7 +257,4 @@ public class ViewStadiumsController {
         return card;
     }
 
-    public void refreshStadiums() {
-        loadStadiums();
-    }
 }

@@ -208,4 +208,14 @@ public class AddUsersController {
         NavigationUtil.navigate(event,"/fxml/Admin.fxml");
     }
 
+    @FXML
+    public void goToComplaintList(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAdmin.fxml");
+    }
+
+    @FXML
+    public void goToStatistique(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AdminStatistics.fxml");
+    }
+
 }

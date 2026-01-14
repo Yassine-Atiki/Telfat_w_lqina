@@ -3,12 +3,10 @@ package com.firstproject.telfat_w_lqina.controllers;
 import com.firstproject.telfat_w_lqina.models.LostObject;
 import com.firstproject.telfat_w_lqina.models.Stadium;
 import com.firstproject.telfat_w_lqina.Enum.TypeState;
+import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.service.LostObjectService;
 import com.firstproject.telfat_w_lqina.service.StadiumService;
-import com.firstproject.telfat_w_lqina.util.Alerts;
-import com.firstproject.telfat_w_lqina.util.ImageConverterUtil;
-import com.firstproject.telfat_w_lqina.util.NavigationUtil;
-import com.firstproject.telfat_w_lqina.util.SessionLostObject;
+import com.firstproject.telfat_w_lqina.util.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,6 +44,8 @@ public class UpdateLostObjectAgentController {
     private RadioButton inStorageRadio;
     @FXML
     private RadioButton returnedRadio;
+    @FXML
+    private Label labelUser;
 
 
     private List<Stadium> stadiums ;
@@ -57,6 +57,11 @@ public class UpdateLostObjectAgentController {
 
     @FXML
     public void initialize() {
+
+        // Récupérer l'utilisateur connecté depuis SessionManager
+        User currentUser = SessionManager.getInstance().getCurrentUser();
+        labelUser.setText(currentUser.getUsername());
+
         Image image=ImageConverterUtil.convertByteToImage(curentLostObject.getImage());
         imageView.setImage(image);
         descriptionField.setText(curentLostObject.getDescription());
@@ -81,12 +86,33 @@ public class UpdateLostObjectAgentController {
     }
 
     @FXML
-    public void goBack() throws IOException {
-        NavigationUtil.navigate(new ActionEvent(),"/fxml/Agent.fxml");
-    }
-    @FXML
     public void viewLostObjects() throws IOException {
         NavigationUtil.navigate(new ActionEvent(),"/fxml/ViewLostObjectsAgent.fxml");
+    }
+
+    @FXML
+    public void goTDashboard(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event, "/fxml/Agent.fxml");
+    }
+
+    @FXML
+    public void goToAddLostObject(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddLostObject.fxml");
+    }
+
+    @FXML
+    public void goToAddComplaint(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddComplaint.fxml");
+    }
+
+    @FXML
+    public void goToListComplaint(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAgent.fxml");
+    }
+
+    @FXML
+    public void seDeconnecter(ActionEvent event) throws IOException {
+        LogoutUtil.logout(event);
     }
 
     @FXML

@@ -47,7 +47,13 @@ public class AdminController {
         NavigationUtil.navigate(event,"/fxml/ViewStadiums.fxml");
     }
 
+    @FXML
     public void goToComplaintList(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event,"/fxml/ViewComplaintAdmin.fxml");
+    }
+
+    @FXML
+    public void AfficherStatistique(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AdminStatistics.fxml");
     }
 }

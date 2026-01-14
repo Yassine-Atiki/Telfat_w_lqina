@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewStadiumsController">
+<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewStadiumsController">
 
     <!-- Sidebar Navigation -->
     <left>
@@ -73,12 +73,12 @@
                         </Polygon>
 
                         <VBox spacing="2">
-                            <Label text="Telfat w lqina" textFill="#006233">
+                            <Label style="-fx-text-fill: #006233;" text="Telfat w lqina">
                                 <font>
                                     <Font name="System" size="20.0" />
                                 </font>
                             </Label>
-                            <Label text="CAN 2025 - Admin" textFill="#C1272D">
+                            <Label style="-fx-text-fill: #C1272D;" text="CAN 2025 - Admin">
                                 <font>
                                     <Font name="System" size="11.0" />
                                 </font>
@@ -101,7 +101,7 @@
 
                 <!-- Navigation Menu -->
                 <VBox spacing="8" style="-fx-padding: 20 15;">
-                    <Label text="ADMINISTRATION" textFill="#6c757d">
+                    <Label style="-fx-text-fill: #6c757d;" text="ADMINISTRATION">
                         <font>
                             <Font name="System" size="10.0" />
                         </font>
@@ -132,19 +132,11 @@
                     </Button>
 
                     <!-- Statistiques -->
-                    <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📈  Statistiques">
+                    <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToStatistique" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📈  Statistiques">
                         <font>
                             <Font size="13.0" />
                         </font>
                     </Button>
-
-                    <!-- Rapports -->
-                    <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📑  Rapports">
-                        <font>
-                            <Font size="13.0" />
-                        </font>
-                    </Button>
-
                     <!-- Ajouter stade -->
                     <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#addStadium" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text=" ⚽  Ajouter un stade">
                         <font>
@@ -153,20 +145,19 @@
                     </Button>
 
                     <!-- Liste des stades - ACTIVE -->
-                    <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #C1272D, #d63844); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text="Liste des Stades">
-                        <graphic>
-                            <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
-                                <image>
-                                    <Image url="@../images/stade.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
+                    <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #C1272D, #d63844); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text="  🏟  Liste des Stades">
                         <font>
                             <Font name="System" size="13.0" />
                         </font>
                         <effect>
                             <DropShadow color="#C1272D40" offsetY="2.0" radius="4.0" />
                         </effect>
+                    </Button>
+                    <!-- liste reclamations -->
+                    <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToComplaintList" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="📋  Liste des Réclamations">
+                        <font>
+                            <Font size="13.0" />
+                        </font>
                     </Button>
                 </VBox>
 
@@ -194,17 +185,17 @@
                         </VBox.margin>
 
                         <VBox spacing="4">
-                            <Label fx:id="labelAdmin" text="Admin" textFill="#212529">
+                            <Label fx:id="labelAdmin" style="-fx-text-fill: #212529;" text="Nom Administrateur">
                                 <font>
                                     <Font name="System" size="14.0" />
                                 </font>
                             </Label>
-                            <Label text="Administrateur" textFill="#C1272D">
+                            <Label style="-fx-text-fill: #C1272D;" text="Administrateur">
                                 <font>
                                     <Font name="System" size="12.0" />
                                 </font>
                             </Label>
-                            <Label text="●  Connecté" textFill="#28a745">
+                            <Label style="-fx-text-fill: #28a745;" text="●  Connecté">
                                 <font>
                                     <Font name="System" size="11.0" />
                                 </font>
@@ -290,7 +281,7 @@
                                 <HBox alignment="CENTER_LEFT" spacing="18" style="-fx-padding: 0 0 10 0;">
                                     <!-- Icône verte dans conteneur vert foncé circulaire -->
                                     <StackPane style="-fx-background-color: #2d6a2e; -fx-background-radius: 14; -fx-pref-width: 56; -fx-pref-height: 56;">
-                                        <ImageView fitWidth="28" fitHeight="28" preserveRatio="true">
+                                        <ImageView fitHeight="28" fitWidth="28" preserveRatio="true">
                                             <image>
                                                 <Image url="@../images/stade.png" />
                                             </image>
@@ -299,10 +290,10 @@
 
                                     <VBox spacing="6">
                                         <!-- Titre principal en NOIR BOLD 22px -->
-                                        <Label text="Stades CAN 2025" style="-fx-text-fill: #212121; -fx-font-family: 'System'; -fx-font-weight: bold; -fx-font-size: 22px;">
+                                        <Label style="-fx-text-fill: #212121; -fx-font-family: 'System'; -fx-font-weight: bold; -fx-font-size: 22px;" text="Stades CAN 2025">
                                         </Label>
                                         <!-- Sous-titre en gris #757575 14px -->
-                                        <Label text="Liste complète des stades du Maroc" style="-fx-text-fill: #757575; -fx-font-family: 'System'; -fx-font-size: 14px;">
+                                        <Label style="-fx-text-fill: #757575; -fx-font-family: 'System'; -fx-font-size: 14px;" text="Liste complète des stades du Maroc">
                                         </Label>
                                     </VBox>
                                 </HBox>
@@ -314,7 +305,7 @@
                                 </HBox>
 
                                 <!-- Stadium Grid - gap de 25px entre les cards -->
-                                <FlowPane fx:id="stadiumContainer" hgap="25" vgap="25" style="-fx-padding: 15 0 0 0;">
+                                <FlowPane fx:id="stadiumContainer" hgap="25" style="-fx-padding: 15 0 0 0;" vgap="25">
                                     <!-- Les cartes de stades seront ajoutées dynamiquement ici -->
                                 </FlowPane>
 
@@ -326,7 +317,7 @@
                                                 <DropShadow color="#00000010" offsetY="3.0" radius="8.0" />
                                             </effect>
                                         </HBox>
-                                        <ImageView fitWidth="60" fitHeight="60" preserveRatio="true" opacity="0.5">
+                                        <ImageView fitHeight="60" fitWidth="60" opacity="0.5" preserveRatio="true">
                                             <image>
                                                 <Image url="@../images/stade.png" />
                                             </image>
@@ -409,6 +400,3 @@
     </bottom>
 
 </BorderPane>
-
-
-

@@ -29,6 +29,7 @@ public class AddLostObjectController {
     @FXML private TextField phoneField;
     @FXML private TextField emailField;
     @FXML private ImageView imageView;
+    @FXML private Label labelUser;
 
     private final LostObjectService lostObjectService = new LostObjectService();
     private File selectedImageFile;
@@ -40,6 +41,7 @@ public class AddLostObjectController {
         phoneField.setText(currentUser.getTelephone());
         emailField.setText(currentUser.getEmail());
         loadStadiums();
+        labelUser.setText(currentUser.getUsername());
 
     }
 
@@ -128,32 +130,29 @@ public class AddLostObjectController {
         lostDatePicker.setValue(null);
     }
 
-    @FXML
-    public void goBack(ActionEvent event) throws IOException {
-        if (SessionManager.getInstance().getCurrentUser().getUserType().equals(UserType.ADMIN)){
-            NavigationUtil.navigate(event,"/fxml/Admin.fxml");
-            return;
-        }
-        if (SessionManager.getInstance().getCurrentUser().getUserType().equals(UserType.AGENT)){
-        NavigationUtil.navigate(event,"/fxml/Agent.fxml");
-        return;
-        }
-    }
+
     @FXML
     public void viewLostObjects(ActionEvent event) throws IOException {
-        if (SessionManager.getInstance().getCurrentUser().getUserType().equals(UserType.ADMIN)){
-            NavigationUtil.navigate(event,"/fxml/ViewLostObjectsAdmin.fxml");
-            return;
-        }
-        if (SessionManager.getInstance().getCurrentUser().getUserType().equals(UserType.AGENT)) {
-            NavigationUtil.navigate(event, "/fxml/ViewLostObjectsAgent.fxml");
-            return;
-        }
+        NavigationUtil.navigate(event,"/fxml/ViewLostObjectsAgent.fxml");
     }
 
+    @FXML
+    public void goTDashboard(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event, "/fxml/Agent.fxml");
+    }
 
     @FXML
     public void seDeconnecter(ActionEvent event) throws IOException {
         LogoutUtil.logout(event);
+    }
+
+    @FXML
+    public void goToAddComplaint(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddComplaint.fxml");
+    }
+
+    @FXML
+    public void goToListComplaint(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAgent.fxml");
     }
 }

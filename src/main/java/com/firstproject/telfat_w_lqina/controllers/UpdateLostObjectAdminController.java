@@ -106,6 +106,16 @@ public class UpdateLostObjectAdminController {
     }
 
     @FXML
+    public void goToComplaintList(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAdmin.fxml");
+    }
+
+    @FXML
+    public void goToStatistique(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AdminStatistics.fxml");
+    }
+
+    @FXML
     public void chooseImage(ActionEvent event) throws MalformedURLException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");

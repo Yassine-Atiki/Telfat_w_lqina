@@ -27,6 +27,9 @@ public class User {
     @Column(name = "user_type", nullable = false)
     private UserType userType; // ADMIN, AGENT
 
+    @Column(name = "first_login", nullable = false)
+    private boolean firstLogin = true; // true par défaut pour les nouveaux agents
+
     public UserType getUserType() {
         return userType;
     }
@@ -91,4 +94,11 @@ public class User {
         this.username = username;
     }
 
+    public boolean isFirstLogin() {
+        return firstLogin;
+    }
+
+    public void setFirstLogin(boolean firstLogin) {
+        this.firstLogin = firstLogin;
+    }
 }

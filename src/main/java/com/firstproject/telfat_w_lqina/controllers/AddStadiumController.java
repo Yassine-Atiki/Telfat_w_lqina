@@ -117,6 +117,16 @@ public class AddStadiumController {
         LogoutUtil.logout(event);
     }
 
+    @FXML
+    public void goToComplaintList(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAdmin.fxml");
+    }
+
+    @FXML
+    public void goToStatistique(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AdminStatistics.fxml");
+    }
+
     private void showError(String message) {
         errorLabel.setText(message);
         errorLabel.setTextFill(javafx.scene.paint.Color.web("#dc3545"));

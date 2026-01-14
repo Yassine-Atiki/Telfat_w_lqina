@@ -352,6 +352,16 @@ public class ViewLostObjectsAdminController {
         LogoutUtil.logout(event);
     }
 
+    @FXML
+    public void goToComplaintList(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAdmin.fxml");
+    }
+
+    @FXML
+    public void goToStatistique(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AdminStatistics.fxml");
+    }
+
     public void clearDateFilter(ActionEvent event) {
         dateFilterDatePicker.setValue(null);
     }

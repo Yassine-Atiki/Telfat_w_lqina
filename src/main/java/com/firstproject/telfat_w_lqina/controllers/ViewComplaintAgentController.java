@@ -6,6 +6,7 @@ import com.firstproject.telfat_w_lqina.exception.NotFoundException.ObjectNotFoun
 import com.firstproject.telfat_w_lqina.models.Agent;
 import com.firstproject.telfat_w_lqina.models.Complaint;
 import com.firstproject.telfat_w_lqina.models.Stadium;
+import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.service.ComplaintService;
 import com.firstproject.telfat_w_lqina.service.StadiumService;
 import com.firstproject.telfat_w_lqina.util.*;
@@ -77,6 +78,8 @@ public class ViewComplaintAgentController {
 
     @FXML private Label nb;
 
+    @FXML private Label labelUser;
+
     private ComplaintService complaintService = new ComplaintService();
     private ObservableList<Complaint> complaintObservableList;
     private List<Complaint> complaintList;
@@ -86,6 +89,11 @@ public class ViewComplaintAgentController {
 
     @FXML
     public void initialize() {
+
+        // Récupérer l'utilisateur connecté depuis SessionManager
+        User currentUser2 = SessionManager.getInstance().getCurrentUser();
+        labelUser.setText(currentUser2.getUsername());
+
         // Configuration des colonnes
         nameComplaintTableColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(
@@ -212,14 +220,15 @@ public class ViewComplaintAgentController {
     }
 
     @FXML
-    public void goToAgent(ActionEvent event) throws IOException {
+    public void goTDashboard(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event, "/fxml/Agent.fxml");
     }
 
     @FXML
-    public void addLostObject(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event, "/fxml/AddLostObject.fxml");
+    public void goToAddLostObject(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddLostObject.fxml");
     }
+
 
     @FXML
     public void viewLostObjects(ActionEvent event) throws IOException {

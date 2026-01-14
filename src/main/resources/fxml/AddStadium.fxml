@@ -7,8 +7,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -73,12 +71,12 @@
                     </Polygon>
 
                     <VBox spacing="2">
-                        <Label text="Telfat w lqina" textFill="#006233">
+                        <Label style="-fx-text-fill: #006233;" text="Telfat w lqina">
                             <font>
                                 <Font name="System" size="20.0" />
                             </font>
                         </Label>
-                        <Label text="CAN 2025 - Admin" textFill="#C1272D">
+                        <Label style="-fx-text-fill: #C1272D;" text="CAN 2025 - Admin">
                             <font>
                                 <Font name="System" size="11.0" />
                             </font>
@@ -101,7 +99,7 @@
 
             <!-- Navigation Menu -->
             <VBox spacing="8" style="-fx-padding: 20 15;">
-                <Label text="ADMINISTRATION" textFill="#6c757d">
+                <Label style="-fx-text-fill: #6c757d;" text="ADMINISTRATION">
                     <font>
                         <Font name="System" size="10.0" />
                     </font>
@@ -132,19 +130,11 @@
                 </Button>
 
                 <!-- Statistiques -->
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📈  Statistiques">
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToStatistique" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📈  Statistiques">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Button>
-
-                <!-- Rapports -->
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📑  Rapports">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-
                 <!-- Ajouter stade - ACTIVE -->
                 <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: linear-gradient(to right, #C1272D, #d63844); -fx-background-radius: 8; -fx-text-fill: white; -fx-cursor: hand; -fx-padding: 0 15;" text=" ⚽  Ajouter un stade">
                     <font>
@@ -155,14 +145,12 @@
                     </effect>
                 </Button>
                 <!-- Liste des stades -->
-                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToStadiumList" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="Liste des Stades">
-                    <graphic>
-                        <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/stade.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToStadiumList" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  🏟  Liste des Stades">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Button>                <!-- liste reclamations -->
+                <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToComplaintList" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="📋  Liste des Réclamations">
                     <font>
                         <Font size="13.0" />
                     </font>
@@ -193,17 +181,17 @@
                     </VBox.margin>
 
                     <VBox spacing="4">
-                        <Label fx:id="labelAdmin" text="Nom Administrateur" textFill="#212529">
+                        <Label fx:id="labelAdmin" style="-fx-text-fill: #212529;" text="Nom Administrateur">
                             <font>
                                 <Font name="System" size="14.0" />
                             </font>
                         </Label>
-                        <Label text="Administrateur" textFill="#C1272D">
+                        <Label style="-fx-text-fill: #C1272D;" text="Administrateur">
                             <font>
                                 <Font name="System" size="12.0" />
                             </font>
                         </Label>
-                        <Label text="●  Connecté" textFill="#28a745">
+                        <Label style="-fx-text-fill: #28a745;" text="●  Connecté">
                             <font>
                                 <Font name="System" size="11.0" />
                             </font>
@@ -483,6 +471,3 @@
     </bottom>
 
 </BorderPane>
-
-
-

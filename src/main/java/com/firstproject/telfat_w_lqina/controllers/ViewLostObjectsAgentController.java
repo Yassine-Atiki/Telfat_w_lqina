@@ -79,10 +79,10 @@ public class ViewLostObjectsAgentController {
 
     @FXML
     public void initialize() {
+
+        // Récupérer l'utilisateur connecté depuis SessionManager
         User currentUser = SessionManager.getInstance().getCurrentUser();
-        if (currentUser != null) {
-            labelUser.setText(currentUser.getUsername());
-        }
+        labelUser.setText(currentUser.getUsername());
 
         finedByComboBox.setItems(FXCollections.observableArrayList("Tout le monde", "moi-même"));
         finedByComboBox.getSelectionModel().selectFirst();
@@ -376,7 +376,18 @@ public class ViewLostObjectsAgentController {
             }
         }
     }
+    @FXML
+    public void goTDashboard(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event, "/fxml/Agent.fxml");
+    }
 
+    @FXML
+    public void goToAddLostObject(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddLostObject.fxml");
+    }
+
+
+    @FXML
     public void updateObject(ActionEvent actionEvent, LostObject lostObject) throws IOException {
         SessionLostObject.getInstance().setCurentLostObject(lostObject);
         NavigationUtil.navigate(actionEvent, "/fxml/UpdateLostObjectAgent.fxml");
@@ -388,11 +399,13 @@ public class ViewLostObjectsAgentController {
     }
 
     @FXML
-    public void goBack(ActionEvent event) throws IOException {
-        User currentUser = SessionManager.getInstance().getCurrentUser();
-        if (currentUser.getUserType() == UserType.AGENT) {
-            NavigationUtil.navigate(event, "/fxml/Agent.fxml");
-        }
+    public void goToAddComplaint(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddComplaint.fxml");
+    }
+
+    @FXML
+    public void goToListComplaint(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAgent.fxml");
     }
 
     @FXML

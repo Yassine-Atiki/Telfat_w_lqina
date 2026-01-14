@@ -38,14 +38,12 @@ public class AgentController {
         LogoutUtil.logout(event);
     }
 
-
+    @FXML
     public void goToAddComplaint(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event,"/fxml/AddComplaint.fxml");
     }
 
-    public void goToAgent(ActionEvent event) {
-    }
-
+    @FXML
     public void goToListComplaint(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event,"/fxml/ViewComplaintAgent.fxml");
     }

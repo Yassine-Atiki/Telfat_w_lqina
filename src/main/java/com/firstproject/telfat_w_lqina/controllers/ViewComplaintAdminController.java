@@ -5,10 +5,13 @@ import com.firstproject.telfat_w_lqina.Enum.TypeObjet;
 import com.firstproject.telfat_w_lqina.models.Agent;
 import com.firstproject.telfat_w_lqina.models.Complaint;
 import com.firstproject.telfat_w_lqina.models.Stadium;
+import com.firstproject.telfat_w_lqina.models.User;
 import com.firstproject.telfat_w_lqina.service.ComplaintService;
 import com.firstproject.telfat_w_lqina.service.StadiumService;
 import com.firstproject.telfat_w_lqina.service.UserService;
 import com.firstproject.telfat_w_lqina.util.ImageConverterUtil;
+import com.firstproject.telfat_w_lqina.util.LogoutUtil;
+import com.firstproject.telfat_w_lqina.util.NavigationUtil;
 import com.firstproject.telfat_w_lqina.util.SessionManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -18,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ViewComplaintAdminController {
@@ -75,6 +79,11 @@ public class ViewComplaintAdminController {
     @FXML
     private DatePicker dateFilterDatePicker;
 
+    //admin
+
+    @FXML
+    private Label labelAdmin;
+
     private ComplaintService complaintService = new ComplaintService();
     private ObservableList<Complaint> complaintObservableList;
     private List<Complaint> complaintList;
@@ -83,6 +92,10 @@ public class ViewComplaintAdminController {
 
     @FXML
     public void initialize() {
+        //recuperer info user courant
+        User CurrentUser = SessionManager.getInstance().getCurrentUser();
+        labelAdmin.setText(CurrentUser.getUsername());
+
         // Configuration des colonnes
         nameComplaintTableColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(
@@ -322,23 +335,38 @@ public class ViewComplaintAdminController {
     }
 
 
-
-    public void goToAdmin(ActionEvent event) {
+    @FXML
+    public void goToStatistique(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AdminStatistics.fxml");
     }
 
-    public void createUser(ActionEvent event) {
+    @FXML
+    public void goToAdmin(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/Admin.fxml");
     }
 
-    public void viewLostObjects(ActionEvent event) {
+    @FXML
+    public void createUser(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddUsers.fxml");
     }
 
-    public void goToStadiumList(ActionEvent event) {
+    @FXML
+    public void viewLostObjects(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewLostObjectsAdmin.fxml");
     }
 
-    public void addStadium(ActionEvent event) {
+    public void goToStadiumList(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewStadiums.fxml");
     }
 
-    public void logout(ActionEvent event) {
+    @FXML
+    public void addStadium(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddStadium.fxml");
+    }
+
+    @FXML
+    public void logout(ActionEvent event) throws IOException {
+        LogoutUtil.logout(event);
     }
 
 

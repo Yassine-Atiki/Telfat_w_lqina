@@ -25,7 +25,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewComplaintAdminController">
+<BorderPane style="-fx-background-color: #faf8f5;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.firstproject.telfat_w_lqina.controllers.ViewComplaintAdminController">
 
     <!-- CSS Inline -->
     <stylesheets>
@@ -140,14 +140,7 @@
                     </Button>
 
                     <!-- Statistiques -->
-                    <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📈  Statistiques">
-                        <font>
-                            <Font size="13.0" />
-                        </font>
-                    </Button>
-
-                    <!-- Rapports -->
-                    <Button alignment="CENTER_LEFT" graphicTextGap="12" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📑  Rapports">
+                    <Button alignment="CENTER_LEFT" graphicTextGap="12" onAction="#goToStatistique" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-text-fill: #495057; -fx-cursor: hand; -fx-padding: 0 15; -fx-border-color: #e9ecef; -fx-border-width: 1.5; -fx-border-radius: 8;" text="  📈  Statistiques">
                         <font>
                             <Font size="13.0" />
                         </font>
@@ -282,33 +275,7 @@
                         <HBox HBox.hgrow="ALWAYS" />
 
                         <!-- Quick Stats avec style marocain -->
-                        <HBox spacing="25">
-                            <VBox alignment="CENTER" spacing="2" style="-fx-background-color: #fef2f2; -fx-background-radius: 8; -fx-padding: 12 20;">
-                                <Label text="24" textFill="#C1272D">
-                                    <font>
-                                        <Font name="System" size="22.0" />
-                                    </font>
-                                </Label>
-                                <Label text="Total" textFill="#C1272D">
-                                    <font>
-                                        <Font name="System" size="10.0" />
-                                    </font>
-                                </Label>
-                            </VBox>
-
-                            <VBox alignment="CENTER" spacing="2" style="-fx-background-color: #f0f9f4; -fx-background-radius: 8; -fx-padding: 12 20;">
-                                <Label text="12" textFill="#006233">
-                                    <font>
-                                        <Font name="System" size="22.0" />
-                                    </font>
-                                </Label>
-                                <Label text="En attente" textFill="#006233">
-                                    <font>
-                                        <Font name="System" size="10.0" />
-                                    </font>
-                                </Label>
-                            </VBox>
-                        </HBox>
+                        <HBox spacing="25" />
                     </HBox>
                 </StackPane>
             </top>

@@ -308,7 +308,7 @@ public class UpdateComplaintController {
                         "Succès",
                         "La réclamation a été modifiée avec succès."
                 );
-                NavigationUtil.navigate(new ActionEvent(), "/fxml/Agent.fxml");
+                NavigationUtil.navigate(new ActionEvent(), "/fxml/ViewComplaintAgent.fxml");
             } else {
                 Alerts.errorAlert(
                         "Erreur",
@@ -343,33 +343,37 @@ public class UpdateComplaintController {
      * Retourne à la page précédente
      */
     @FXML
-    public void goBack(ActionEvent event) throws IOException {
+    public void goToDashboard(ActionEvent event) throws IOException {
         NavigationUtil.navigate(event, "/fxml/Agent.fxml");
     }
 
-    /**
-     * Navigue vers la liste des objets
-     */
     @FXML
-    public void goToObjectsList(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event, "/fxml/ObjectsList.fxml");
+    public void addLostObject(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddLostObject.fxml");
     }
 
-    /**
-     * Navigue vers la liste des réclamations
-     */
     @FXML
-    public void goToComplaintsList(ActionEvent event) throws IOException {
-        NavigationUtil.navigate(event, "/fxml/ComplaintsList.fxml");
+    public void viewLostObjects(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewLostObjectsAgent.fxml");
     }
 
-    /**
-     * Déconnecte l'utilisateur
-     */
     @FXML
     public void seDeconnecter(ActionEvent event) throws IOException {
-        // Effacer la session si nécessaire
-        SessionComplaint.getInstance().setCurentComplaint(null);
-        NavigationUtil.navigate(event, "/fxml/Login.fxml");
+        LogoutUtil.logout(event);
+    }
+
+    @FXML
+    public void goToAddComplaint(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/AddComplaint.fxml");
+    }
+
+    @FXML
+    public void goToListComplaint(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAgent.fxml");
+    }
+
+    @FXML
+    public void goBack(ActionEvent event) throws IOException {
+        NavigationUtil.navigate(event,"/fxml/ViewComplaintAgent.fxml");
     }
 }

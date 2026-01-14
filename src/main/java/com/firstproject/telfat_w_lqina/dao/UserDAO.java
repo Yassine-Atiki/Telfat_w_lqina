@@ -153,5 +153,25 @@ public class UserDAO {
         }
     }
 
-
+    // UPDATE User
+    public boolean update(User user) {
+        EntityManager entityManager = HibernateUtil.getEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        boolean transaction = false;
+        try {
+            entityTransaction.begin();
+            entityManager.merge(user);
+            entityTransaction.commit();
+            transaction = true;
+        } catch (Exception exception) {
+            System.out.println("Erreur lors de la mise à jour : " + exception.getMessage());
+            exception.printStackTrace();
+            if (entityTransaction.isActive()) {
+                entityTransaction.rollback();
+            }
+        } finally {
+            entityManager.close();
+        }
+        return transaction;
+    }
 }
