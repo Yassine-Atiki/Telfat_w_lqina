@@ -11,26 +11,27 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class
-MainApp extends Application {
+public class MainApp extends Application {
 
     UserService userService = new UserService();
+
+    public static void main(String[] args) {
+        System.out.println(">>> MAIN STARTED"); // Log pour debug jpackage
+        launch(args);
+        System.out.println(">>> AFTER LAUNCH (normalement jamais atteint)");
+    }
 
     @Override
     public void init() throws Exception {
         super.init();
-
-        // Initialiser Hibernate au démarrage de l'application
-        // Cela va déclencher la création des tables si elles n'existent pas
-        System.out.println("Initialisation de l'application...");
-        System.out.println("Vérification de la base de données...");
+        System.out.println(">>> INIT() STARTED - Initialisation de l'application...");
 
         try {
             // Force l'initialisation d'Hibernate (création des tables)
             HibernateUtil.getEntityManager().close();
-            System.out.println("Base de données initialisée avec succès !");
+            System.out.println(">>> Base de données initialisée avec succès !");
         } catch (Exception e) {
-            System.err.println("Erreur lors de l'initialisation de la base de données");
+            System.err.println(">>> ERREUR lors de l'initialisation de la base de données !");
             e.printStackTrace();
             throw e;
         }
@@ -38,37 +39,32 @@ MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // Load the login view
+        System.out.println(">>> START() CALLED - Chargement de la vue login...");
+
         FXMLLoader fxmlLoader = new FXMLLoader(
                 MainApp.class.getResource("/fxml/login.fxml")
         );
         Parent root = fxmlLoader.load();
 
-        // Create ONE Scene that will be reused
         Scene scene = new Scene(root);
-
-        // Initialize NavigationUtil with stage and scene
         NavigationUtil.initialize(stage, scene);
 
-        // Configure the Stage
-        stage.setTitle("ATIKI & NIHMATOUALLAH Project");
+        stage.setTitle("Telfat W lqine CAN 2025");
         stage.setScene(scene);
-        stage.setMaximized(true);  // Start maximized
+        stage.setMaximized(true);
         stage.setResizable(true);
 
-        // Initialize first user admin
+        System.out.println(">>> Initialisation du premier utilisateur admin...");
         userService.firstUserAdmin();
 
-        // Show the stage
+        System.out.println(">>> SHOW STAGE");
         stage.show();
     }
-
 
     @Override
     public void stop() throws Exception {
         super.stop();
-        // Fermer proprement Hibernate à la fermeture de l'application
-        System.out.println("Fermeture de la connexion à la base de données...");
+        System.out.println(">>> STOP() CALLED - Fermeture de la connexion à la base de données...");
         HibernateUtil.shutdown();
     }
 }
