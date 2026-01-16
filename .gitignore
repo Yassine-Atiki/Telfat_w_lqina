@@ -41,3 +41,18 @@ build/
 ### Database Configuration (local) ###
 # Ne pas commiter les configurations de base de données locales
 src/main/resources/database.properties
+*.properties
+!.env.example
+
+### Environment Variables ###
+.env
+.env.local
+.env.*.local
+
+### Sensitive Data ###
+**/secrets/
+**/credentials/
+**/*.key
+**/*.pem
+**/*.p12
+**/*.jks
