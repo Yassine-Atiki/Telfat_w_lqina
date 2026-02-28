@@ -22,20 +22,6 @@
 
 ---
 
-## 📸 Screenshots
-
-<div align="center">
-
-> *Screenshots of the application running — Login, Admin Dashboard, Agent Dashboard, Lost Objects Management*
-
-<img src="src/main/resources/images/stade.png" alt="Stadium" width="300"/>
-&nbsp;&nbsp;
-<img src="src/main/resources/images/zellige.png" alt="Moroccan Zellige" width="300"/>
-
-</div>
-
----
-
 ## ✨ Features
 
 ### 🔐 Security & Authentication
@@ -208,25 +194,15 @@ Telfat_w_lqina/
 
 ---
 
-## 🌐 Live Demo
-
-> 🔗 **[https://your-live-demo-url.com](https://your-live-demo-url.com)**  
-> *(Desktop application — no hosted web demo available. Clone and run locally.)*
-
----
-
 ## 👤 Authors
 
 <table>
   <tr>
     <td align="center">
       <strong>Mohamed Amine Nihmatouallah</strong><br/>
-      <a href="https://ma.linkedin.com/in/mohamed-amine-nihmatouallah">LinkedIn</a>
     </td>
     <td align="center">
       <strong>Yassine Atiki</strong><br/>
-      <a href="https://github.com/Yassine-Atiki">GitHub</a> •
-      <a href="https://ma.linkedin.com/in/yassine-atiki-b8a815332">LinkedIn</a>
     </td>
   </tr>
 </table>
