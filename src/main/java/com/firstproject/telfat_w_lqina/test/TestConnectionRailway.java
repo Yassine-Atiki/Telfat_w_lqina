@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class TestConnectionRailway {
     public static void main(String[] args) {
-        // Infos de connexion Railway
-        String url = "jdbc:mysql://yamanote.proxy.rlwy.net:37128/railway?useSSL=false&serverTimezone=UTC";
-        String user = "root";
-        String password = "DJqQSiBNYcuQuOKYOWecHrFPqLcEXgXL";
+        // Load connection info from environment variables or database.properties
+        String url = System.getenv().getOrDefault("DB_URL", "jdbc:mysql://localhost:3306/railway?useSSL=false&serverTimezone=UTC");
+        String user = System.getenv().getOrDefault("DB_USERNAME", "root");
+        String password = System.getenv().getOrDefault("DB_PASSWORD", "");
 
         try {
             // Charger le driver MySQL
